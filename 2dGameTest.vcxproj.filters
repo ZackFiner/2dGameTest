@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\drawnObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EID.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="entityManager.cpp">
+      <Filter>src\entities\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\phys">
+      <UniqueIdentifier>{747cfc05-4d37-4172-9b2d-b44b024b9dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{e15e2341-3390-440f-83d9-f6313423a76b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\sprite">
+      <UniqueIdentifier>{9b7b7f17-dc0e-42f4-8af7-fa2c70f41f8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\manager">
+      <UniqueIdentifier>{82708294-2f9d-4ec2-9bf0-f9edc0478726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\entity">
+      <UniqueIdentifier>{c5225050-715f-4844-ba93-1248008fe95e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\drawnObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="emitter.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="motionPath.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="EID.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="entityManager.h">
+      <Filter>src\entities\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>src\entities\entity</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
