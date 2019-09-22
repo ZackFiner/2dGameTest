@@ -2,34 +2,22 @@
 #include "ofMain.h"
 #include "EID.h"
 class collisionHull;
-class quadRegion
-{
-	/*
-	I've opted to use a hash map here, but this may not be the most efficient, as hash maps
-	tend to under perform when we're doing a bunch of insertions/deletions. I may consider using
-	a ordered map (red black tree) instead. Or, if the overhead ends up being too much, maybe just a regular
-	vector.
-	*/
-public:
-	quadRegion *NE, *SE, *SW, *NW;
-	glm::vec2 NW_Corner, SE_Corner;
-};
-
-struct quadRegionLeave : public quadRegion
-{
-	std::unordered_map<EID, collisionHull*> content;
-};
-
 class quadTree
 {
 private:
 	glm::vec2 worldSize = glm::vec2(1000,1000);
 	int max_Depth = 8;
-	bool testBound(quadRegion*, collisionHull*);
+	bool testInBound(quadTree*, collisionHull*);
+	bool testInBound(const glm::vec2&, const glm::vec2&, collisionHull*);
+	bool testIntersect(const glm::vec2&, const glm::vec2&, collisionHull*);
+	bool insertObject(quadTree*, collisionHull*, int);
 public:
-	quadRegion* root;
+	quadTree *NE = nullptr, *SE = nullptr, *SW = nullptr, *NW = nullptr;
+	glm::vec2 NW_Corner, SE_Corner;
+	std::pair<glm::vec2, glm::vec2> getSector(int);
+	quadTree* root;
 	void update();
-	std::vector<collisionHull*> getNeigbors(quadRegionLeave*);
+	std::vector<collisionHull*> getNeigbors(collisionHull*);
 	void buildTree(std::vector<collisionHull*>);
 	void removeEntry(collisionHull*);
 	void addEntry(collisionHull*);
