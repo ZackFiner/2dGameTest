@@ -183,11 +183,13 @@
     <ClCompile Include="EID.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
+    <ClCompile Include="quadTree.cpp" />
     <ClCompile Include="src\drawnObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collisionHull.h" />
     <ClInclude Include="collisionManager.h" />
     <ClInclude Include="EID.h" />
     <ClInclude Include="emitter.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="motionPath.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
+    <ClInclude Include="quadTree.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="src\drawnObject.h" />
     <ClInclude Include="src\ofApp.h" />
