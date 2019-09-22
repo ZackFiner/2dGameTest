@@ -10,17 +10,22 @@ class quadRegion
 	a ordered map (red black tree) instead. Or, if the overhead ends up being too much, maybe just a regular
 	vector.
 	*/
-	std::unordered_map<EID, collisionHull*> content;
 	quadRegion *NE, *SE, *SW, *NW;
 	glm::vec2 NW_Corner, SE_Corner;
+};
+
+struct quadRegionLeave : public quadRegion
+{
+	std::unordered_map<EID, collisionHull*> content;
 };
 
 class quadTree
 {
 	quadRegion* root;
 	void update();
-	std::vector<collisionHull*> getNeigbors(quadRegion*);
-	void buildTree(std::vector<collisionHull>*);
+	std::vector<collisionHull*> getNeigbors(quadRegionLeave*);
+	void buildTree(std::vector<collisionHull*>);
 	void removeEntry(collisionHull*);
 	void addEntry(collisionHull*);
+	std::unordered_map<EID, collisionHull*> content; // note: we are going to use this to enumerate/search all entries without duplicates
 };

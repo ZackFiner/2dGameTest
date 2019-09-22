@@ -1,5 +1,6 @@
 #pragma once
 #include "ofMain.h"
+class entity;
 struct boundingBox
 {
 	std::vector<glm::vec2> verts;
@@ -10,6 +11,7 @@ struct boundingBox
 class collisionHull
 {
 public:
+	entity* owner;
 	glm::vec2 pos;
 	float rot;
 	boundingBox getBB();
