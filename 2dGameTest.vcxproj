@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -188,11 +188,14 @@
     <ClCompile Include="src\ofApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collisionManager.h" />
     <ClInclude Include="EID.h" />
     <ClInclude Include="emitter.h" />
+    <ClInclude Include="hitBox.h" />
     <ClInclude Include="motionPath.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
+    <ClInclude Include="sprite.h" />
     <ClInclude Include="src\drawnObject.h" />
     <ClInclude Include="src\ofApp.h" />
   </ItemGroup>
