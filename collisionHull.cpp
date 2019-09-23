@@ -54,6 +54,11 @@ float collisionHull::getRot()
 	return owner -> getRot() + rot;
 }
 
+bool collisionHull::wasModified()
+{
+	return changed;
+}
+
 boundingBox collisionHull::getBB()
 {
 	return boundingBox::getSquare(5.0f);
@@ -61,7 +66,7 @@ boundingBox collisionHull::getBB()
 
 AABB collisionHull::getAABB()
 {
-	if (changed) // we will update only when the rotation or position has changed
+	if (wasModified()) // we will update only when the rotation or position has changed
 	{
 		boundingBox bb = getBB();
 		auto t_verts = bb.getTransformed();
