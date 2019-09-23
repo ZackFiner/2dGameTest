@@ -18,6 +18,9 @@ void boxSprite::draw()
 	ofRotateZ(glm::radians(getRot()));
 	ofDrawRectangle(glm::vec2(0, 0), size, size);
 	ofPopMatrix();
+	ofSetColor(ofColor::red);
+	hitBox->debugDrawAABB();
+	ofSetColor(ofColor::white);
 }
 bool boxSprite::hasChanged()
 {

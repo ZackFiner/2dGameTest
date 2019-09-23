@@ -11,7 +11,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	entity* asEnt = box;
-	std::cout << asEnt->getPos() << std::endl;
+	//std::cout << asEnt->getPos() << std::endl;
 	collisionEngine.update();
 }
 
@@ -40,7 +40,7 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-	box->setPos(glm::vec2(x, y));
+	box->setPos(glm::vec2(x, y)-glm::vec2(ofGetWindowWidth(), ofGetWindowHeight())/2);
 }
 
 //--------------------------------------------------------------

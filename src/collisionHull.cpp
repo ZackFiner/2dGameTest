@@ -60,7 +60,7 @@ bool collisionHull::wasModified()
 
 boundingBox collisionHull::getBB()
 {
-	return boundingBox::getSquare(50.0f);
+	return boundingBox::getSquare(10.0f);
 }
 
 AABB collisionHull::getAABB()
@@ -69,7 +69,7 @@ AABB collisionHull::getAABB()
 	{
 		boundingBox bb = getBB();
 		auto testVal = owner->getPos(); // FIX ME: this returns 0,0 
-
+		std::cout << testVal << std::endl;
 		auto t_verts = bb.getTransformed(getPos(), getRot());
 		glm::vec2 max = t_verts[0], min = t_verts[0];
 		
@@ -85,4 +85,12 @@ AABB collisionHull::getAABB()
 	}
 	return last_val;
 
+}
+
+void collisionHull::debugDrawAABB()
+{
+	ofNoFill();
+	glm::vec2 dim = last_val.NW_Corner - last_val.SE_Corner;
+	ofDrawRectangle(last_val.NW_Corner, dim.x, dim.y);
+	ofFill();
 }

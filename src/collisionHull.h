@@ -32,4 +32,5 @@ public:
 	float getRot();
 	boundingBox getBB();
 	AABB getAABB();
+	void debugDrawAABB();
 };

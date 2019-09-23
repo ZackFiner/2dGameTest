@@ -22,7 +22,7 @@ std::pair<glm::vec2, glm::vec2> quadTree::getSector(int region)
 	case 2:
 		return { mid, SE_Corner };
 	case 3:
-		return { glm::vec2(mid.x, NW_Corner.y), glm::vec2(SE_Corner.x, NW_Corner.y) };
+		return { glm::vec2(mid.x, NW_Corner.y), glm::vec2(SE_Corner.x, mid.y) };
 	}
 }
 
@@ -127,7 +127,7 @@ std::vector<collisionHull*> quadTree::queryTree(collisionHull* obj)
 void quadTree::drawDebug()
 {
 	ofNoFill();
-	auto dim = NW_Corner - SE_Corner;
+	auto dim = glm::abs(NW_Corner - SE_Corner);
 	ofDrawRectangle(SE_Corner, dim.x, dim.y);
 	if (NW != nullptr)
 		NW->drawDebug();
@@ -175,6 +175,7 @@ collisionHull* masterQuad::popFromTree(collisionHull* obj)
 	quadTree* snip_child = nullptr;
 
 	while ( //here, we travel up the tree, to see how far up the branch we can snip
+		snip_point->parent != nullptr &&
 		snip_point->content.size() == 0 &&
 		snip_point->NE == nullptr &&
 		snip_point->SE == nullptr &&
@@ -261,7 +262,8 @@ void masterQuad::drawDebug()
 
 void masterQuad::addEntry(collisionHull* obj)
 {
-	root->addEntry(obj);
+	auto tree = root->addEntry(obj);
+	content.insert({ obj->owner->getID(), {obj, tree} });
 }
 
 masterQuad::~masterQuad()
