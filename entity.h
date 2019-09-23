@@ -17,6 +17,7 @@ public:
 	entity& operator=(const entity&);
 	EID getID() const;
 
+	virtual bool hasChanged();
 	virtual void draw() = 0;
 	virtual ~entity();
 	virtual glm::vec2 getPos() const;

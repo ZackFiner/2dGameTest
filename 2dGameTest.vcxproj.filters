@@ -28,6 +28,12 @@
     <ClCompile Include="collisionHull.cpp">
       <Filter>src\phys</Filter>
     </ClCompile>
+    <ClCompile Include="boxSprite.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionManager.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -78,14 +84,14 @@
     <ClInclude Include="collisionManager.h">
       <Filter>src\phys</Filter>
     </ClInclude>
-    <ClInclude Include="hitBox.h">
-      <Filter>src\phys</Filter>
-    </ClInclude>
     <ClInclude Include="quadTree.h">
       <Filter>src\phys</Filter>
     </ClInclude>
     <ClInclude Include="collisionUtil.h">
       <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="boxSprite.h">
+      <Filter>src\entities\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -239,3 +239,13 @@ void masterQuad::update()
 			deltas[obj.first] = { obj.second.first->getPos(), obj.second.first->getRot() };
 	}
 }
+
+void masterQuad::addEntry(collisionHull* obj)
+{
+	root->addEntry(obj);
+}
+
+masterQuad::~masterQuad()
+{
+	delete root;
+}

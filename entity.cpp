@@ -40,7 +40,6 @@ entity& entity::operator=(const entity& other)
 
 entity::~entity()
 {
-
 }
 
 glm::vec2 entity::getPos() const
@@ -66,4 +65,9 @@ void entity::setRot(float r)
 EID entity::getID() const
 {
 	return id;
+}
+
+bool entity::hasChanged()
+{
+	return false;
 }

@@ -21,11 +21,11 @@ struct AABB
 
 class collisionHull
 {
-	bool changed = false;
 	glm::vec2 pos;
 	float rot;
 	AABB last_val;
 public:
+	bool changed = false;
 	bool wasModified();
 	entity* owner;
 	glm::vec2 getPos();

@@ -36,5 +36,7 @@ public:
 	bool autoDetectUpdates = true;
 	void update();
 	void buildTree(std::vector<collisionHull*>);
+	void addEntry(collisionHull*);
 	void removeEntry(collisionHull*);
+	~masterQuad();
 };
