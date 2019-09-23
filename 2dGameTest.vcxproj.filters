@@ -19,6 +19,15 @@
     <ClCompile Include="entity.cpp">
       <Filter>src\entities\entity</Filter>
     </ClCompile>
+    <ClCompile Include="quadTree.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionUtil.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionHull.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -61,6 +70,22 @@
     </ClInclude>
     <ClInclude Include="entity.h">
       <Filter>src\entities\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.h" />
+    <ClInclude Include="collisionHull.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionManager.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="hitBox.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="quadTree.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionUtil.h">
+      <Filter>src\phys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

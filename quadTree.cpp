@@ -222,20 +222,20 @@ void masterQuad::update()
 		if (deltas.size() <= 0) // if we haven't initialized our delta's
 		{
 			for (auto obj : content)
-				deltas.insert({ obj.first, { obj.second.first->pos, obj.second.first->rot } });
+				deltas.insert({ obj.first, { obj.second.first->getPos(), obj.second.first->getRot() } });
 			return;
 		}
 		for (auto obj : content)
 		{
 			auto hull = obj.second.first;
 			auto pair = deltas[obj.first];
-			if (pair.first != hull->pos || pair.second != hull->rot) // if an object has change it's position or rotation (thus changing what region it should belong to)
+			if (pair.first != hull->getPos() || pair.second != hull->getRot()) // if an object has change it's position or rotation (thus changing what region it should belong to)
 			{
 				// here, we remove the object, then re-insert it
 				siftUpTree(hull);
 			}
 		}
 		for (auto obj : content)
-			deltas[obj.first] = { obj.second.first->pos, obj.second.first->rot };
+			deltas[obj.first] = { obj.second.first->getPos(), obj.second.first->getRot() };
 	}
 }

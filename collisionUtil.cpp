@@ -1,5 +1,5 @@
-#include "collisionHull.h"
 #include "collisionUtil.h"
+#include "collisionHull.h"
 bool collisionUtil::AABBIntersect(const glm::vec2& topCorner, const glm::vec2& bottomCorner, collisionHull* obj)
 {
 	// two AABB intersect if at least one of their edges passes through the other

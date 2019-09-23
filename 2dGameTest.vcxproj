@@ -180,6 +180,8 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="collisionHull.cpp" />
+    <ClCompile Include="collisionUtil.cpp" />
     <ClCompile Include="EID.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="src\ofApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collisionUtil.h" />
     <ClInclude Include="collisionHull.h" />
     <ClInclude Include="collisionManager.h" />
     <ClInclude Include="EID.h" />
