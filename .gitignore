@@ -16,3 +16,8 @@
 .vs/2dGameTest/v15/Solution.VC.db-shm
 obj/x64/Debug/icon.res
 obj/Win32/Debug/icon.res
+2dGameTest.vcxproj
+2dGameTest.vcxproj.filters
+bin/2dGameTest_debug.ilk
+2dGameTest.vcxproj
+icon.rc
