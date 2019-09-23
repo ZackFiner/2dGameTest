@@ -172,9 +172,8 @@ collisionHull* masterQuad::popFromTree(collisionHull* obj)
 	quadTree* holder = content[obj->owner->getID()].second;
 	holder->content.erase(obj->owner->getID()); // remove the object from the trees content
 	quadTree* snip_point = holder;
-	quadTree* snip_child = nullptr;
-
 	while ( //here, we travel up the tree, to see how far up the branch we can snip
+		snip_point!=nullptr &&
 		snip_point->parent != nullptr &&
 		snip_point->content.size() == 0 &&
 		snip_point->NE == nullptr &&
@@ -183,33 +182,27 @@ collisionHull* masterQuad::popFromTree(collisionHull* obj)
 		snip_point->SW == nullptr
 		)
 	{
-		snip_child = snip_point;
-		snip_point = snip_point->parent;
+		quadTree* next = snip_point->parent;
+		if (next->NE == snip_point)
+		{
+			next->NE = nullptr; delete snip_point;
+		}
+		else if (next->NW == snip_point)
+		{
+			next->NW = nullptr; delete snip_point;
+		}
+		else if (next->SE == snip_point)
+		{
+			next->SE = nullptr; delete snip_point;
+		}
+		else if (next->SW == snip_point)
+		{
+			next->SW = nullptr; delete snip_point;
+		}
+		snip_point = next;
 	}
 
-	if (snip_child != nullptr); // i should have used vectors for the child nodes, you'll see why below
-	{
-		if (snip_point->NE == snip_child)
-		{
-			snip_point->NE = nullptr;
-			delete snip_child;
-		}
-		else if (snip_point->NW == snip_child)
-		{
-			snip_point->NW = nullptr;
-			delete snip_child;
-		}
-		else if (snip_point->SE == snip_child)
-		{
-			snip_point->SE = nullptr;
-			delete snip_child;
-		}
-		else if (snip_point->SW == snip_child)
-		{
-			snip_point->SW = nullptr;
-			delete snip_child;
-		}
-	}
+
 	return obj;
 }
 
