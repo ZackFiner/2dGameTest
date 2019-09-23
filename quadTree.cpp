@@ -138,6 +138,8 @@ quadTree::~quadTree()
 		delete SW;
 }
 
+
+
 void masterQuad::buildTree(std::vector<collisionHull*> targets)
 {
 
@@ -151,50 +153,89 @@ void masterQuad::buildTree(std::vector<collisionHull*> targets)
 	}
 }
 
+collisionHull* masterQuad::popFromTree(collisionHull* obj)
+{
+	quadTree* holder = content[obj->owner->getID()].second;
+	holder->content.erase(obj->owner->getID()); // remove the object from the trees content
+	quadTree* snip_point = holder;
+	quadTree* snip_child = nullptr;
+
+	while ( //here, we travel up the tree, to see how far up the branch we can snip
+		snip_point->content.size() == 0 &&
+		snip_point->NE == nullptr &&
+		snip_point->SE == nullptr &&
+		snip_point->NW == nullptr &&
+		snip_point->SW == nullptr
+		)
+	{
+		snip_child = snip_point;
+		snip_point = snip_point->parent;
+	}
+
+	if (snip_child != nullptr); // i should have used vectors for the child nodes, you'll see why below
+	{
+		if (snip_point->NE == snip_child)
+		{
+			snip_point->NE = nullptr;
+			delete snip_child;
+		}
+		else if (snip_point->NW == snip_child)
+		{
+			snip_point->NW = nullptr;
+			delete snip_child;
+		}
+		else if (snip_point->SE == snip_child)
+		{
+			snip_point->SE = nullptr;
+			delete snip_child;
+		}
+		else if (snip_point->SW == snip_child)
+		{
+			snip_point->SW = nullptr;
+			delete snip_child;
+		}
+	}
+	return obj;
+}
+
 void masterQuad::removeEntry(collisionHull* obj)
 {
 	if (content.find(obj->owner->getID()) != content.end())
 	{
-		quadTree* holder = content[obj->owner->getID()].second;
-		holder->content.erase(obj->owner->getID()); // remove the object from the trees content
-		quadTree* snip_point = holder;
-		quadTree* snip_child = nullptr;
-		
-		while ( //here, we travel up the tree, to see how far up the branch we can snip
-			snip_point->content.size() == 0 &&
-			snip_point->NE == nullptr &&
-			snip_point->SE == nullptr &&
-			snip_point->NW == nullptr &&
-			snip_point->SW == nullptr
-			)
-		{
-			snip_child = snip_point;
-			snip_point = snip_point->parent;
-		}
-
-		if (snip_child != nullptr); // i should have used vectors for the child nodes, you'll see why below
-		{
-			if (snip_point->NE == snip_child)
-			{
-				snip_point->NE = nullptr;
-				delete snip_child;
-			}
-			else if (snip_point->NW == snip_child)
-			{
-				snip_point->NW = nullptr;
-				delete snip_child;
-			}
-			else if (snip_point->SE == snip_child)
-			{
-				snip_point->SE = nullptr;
-				delete snip_child;
-			}
-			else if (snip_point->SW == snip_child)
-			{
-				snip_point->SW = nullptr;
-				delete snip_child;
-			}
-		}
+		popFromTree(obj);
 		content.erase(obj->owner->getID()); // finally, we remove the object from our fast lookup table
+		deltas.erase(obj->owner->getID());
+	}
+}
+
+void masterQuad::siftUpTree(collisionHull* obj)
+{
+	popFromTree(obj); // take the entry out of our quad tree
+	quadTree* location = root->addEntry(obj); //add it to our tree
+	content[obj->owner->getID()].second = location; //update the fast lookup table
+}
+
+void masterQuad::update()
+{
+	if (autoDetectUpdates)
+	{
+		if (deltas.size() <= 0) // if we haven't initialized our delta's
+		{
+			for (auto obj : content)
+				deltas.insert({ obj.first, { obj.second.first->pos, obj.second.first->rot } });
+			return;
+		}
+		for (auto obj : content)
+		{
+			auto hull = obj.second.first;
+			auto pair = deltas[obj.first];
+			if (pair.first != hull->pos || pair.second != hull->rot) // if an object has change it's position or rotation (thus changing what region it should belong to)
+			{
+				// here, we remove the object, then re-insert it
+				siftUpTree(hull);
+			}
+		}
+		for (auto obj : content)
+			deltas[obj.first] = { obj.second.first->pos, obj.second.first->rot };
 	}
 }
