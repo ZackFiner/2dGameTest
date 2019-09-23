@@ -91,6 +91,6 @@ void collisionHull::debugDrawAABB()
 {
 	ofNoFill();
 	glm::vec2 dim = last_val.NW_Corner - last_val.SE_Corner;
-	ofDrawRectangle(last_val.NW_Corner, dim.x, dim.y);
+	ofDrawRectangle(last_val.SE_Corner, dim.x, dim.y);
 	ofFill();
 }

@@ -10,7 +10,7 @@ class ofApp : public ofBaseApp{
 private:
 	entityManager sceneGraph;
 	collisionManager collisionEngine;
-	std::vector<drawnObject*> sceneObjects;
+	std::vector<boxSprite*> sceneObjects;
 	drawnObject* dragTarget;
 	boxSprite* box;
 	public:

@@ -5,7 +5,17 @@ void ofApp::setup(){
 	//sceneObjects.push_back(new dTriangle(glm::vec2(100, 50), glm::vec2(150, 80), glm::vec2(70, 100)));
 	//sceneObjects.push_back(new dSquare(glm::vec2(200, 200), 50.0f));
 	box = new boxSprite(&sceneGraph, 10.0f, &collisionEngine);
-	box->setPos(glm::vec2(250, 250));
+	collisionEngine.update();
+	box->setPos(glm::vec2(20, 250));
+
+	for (int i = 0; i < 500; i++)
+	{
+		boxSprite * sbox = new boxSprite(&sceneGraph, 10.0f, &collisionEngine);
+		collisionEngine.update();
+		sbox->setPos(glm::linearRand(glm::vec2(-500, -500), glm::vec2(500, 500)));
+		sceneObjects.push_back(sbox);
+	}
+	
 }
 
 //--------------------------------------------------------------
@@ -81,4 +91,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 ofApp::~ofApp()
 {
 	delete box;
+	for (auto sbox : sceneObjects)
+	{
+		delete sbox;
+	}
 }
