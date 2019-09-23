@@ -2,9 +2,11 @@
 
 #include "ofMain.h"
 #include "drawnObject.h"
+#include "entityManager.h"
 
 class ofApp : public ofBaseApp{
 private:
+	entityManager
 	std::vector<drawnObject*> sceneObjects;
 	drawnObject* dragTarget;
 	public:
