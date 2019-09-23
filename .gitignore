@@ -21,3 +21,4 @@ obj/Win32/Debug/icon.res
 bin/2dGameTest_debug.ilk
 2dGameTest.vcxproj
 icon.rc
+bin/2dGameTest_debug.ilk

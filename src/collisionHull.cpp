@@ -69,7 +69,6 @@ AABB collisionHull::getAABB()
 	{
 		boundingBox bb = getBB();
 		auto testVal = owner->getPos(); // FIX ME: this returns 0,0 
-		std::cout << testVal << std::endl;
 		auto t_verts = bb.getTransformed(getPos(), getRot());
 		glm::vec2 max = t_verts[0], min = t_verts[0];
 		
