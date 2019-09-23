@@ -1,6 +1,6 @@
 #include "collisionHull.h"
 #include "entity.h"
-
+#include "boxSprite.h"
 boundingBox boundingBox::getSquare(float size)
 {
 	boundingBox square;
@@ -13,14 +13,14 @@ boundingBox boundingBox::getSquare(float size)
 	return square;
 }
 
-std::vector<glm::vec2> boundingBox::getTransformed()
+std::vector<glm::vec2> boundingBox::getTransformed(const glm::vec2& _pos, float _rot)
 {
-	float theta = glm::radians(rot);
+	float theta = glm::radians(_rot);
 	glm::mat2 rot_m = glm::mat2(glm::vec2(glm::cos(theta), glm::sin(theta)), glm::vec2(-glm::sin(theta), glm::cos(theta)));
 	std::vector<glm::vec2> newVerts;
 	for (auto vert : verts)
 	{
-		newVerts.push_back(vert*rot_m + pos);
+		newVerts.push_back(vert*rot_m + _pos);
 	}
 	return newVerts;
 }
@@ -61,7 +61,7 @@ bool collisionHull::wasModified()
 
 boundingBox collisionHull::getBB()
 {
-	return boundingBox::getSquare(5.0f);
+	return boundingBox::getSquare(50.0f);
 }
 
 AABB collisionHull::getAABB()
@@ -69,7 +69,9 @@ AABB collisionHull::getAABB()
 	if (wasModified()) // we will update only when the rotation or position has changed
 	{
 		boundingBox bb = getBB();
-		auto t_verts = bb.getTransformed();
+		auto testVal = owner->getPos(); // FIX ME: this returns 0,0 
+
+		auto t_verts = bb.getTransformed(getPos(), getRot());
 		glm::vec2 max = t_verts[0], min = t_verts[0];
 		
 		for (auto vert : t_verts)

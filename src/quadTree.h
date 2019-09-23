@@ -12,6 +12,7 @@ private:
 	bool testInBound(const glm::vec2&, const glm::vec2&, collisionHull*);
 	void queryTreeRec(collisionHull*, std::vector<collisionHull*>*);
 public:
+	void drawDebug();
 	quadTree *NE = nullptr, *SE = nullptr, *SW = nullptr, *NW = nullptr, *parent = nullptr;
 
 	glm::vec2 NW_Corner, SE_Corner;
@@ -33,6 +34,7 @@ class masterQuad
 	collisionHull* popFromTree(collisionHull*);
 	void siftUpTree(collisionHull*);
 public:
+	void drawDebug();
 	masterQuad();
 	bool autoDetectUpdates = true;
 	void update();

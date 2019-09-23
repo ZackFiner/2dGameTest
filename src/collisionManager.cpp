@@ -13,3 +13,12 @@ void collisionManager::removeEntity(collisionHull* obj)
 {
 	broadPhaseDetector.removeEntry(obj);
 }
+void collisionManager::update()
+{
+	broadPhaseDetector.update();
+}
+
+void collisionManager::drawDebug()
+{
+	broadPhaseDetector.drawDebug();
+}

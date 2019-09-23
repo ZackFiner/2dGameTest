@@ -26,13 +26,13 @@ bool boxSprite::hasChanged()
 
 void boxSprite::setPos(const glm::vec2& _newPos)
 {
-	position = _newPos;
+	entity::setPos(_newPos);
 	hitBox->changed = true;
 }
 
 void boxSprite::setRot(float _newRot)
 {
-	rot = _newRot;
+	entity::setRot(_newRot);
 	hitBox->changed = true;
 }
 

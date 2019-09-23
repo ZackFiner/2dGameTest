@@ -8,7 +8,7 @@ struct boundingBox
 	std::vector<glm::vec2> verts;
 	float rot;
 	glm::vec2 pos;
-	std::vector<glm::vec2> getTransformed();
+	std::vector<glm::vec2> getTransformed(const glm::vec2&, float);
 };
 
 struct AABB

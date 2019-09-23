@@ -124,7 +124,21 @@ std::vector<collisionHull*> quadTree::queryTree(collisionHull* obj)
 	queryTreeRec(obj, &collisions);
 	return collisions;
 }
-
+void quadTree::drawDebug()
+{
+	ofNoFill();
+	auto dim = NW_Corner - SE_Corner;
+	ofDrawRectangle(SE_Corner, dim.x, dim.y);
+	if (NW != nullptr)
+		NW->drawDebug();
+	if (NE != nullptr)
+		NE->drawDebug();
+	if (SE != nullptr)
+		SE->drawDebug();
+	if (SW != nullptr)
+		SW->drawDebug();
+	ofFill();
+}
 quadTree::~quadTree()
 {
 	// delete all child trees
@@ -238,6 +252,11 @@ void masterQuad::update()
 		for (auto obj : content)
 			deltas[obj.first] = { obj.second.first->getPos(), obj.second.first->getRot() };
 	}
+}
+
+void masterQuad::drawDebug()
+{
+	root->drawDebug();
 }
 
 void masterQuad::addEntry(collisionHull* obj)

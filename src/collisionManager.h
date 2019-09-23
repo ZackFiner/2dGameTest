@@ -9,5 +9,7 @@ public:
 	collisionManager();
 	void addEntity(collisionHull*);
 	void removeEntity(collisionHull*);
+	void update();
+	void drawDebug();
 
 };
