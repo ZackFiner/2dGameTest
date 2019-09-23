@@ -45,77 +45,74 @@ bool quadTree::testInBound(const glm::vec2& topCorner, const glm::vec2& bottomCo
 
 bool quadTree::testIntersect(const glm::vec2& topCorner, const glm::vec2& bottomCorner, collisionHull* obj)
 {
+	// two AABB intersect if at least one of their edges passes through the other
 	AABB aabb = obj->getAABB();
-	
+	return  aabb.NW_Corner.x >= bottomCorner.x && //make sure their max x is higher than our min x
+			aabb.NW_Corner.y >= bottomCorner.y && //make sure their max y is higher than our min y
+			aabb.SE_Corner.x <= topCorner.x && //make sure their min x is less than our max x
+			aabb.SE_Corner.y <= topCorner.y; //make sure our min y is less than our max
 }
 
-void quadTree::buildTree(std::vector<collisionHull*> targets)
+void masterQuad::buildTree(std::vector<collisionHull*> targets)
 {
-	/*
-	we have a set of collision hulls, each occupying some region of space, with some origin
-	we will treat these as AABB for now in our broad phase.
-	we will be successively subdividing our space (using a tree) into quadrants
-	 
-	for optimization purposes, only leave nodes will contain objects. this will be done
-	by inserting particularrly large objects into the leave nodes of the smallest possible region they can occupy.
-	*/
 
-	/*
-	next, we should devise a good algorithm to subdivide space such that:
-	1. start at the root, test to see what region a given object falls into
-		a. if the object falls into a specific region, try to insert it into that sub tree
-		b. if it falls into multiple regions add it to both regions and terminate
-		c. if it falls into none, don't add it to the tree at all (this would me that it's somehow outside the bounderies
-		of our world).
-	2. we repeate step 1 until it either reaches a leave node, or the maximum depth, in which case we add a leave node.
-	*/
-	
-	/*
-	When we're building our tree, we will be adding nodes as we go.
-	In order to ensure that all leave nodes contain their parent nodes content, as we build we will maintain a stack of items from the parent.
-
-	Thus, once we reach the leave node level, we can simply pop all items in this stack into the child leaves.
-	*/
 	root = new quadTree();
 	root->NW_Corner = worldSize / 2;
 	root->SE_Corner =-worldSize / 2;
 	for (auto obj : targets)
 	{
-		insertObject(root, obj, 0);
+		auto site = root->addEntry(obj);
+		content.insert({ obj->owner->getID(), {obj, site} });
 	}
 }
 
-bool quadTree::insertObject(quadTree* currentRoot, collisionHull* obj, int depth)
+quadTree* quadTree::addEntry(collisionHull* obj, int depth = 0)
 {
+	// test if any of our child nodes completely encapsulates the object
+	// if it doesnt, just add the object to our own contents
+	if (depth >= max_tree_depth)
+	{
+		content.insert({ obj->owner->getID(), obj });
+		return this;
+	}
+
+	bool addedToChild = false;
 	for (int i = 0; i < 4; i++)
 	{
-		auto sector = currentRoot->getSector(i);
-		if (testInBound(sector.first, sector.second, obj))
+		auto sector = getSector(i);
+		if (addedToChild = testInBound(sector.first, sector.second, obj))
 		{
 			quadTree** region;
 			switch (i) {
 			case 0:
-				region = &(currentRoot->NW);
+				region = &NW;
 				break;
 			case 1:
-				region = &(currentRoot->SW);
+				region = &SW;
 				break;
 			case 2:
-				region = &(currentRoot->SE);
+				region = &SE;
 				break;
 			case 3:
-				region = &(currentRoot->NE);
+				region = &NE;
 				break;
 			}
 
 			if ((*region) == nullptr)
 			{
 				(*region) = new quadTree();
+				(*region)->parent = this;
 				(*region)->NW_Corner = sector.first;
 				(*region)->SE_Corner = sector.second;
 			}
-			insertObject(*region, obj, depth++);
+			return (*region)->addEntry(obj, depth++); //descend deeper into the tree
 		}
+	}
+
+	if (!addedToChild) // if the object is too big to be put into a subdivision, or just doesn't fit into one
+	{
+		content.insert({obj->owner->getID(), obj}); // put it into this node
+		return this;
 	}
 	
 }
