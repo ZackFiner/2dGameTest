@@ -249,3 +249,10 @@ masterQuad::~masterQuad()
 {
 	delete root;
 }
+
+masterQuad::masterQuad()
+{
+	root = new quadTree();
+	root->NW_Corner = worldSize / 2;
+	root->SE_Corner = -worldSize / 2;
+}

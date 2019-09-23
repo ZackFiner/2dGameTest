@@ -3,12 +3,16 @@
 #include "ofMain.h"
 #include "drawnObject.h"
 #include "entityManager.h"
+#include "collisionManager.h"
+#include "boxSprite.h"
 
 class ofApp : public ofBaseApp{
 private:
-	entityManager
+	entityManager sceneGraph;
+	collisionManager collisionEngine;
 	std::vector<drawnObject*> sceneObjects;
 	drawnObject* dragTarget;
+	boxSprite* box;
 	public:
 		void setup();
 		void update();

@@ -10,28 +10,28 @@
     <ClCompile Include="src\drawnObject.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="EID.cpp">
-      <Filter>src\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="entityManager.cpp">
-      <Filter>src\entities\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="entity.cpp">
-      <Filter>src\entities\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="quadTree.cpp">
-      <Filter>src\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="collisionUtil.cpp">
-      <Filter>src\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="collisionHull.cpp">
-      <Filter>src\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="boxSprite.cpp">
+    <ClCompile Include="src\boxSprite.cpp">
       <Filter>src\entities\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="collisionManager.cpp">
+    <ClCompile Include="src\collisionHull.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collisionManager.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collisionUtil.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EID.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityManager.cpp">
+      <Filter>src\entities\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\quadTree.cpp">
       <Filter>src\phys</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,36 +62,38 @@
     <ClInclude Include="src\drawnObject.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="emitter.h">
-      <Filter>src\entities</Filter>
+    <ClInclude Include="src\boxSprite.h">
+      <Filter>src\entities\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="motionPath.h">
+    <ClInclude Include="src\collisionHull.h">
       <Filter>src\phys</Filter>
     </ClInclude>
-    <ClInclude Include="EID.h">
+    <ClInclude Include="src\collisionManager.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collisionUtil.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EID.h">
       <Filter>src\entities</Filter>
     </ClInclude>
-    <ClInclude Include="entityManager.h">
-      <Filter>src\entities\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="entity.h">
+    <ClInclude Include="src\emitter.h">
       <Filter>src\entities\entity</Filter>
     </ClInclude>
-    <ClInclude Include="sprite.h" />
-    <ClInclude Include="collisionHull.h">
+    <ClInclude Include="src\entity.h">
+      <Filter>src\entities\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entityManager.h">
+      <Filter>src\entities\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\quadTree.h">
       <Filter>src\phys</Filter>
     </ClInclude>
-    <ClInclude Include="collisionManager.h">
-      <Filter>src\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="quadTree.h">
-      <Filter>src\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="collisionUtil.h">
-      <Filter>src\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="boxSprite.h">
+    <ClInclude Include="src\sprite.h">
       <Filter>src\entities\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\motionPath.h">
+      <Filter>src\phys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

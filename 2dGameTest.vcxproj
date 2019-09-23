@@ -180,32 +180,32 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="boxSprite.cpp" />
-    <ClCompile Include="collisionHull.cpp" />
-    <ClCompile Include="collisionManager.cpp" />
-    <ClCompile Include="collisionUtil.cpp" />
-    <ClCompile Include="EID.cpp" />
-    <ClCompile Include="entity.cpp" />
-    <ClCompile Include="entityManager.cpp" />
-    <ClCompile Include="quadTree.cpp" />
+    <ClCompile Include="src\boxSprite.cpp" />
+    <ClCompile Include="src\collisionHull.cpp" />
+    <ClCompile Include="src\collisionManager.cpp" />
+    <ClCompile Include="src\collisionUtil.cpp" />
     <ClCompile Include="src\drawnObject.cpp" />
+    <ClCompile Include="src\EID.cpp" />
+    <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\entityManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\quadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="boxSprite.h" />
-    <ClInclude Include="collisionUtil.h" />
-    <ClInclude Include="collisionHull.h" />
-    <ClInclude Include="collisionManager.h" />
-    <ClInclude Include="EID.h" />
-    <ClInclude Include="emitter.h" />
-    <ClInclude Include="motionPath.h" />
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="entityManager.h" />
-    <ClInclude Include="quadTree.h" />
-    <ClInclude Include="sprite.h" />
+    <ClInclude Include="src\boxSprite.h" />
+    <ClInclude Include="src\collisionHull.h" />
+    <ClInclude Include="src\collisionManager.h" />
+    <ClInclude Include="src\collisionUtil.h" />
     <ClInclude Include="src\drawnObject.h" />
+    <ClInclude Include="src\EID.h" />
+    <ClInclude Include="src\emitter.h" />
+    <ClInclude Include="src\entity.h" />
+    <ClInclude Include="src\entityManager.h" />
+    <ClInclude Include="src\motionPath.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\quadTree.h" />
+    <ClInclude Include="src\sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

@@ -33,6 +33,7 @@ class masterQuad
 	collisionHull* popFromTree(collisionHull*);
 	void siftUpTree(collisionHull*);
 public:
+	masterQuad();
 	bool autoDetectUpdates = true;
 	void update();
 	void buildTree(std::vector<collisionHull*>);

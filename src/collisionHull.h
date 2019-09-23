@@ -25,7 +25,7 @@ class collisionHull
 	float rot;
 	AABB last_val;
 public:
-	bool changed = false;
+	bool changed = true;
 	bool wasModified();
 	entity* owner;
 	glm::vec2 getPos();
