@@ -1,6 +1,5 @@
 #include "collisionHull.h"
 #include "entity.h"
-#include "boxSprite.h"
 boundingBox boundingBox::getSquare(float size)
 {
 	boundingBox square;
