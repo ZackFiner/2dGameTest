@@ -270,3 +270,8 @@ masterQuad::masterQuad()
 	root->NW_Corner = worldSize / 2;
 	root->SE_Corner = -worldSize / 2;
 }
+
+std::vector<collisionHull*> masterQuad::queryCollision(collisionHull* obj)
+{
+	return root->queryTree(obj);
+}

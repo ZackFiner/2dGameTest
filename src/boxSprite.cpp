@@ -16,6 +16,11 @@ void boxSprite::draw()
 	ofPushMatrix();
 	ofTranslate(glm::vec3(getPos().x, getPos().y, 0));
 	ofRotateZ(glm::radians(getRot()));
+	auto collides = hit_manager->queryCollision(hitBox);
+	if (collides.size() > 1)
+		ofSetColor(ofColor::green);
+	else
+		ofSetColor(ofColor::white);
 	ofDrawRectangle(glm::vec2(0, 0), size, size);
 	ofPopMatrix();
 	ofSetColor(ofColor::red);

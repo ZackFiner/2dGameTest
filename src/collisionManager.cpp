@@ -22,3 +22,8 @@ void collisionManager::drawDebug()
 {
 	broadPhaseDetector.drawDebug();
 }
+
+std::vector<collisionHull*> collisionManager::queryCollision(collisionHull* obj)
+{
+	return broadPhaseDetector.queryCollision(obj);
+}

@@ -11,5 +11,5 @@ public:
 	void removeEntity(collisionHull*);
 	void update();
 	void drawDebug();
-
+	std::vector<collisionHull*> queryCollision(collisionHull*);
 };
