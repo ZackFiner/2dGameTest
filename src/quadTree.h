@@ -2,6 +2,24 @@
 #include "ofMain.h"
 #include "EID.h"
 
+/*H******************************************************************
+ * FILENAME: quadTree.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This file contains an implementation of a quad tree. The pseudocode
+ * (not the actual code) was taken from the wikipedia article:
+ * https://en.wikipedia.org/wiki/Quadtree
+ *
+ * The quadtree is used in close conjunction with the collision hull
+ * object, and serves to provide an efficient way to query objects
+ * for collision.
+ *
+ * masterQuad is essentially a wrapper class around the quadTree class,
+ * and adds a fast lookup table for objects aswell as methods to remove
+ * objects from the tree quickly.
+ */
+
 static int max_tree_depth = 8;
 class collisionHull;
 class quadTree

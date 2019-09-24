@@ -1,6 +1,14 @@
 #pragma once
 #include "ofMain.h"
-
+/*H******************************************************************
+ * FILENAME: collisionUtil.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This file contains declerations for methods used to detect
+ * collisions between objects. It contains various methods for
+ * detecting whether two objects are colliding.
+ */
 class collisionHull;
 namespace collisionUtil
 {

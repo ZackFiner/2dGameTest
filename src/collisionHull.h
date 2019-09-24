@@ -1,5 +1,17 @@
 #pragma once
 #include "ofMain.h"
+
+/*H******************************************************************
+ * FILENAME: collisionHull.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This file contains declerations for the collisionHull class, which
+ * is used to reprsent a collision hull or hitbox for a given object.
+ * it also include declerations for periphreal helper classes like
+ * AABB (axis-aligned bounding box) and regular bounding boxes.
+ */
+
 class entity;
 
 struct boundingBox

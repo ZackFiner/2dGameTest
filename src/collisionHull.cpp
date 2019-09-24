@@ -1,5 +1,17 @@
 #include "collisionHull.h"
 #include "entity.h"
+
+/*H******************************************************************
+ * FILENAME: collisionHull.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This file contains definitions for the collisionHull class, which
+ * is used to reprsent a collision hull or hitbox for a given object.
+ * it also include declerations for periphreal helper classes like
+ * AABB (axis-aligned bounding box) and regular bounding boxes.
+ */
+
 boundingBox boundingBox::getSquare(float size)
 {
 	boundingBox square;

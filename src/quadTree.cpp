@@ -3,6 +3,25 @@
 #include "collisionHull.h"
 #include "collisionUtil.h"
 
+/*H******************************************************************
+ * FILENAME: quadTree.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This file contains an implementation of a quad tree. The pseudocode
+ * (not the actual code) used to implement this quadTree was taken from
+ * the wikipedia article:
+ * https://en.wikipedia.org/wiki/Quadtree
+ *
+ * The quadtree is used in close conjunction with the collision hull
+ * object, and serves to provide an efficient way to query objects
+ * for collision.
+ *
+ * masterQuad is essentially a wrapper class around the quadTree class,
+ * and adds a fast lookup table for objects aswell as methods to remove
+ * objects from the tree quickly.
+ */
+
 std::pair<glm::vec2, glm::vec2> quadTree::getSector(int region)
 {
 	/*
@@ -54,11 +73,10 @@ quadTree* quadTree::addEntry(collisionHull* obj, int depth = 0)
 		return this;
 	}
 
-	bool addedToChild = false;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++) //try to insert the object into a subdivision
 	{
 		auto sector = getSector(i);
-		if (addedToChild = testInBound(sector.first, sector.second, obj))
+		if (testInBound(sector.first, sector.second, obj))
 		{
 			quadTree** region;
 			switch (i) {
@@ -83,16 +101,13 @@ quadTree* quadTree::addEntry(collisionHull* obj, int depth = 0)
 				(*region)->NW_Corner = sector.first;
 				(*region)->SE_Corner = sector.second;
 			}
-			return (*region)->addEntry(obj, depth++); //descend deeper into the tree
+			return (*region)->addEntry(obj, depth++); //descend deeper into the tree and return
 		}
 	}
 
-	if (!addedToChild) // if the object is too big to be put into a subdivision, or just doesn't fit into one
-	{
-		content.insert({obj->owner->getID(), obj}); // put it into this node
-		return this;
-	}
-	
+	// if the object is too big to be put into a subdivision, or just doesn't fit into one
+	content.insert({obj->owner->getID(), obj}); // put it into this node
+	return this;
 }
 
 void quadTree::queryTreeRec(collisionHull* obj, std::vector<collisionHull*>* intersectsSoFar) // returns all collision hulls with AABBs intersecting the specified collision hull.
@@ -104,7 +119,7 @@ void quadTree::queryTreeRec(collisionHull* obj, std::vector<collisionHull*>* int
 	for (auto o_obj : content) // test all collisions at this node's level
 	{
 		if (collisionUtil::AABBIntersect(o_obj.second, obj))
-			intersectsSoFar->push_back(o_obj.second);
+			intersectsSoFar->push_back(o_obj.second); // objects which intersect with the object are added to our intersection list
 	}
 	// then test all collisions for child level
 	if (NW!=nullptr)
