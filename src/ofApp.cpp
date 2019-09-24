@@ -22,10 +22,10 @@ void ofApp::setup(){
 void ofApp::update(){
 	entity* asEnt = box;
 	//std::cout << asEnt->getPos() << std::endl;
-	/*for (auto box : sceneObjects)
+	for (auto box : sceneObjects)
 	{
 		box->setPos(box->getPos() + glm::diskRand(1.0f));
-	}*/
+	}
 	collisionEngine.update();
 }
 
