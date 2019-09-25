@@ -11,6 +11,8 @@ void entityManager::addSprite(entity* target)
 
 void entityManager::deleteSprite(EID key)
 {
+	if (contents.find(key) != contents.end())
+		delete contents[key];
 	contents.erase(key);
 }
 void entityManager::deleteSprite(entity* target)
@@ -41,4 +43,12 @@ bool entityManager::containsSprite(EID key)
 bool entityManager::containsSprite(entity* target)
 {
 	return containsSprite(target->getID());
+}
+
+entityManager::~entityManager()
+{
+	for (auto pair : contents)
+	{
+		delete pair.second;
+	}
 }

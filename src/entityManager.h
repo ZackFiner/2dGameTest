@@ -35,4 +35,5 @@ public:
 
 	bool containsSprite(EID);
 	bool containsSprite(entity*);
+	~entityManager();
 };
