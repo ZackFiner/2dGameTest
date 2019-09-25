@@ -7,9 +7,7 @@
  * AUTHOR: Zackary Finer
  *
  * DESCRIPTION:
- * This file contains an implementation of a quad tree. The pseudocode
- * (not the actual code) was taken from the wikipedia article:
- * https://en.wikipedia.org/wiki/Quadtree
+ * This file contains an implementation of a quad tree.
  *
  * The quadtree is used in close conjunction with the collision hull
  * object, and serves to provide an efficient way to query objects

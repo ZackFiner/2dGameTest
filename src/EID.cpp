@@ -1,22 +1,5 @@
 #include "EID.h"
 
-//namespace std {
-//	/*
-//		This overide is necessary in order for our ID to work properly in the unordered hash map.
-//		Source: https://en.cppreference.com/w/cpp/utility/hash
-//
-//		We use the injected std::hash template specialization for convenience; i don't feel like adding a third parameter
-//		for the hash function every time i try to insert.
-//	*/
-//	template <>
-//	struct hash<EID>
-//	{
-//		size_t operator()(const EID & id) const noexcept
-//		{
-//			return hash<unsigned int>()(id.id); // very, very simple integer hash for now: we may want to make this more complicated.
-//		}
-//	};
-//}
 std::mutex EID::accessLock;
 unsigned int EID::lastID;
 unsigned int EID::getNewID()
