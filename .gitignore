@@ -21,5 +21,7 @@ obj/Win32/Debug/icon.res
 bin/2dGameTest_debug.ilk
 2dGameTest.vcxproj
 icon.rc
+2dGameTest.vcxproj
+2dGameTest.vcxproj.filters
 bin/2dGameTest_debug.ilk
-*.ilk
+icon.rc

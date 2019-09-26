@@ -47,7 +47,7 @@ bool entityManager::containsSprite(entity* target)
 
 entityManager::~entityManager()
 {
-	for (auto pair : contents)
+	for (auto pair : contents) //Error here, figure it out.
 	{
 		delete pair.second;
 	}
