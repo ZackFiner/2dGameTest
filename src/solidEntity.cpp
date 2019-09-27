@@ -29,3 +29,6 @@ solidEntity::~solidEntity()
 {
 	hitManager->removeEntity(&hitBox);
 }
+
+void solidEntity::setPos(const glm::vec2& newPos) { entity::setPos(newPos); hitBox.changed = true; }
+void solidEntity::setRot(float newRot) { entity::setRot(newRot); hitBox.changed = true; }

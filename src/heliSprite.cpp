@@ -6,6 +6,7 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	img("ah64.png")
 {
 	gun = new projectileEmitter(em);
+	gun->setSpeed(20.0f);
 	gun->setParent((entity*)this);
 	gun->setDir(glm::vec2(0.0f, 1.0f));
 	gun->setPos(glm::vec2(0.0f, 50.0f));

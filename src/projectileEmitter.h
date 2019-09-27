@@ -8,6 +8,7 @@ class projectileEmitter : public emitter
 	float lstF = 0.0f;
 	bool fire = false;
 	glm::vec2 dir;
+	ofSoundPlayer shootfx;
 public:
 	projectileEmitter(entityManager*);
 	void setDir(const glm::vec2&);

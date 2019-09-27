@@ -11,7 +11,7 @@ missile::missile(entityManager* em, const glm::vec2& origin, const glm::vec2& ve
 	setRot(glm::degrees(glm::orientedAngle(glm::vec2(0.0,1.0f), glm::normalize(vel)))); // point the missile towards it's target
 	velocity = vel;
 	lifetime = MISSILE_LIFETIME;
-	dim = glm::vec2(20.0f, 45.0f);
+	dim = glm::vec2(32.0f, 128.0f);
 	img.mirror(true, false);
 	img.resize(dim.x, dim.y);
 }

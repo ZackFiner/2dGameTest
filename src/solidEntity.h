@@ -13,5 +13,7 @@ public:
 	solidEntity(entityManager*, collisionManager*, collisionHull);
 	void update();
 	void draw() const;
+	void setPos(const glm::vec2&);
+	void setRot(float);
 	~solidEntity();
 };

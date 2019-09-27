@@ -85,3 +85,8 @@ entityManager::~entityManager()
 		delete ent;
 	}
 }
+
+int entityManager::getCount()
+{
+	return contents.size();
+}

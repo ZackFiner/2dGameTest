@@ -30,7 +30,7 @@ public:
 	void deleteSprite(EID);
 	void update();
 	void clear();
-
+	int getCount();
 	void draw();
 
 	entity* getSprite(EID);
