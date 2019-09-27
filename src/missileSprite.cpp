@@ -3,12 +3,17 @@
 #define MISSILE_LIFETIME 5.0f
 
 missile::missile(entityManager* em, const glm::vec2& origin, const glm::vec2& vel)
-	: entity(em)
+	: entity(em),
+	img("bullet.png")
 {
 	setPos(origin);
-	setRot(glm::degrees(glm::orientedAngle(glm::vec2(1.0f,0.0f), vel))); // point the missile towards it's target
+	float theta = glm::orientedAngle(glm::vec2(0.0, 1.0f), glm::normalize(vel));
+	setRot(glm::degrees(glm::orientedAngle(glm::vec2(0.0,1.0f), glm::normalize(vel)))); // point the missile towards it's target
 	velocity = vel;
 	lifetime = MISSILE_LIFETIME;
+	dim = glm::vec2(20.0f, 45.0f);
+	img.mirror(true, false);
+	img.resize(dim.x, dim.y);
 }
 
 void missile::draw()
@@ -16,8 +21,7 @@ void missile::draw()
 	ofPushMatrix();
 	ofTranslate(getPos());
 	ofRotate(getRot());
-	glm::vec2 dim = glm::vec2(5.0f, 5.0f);
-	ofDrawRectangle(-dim / 2, dim.x, dim.y);
+	img.draw(-dim / 2);
 	ofPopMatrix();
 }
 

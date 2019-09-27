@@ -45,7 +45,7 @@ entity::~entity()
 glm::vec2 entity::getPos() const
 {
 	if (parent != nullptr)
-		return glm::rotate(position, parent->getRot()) + parent->getPos();
+		return glm::rotate(position,glm::radians( parent->getRot())) + parent->getPos();
 	return position;
 }
 
@@ -97,5 +97,7 @@ bool entity::isDead() const
 	return false;
 }
 
+void entity::setHealth(int hp) {/*child class implements this*/}
+glm::vec2 entity::getVelocity() const { return glm::vec2(); }
 float entity::getLifeTime() const { return lifetime; }
 float entity::getAge() const { return age; }

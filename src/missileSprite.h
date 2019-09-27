@@ -4,6 +4,8 @@ class missile : public entity
 {
 	bool dead = false;
 	glm::vec2 velocity;
+	glm::vec2 dim;
+	ofImage img;
 public:
 	/*
 	manager, origin, velocity

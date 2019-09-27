@@ -33,4 +33,7 @@ public:
 	virtual void setPos(const glm::vec2&);
 	virtual void setRot(float);
 	virtual bool isDead() const;
+	virtual void setHealth(int);
+	virtual glm::vec2 getVelocity() const;
+
 };

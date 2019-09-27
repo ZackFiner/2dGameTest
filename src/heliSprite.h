@@ -9,6 +9,8 @@ class heliSprite : public solidEntity
 	glm::vec2 vel;
 	float f=0.0f, l = 0.0f, r = 0.0f, b = 0.0f;
 	float angAcc, angV;
+	ofImage img;
+	glm::vec2 dim;
 public:
 	heliSprite(entityManager*, collisionManager*);
 	void draw();
