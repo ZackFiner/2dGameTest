@@ -2,10 +2,10 @@
 #include "entityManager.h"
 #include "entity.h"
 
-class emitter : entity
+class emitter :public entity
 {
 protected:
 public:
 	emitter(entityManager*);
-	void draw() const;
+	void draw();
 };

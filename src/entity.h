@@ -12,6 +12,7 @@ protected:
 	float rot;
 	float lifetime = 0.0f;
 	float age = 0.0f;
+	entity* parent = nullptr;
 public:
 	entity(entityManager*);
 	entity(entityManager*, const glm::vec2&, float);
@@ -20,6 +21,8 @@ public:
 	EID getID() const;
 	float getLifeTime() const;
 	float getAge() const;
+	void setParent(entity*);
+	entity* getParent() const;
 
 	virtual bool hasChanged();
 	virtual void draw() = 0;

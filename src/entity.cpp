@@ -44,12 +44,26 @@ entity::~entity()
 
 glm::vec2 entity::getPos() const
 {
+	if (parent != nullptr)
+		return glm::rotate(position, parent->getRot()) + parent->getPos();
 	return position;
 }
 
 float entity::getRot() const
 {
+	if (parent != nullptr)
+		return rot + parent->getRot();
 	return rot;
+}
+
+entity* entity::getParent() const
+{
+	return parent;
+}
+
+void entity::setParent(entity* p)
+{
+	parent = p;
 }
 
 void entity::setPos(const glm::vec2& p)

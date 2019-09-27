@@ -3,8 +3,17 @@
 
 class projectileEmitter : public emitter
 {
-	float frequency;
-	glm::vec3 dir;
+	float frequency = 100.0f;//ms between shots
+	float speed = 10.0f;
+	float lstF = 0.0f;
+	bool fire = false;
+	glm::vec2 dir;
 public:
 	projectileEmitter(entityManager*);
+	void setDir(const glm::vec2&);
+	void toggleFire(bool);
+	void fireOne();
+	void update();
+	void setFireRate(float);
+	void setSpeed(float);
 };
