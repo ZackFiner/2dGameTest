@@ -57,6 +57,12 @@ void entity::setPos(const glm::vec2& p)
 	position = p;
 }
 
+void entity::update()
+{
+	age += ofGetLastFrameTime(); // add the elapse time since last frame call
+	//we may want to use something else, as frame rates can vary from system to system
+}
+
 void entity::setRot(float r)
 {
 	rot = r;
@@ -71,3 +77,11 @@ bool entity::hasChanged()
 {
 	return false;
 }
+
+bool entity::isDead() const
+{
+	return false;
+}
+
+float entity::getLifeTime() const { return lifetime; }
+float entity::getAge() const { return age; }

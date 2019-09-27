@@ -16,11 +16,11 @@ void boxSprite::draw()
 	ofPushMatrix();
 	ofTranslate(glm::vec3(getPos().x, getPos().y, 0));
 	ofRotateZ(glm::radians(getRot()));
-	auto collides = hit_manager->queryCollision(hitBox);
+	/*auto collides = hit_manager->queryCollision(hitBox);
 	if (collides.size() > 1)
 		ofSetColor(ofColor::green);
 	else
-		ofSetColor(ofColor::white);
+		ofSetColor(ofColor::white);*/
 	ofDrawRectangle(glm::vec2(0, 0), size, size);
 	ofPopMatrix();
 	ofSetColor(ofColor::red);
@@ -31,6 +31,18 @@ bool boxSprite::hasChanged()
 {
 	return changed;
 }
+
+
+void boxSprite::update()
+{
+	entity::update();
+	setPos(getPos() + glm::diskRand(1.0f));
+	auto hits = hit_manager->queryCollision(hitBox);
+	//if (hits.size() > 1)
+		//dead = true;
+}
+
+bool boxSprite::isDead() const { return dead; }
 
 void boxSprite::setPos(const glm::vec2& _newPos)
 {

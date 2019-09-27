@@ -28,6 +28,8 @@ public:
 
 	void deleteSprite(entity*);
 	void deleteSprite(EID);
+	void update();
+	void clear();
 
 	void draw();
 

@@ -45,10 +45,42 @@ bool entityManager::containsSprite(entity* target)
 	return containsSprite(target->getID());
 }
 
+void entityManager::update()
+{
+	auto it = contents.begin();
+	while (it != contents.end())
+	{
+		it->second->update();
+		float lt = it->second->getLifeTime();
+		if (lt > 0.0f && it->second->getAge() > lt || it->second->isDead()) // when our entities lifetime is up
+		{
+			delete it->second; // de-allocate the entity
+			it = contents.erase(it); // remove it from the table, then update our iterator
+		}
+		else
+		{
+			it++; //otherwise, just move on
+		}
+	}
+}
+
+void entityManager::clear()
+{
+	for (auto pair : contents)
+	{
+		entity* ent = pair.second;
+		delete ent;
+	}
+	contents.clear();
+}
+
 entityManager::~entityManager()
 {
-	for (auto pair : contents) //Error here, figure it out.
+	// you should manually call clear in the destructor instead of this
+	//either that, or just have the collision detector be aggregated by this
+	for (auto pair : contents) // There is an issue here, as the entity manager needs to be destroyed before the collision engine.
 	{
-		delete pair.second;
+		entity* ent = pair.second;
+		delete ent;
 	}
 }

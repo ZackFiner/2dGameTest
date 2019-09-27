@@ -20,12 +20,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	entity* asEnt = box;
-	//std::cout << asEnt->getPos() << std::endl;
-	for (auto box : sceneObjects)
-	{
-		box->setPos(box->getPos() + glm::diskRand(1.0f));
-	}
+	sceneGraph.update();
 	collisionEngine.update();
 }
 
@@ -94,9 +89,11 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 ofApp::~ofApp()
 {
+	/*
 	delete box;
 	for (auto sbox : sceneObjects)
 	{
 		delete sbox;
-	}
+	}*/
+	sceneGraph.clear();
 }
