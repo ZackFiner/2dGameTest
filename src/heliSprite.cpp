@@ -1,10 +1,11 @@
 #include "heliSprite.h"
 #define DECEL_RATE 0.1f
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
-	solidEntity(em, cm, collisionHull()),
-	gun(em)
+	solidEntity(em, cm, collisionHull())
 {
-	gun.setParent((entity*)this);
+	gun = new projectileEmitter(em);
+	gun->setParent((entity*)this);
+	gun->setDir(glm::vec2(0.0f, 1.0f));
 }
 
 void heliSprite::draw()
@@ -14,7 +15,7 @@ void heliSprite::draw()
 	ofRotate(rot);
 	//draw
 	glm::vec2 dim = glm::vec2(50.0f, 50.0f);
-	ofDrawRectangle(dim/2, dim.x,dim.y);
+	ofDrawRectangle(-dim/2, dim.x,dim.y);
 	ofPopMatrix();
 }
 
@@ -27,23 +28,26 @@ void heliSprite::update()
 {
 	solidEntity::update();
 	
-	if (glm::abs(cont.x) < 0.9f && glm::abs(vel.x) > 0.0f)
+	/*if (glm::abs(cont.x) < 0.9f && glm::abs(vel.x) > 0.0f)
 	{
-		vel.x = glm::clamp(vel.x - DECEL_RATE * glm::sign(vel.x), 0.0f, 10* glm::sign(vel.x));
-	}
-	else
+		vel.x = vel.x - DECEL_RATE * glm::sign(vel.x);
+	}*/
+	//else
 	{
-		vel.x = cont.x;
+		vel.x = l-r;
 	}
-	if (abs(cont.y) < 0.9f && abs(vel.y) > 0.0f)
+	/*if (abs(cont.y) < 0.9f && abs(vel.y) > 0.0f)
 	{
-		vel.y = glm::clamp(vel.y - DECEL_RATE * glm::sign(vel.y), 0.0f, 10 * glm::sign(vel.y));
-	}
-	else
+		vel.y = vel.y - DECEL_RATE * glm::sign(vel.y);
+	}*/
+	//else
 	{
-		vel.y = cont.y;
+		vel.y = f-b;
 	}
-	glm::vec2 scrnDim = glm::vec2(ofGetScreenWidth(), ofGetScreenHeight());
+	//std::cout << vel << std::endl;
+	//std::cout << cont << std::endl;
+	//std::cout << getPos() << std::endl;
+	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	glm::vec2 newPos = glm::clamp(vel + position, -scrnDim / 2, scrnDim / 2);
 	setPos(newPos);
 
@@ -58,19 +62,22 @@ void heliSprite::handleKeyInput(int key)
 	{
 	case 'w':
 	case 'W':
-		cont += glm::vec2(1.0f, 0.0f);
+		f = 1.0f;
 		break;
 	case 's':
 	case 'S':
-		cont += glm::vec2(-1.0f, 0.0f);
+		b = 1.0f;
 		break;
 	case 'a':
 	case 'A':
-		cont += glm::vec2(0.0f, 1.0f);
+		l = 1.0f;
 		break;
 	case 'd':
 	case 'D':
-		cont += glm::vec2(0.0f, -1.0f);
+		r = 1.0f;
+		break;
+	case ' ':
+		gun->toggleFire(true);
 		break;
 	}
 }
@@ -81,19 +88,27 @@ void heliSprite::handleKeyRelease(int key)
 	{
 	case 'w':
 	case 'W':
-		cont -= glm::vec2(1.0f, 0.0f);
+		f = 0.0f;
 		break;
 	case 's':
 	case 'S':
-		cont -= glm::vec2(-1.0f, 0.0f);
+		b = 0.0f;
 		break;
 	case 'a':
 	case 'A':
-		cont -= glm::vec2(0.0f, 1.0f);
+		l = 0.0f;
 		break;
 	case 'd':
 	case 'D':
-		cont -= glm::vec2(0.0f, -1.0f);
+		r = 0.0f;
+		break;
+	case ' ':
+		gun->toggleFire(false);
 		break;
 	}
+}
+
+heliSprite::~heliSprite()
+{
+
 }

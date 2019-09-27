@@ -5,14 +5,14 @@
 #include "entityManager.h"
 #include "collisionManager.h"
 #include "boxSprite.h"
+#include "heliSprite.h"
 
 class ofApp : public ofBaseApp{
 private:
 	entityManager sceneGraph;
 	collisionManager collisionEngine;
-	std::vector<boxSprite*> sceneObjects;
 	drawnObject* dragTarget;
-	boxSprite* box;
+	heliSprite* helicopter;
 	public:
 		void setup();
 		void update();

@@ -5,7 +5,7 @@ solidEntity::solidEntity(entityManager* _manager, collisionManager* _hitManager,
 {
 	this->hitManager = _hitManager;
 	this->hitBox = hitBox;
-
+	this->hitBox.owner = (entity*)this;
 	this->hitManager->addEntity(&(this->hitBox));
 }
 
@@ -23,4 +23,9 @@ std::vector<entity*> solidEntity::getCollisions()
 	for (auto hull : result)
 		_return.push_back(hull->owner);
 	return _return;
+}
+
+solidEntity::~solidEntity()
+{
+	hitManager->removeEntity(&hitBox);
 }

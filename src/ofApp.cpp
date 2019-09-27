@@ -2,19 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	//sceneObjects.push_back(new dTriangle(glm::vec2(100, 50), glm::vec2(150, 80), glm::vec2(70, 100)));
-	//sceneObjects.push_back(new dSquare(glm::vec2(200, 200), 50.0f));
-	box = new boxSprite(&sceneGraph, 10.0f, &collisionEngine);
-	collisionEngine.update();
-	box->setPos(glm::vec2(20, 250));
-
-	for (int i = 0; i < 500; i++)
-	{
-		boxSprite * sbox = new boxSprite(&sceneGraph, 10.0f, &collisionEngine);
-		collisionEngine.update();
-		sbox->setPos(glm::linearRand(glm::vec2(-500, -500), glm::vec2(500, 500)));
-		sceneObjects.push_back(sbox);
-	}
+	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	
 }
 
@@ -26,21 +14,25 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	ofPushMatrix();
-	ofTranslate(glm::vec3(ofGetWindowWidth()/2, ofGetWindowHeight()/2, 0));
-	collisionEngine.drawDebug();
+	ofTranslate(glm::vec3(ofGetWidth()/2, ofGetHeight()/2, 0));
+	ofRotateDeg(180.0f);
+	//collisionEngine.drawDebug();
 	sceneGraph.draw();
 	ofPopMatrix();
+	ofDrawLine(glm::vec2(0, scrnDim.y / 2), glm::vec2(scrnDim.x, scrnDim.y / 2));
+	ofDrawLine(glm::vec2(scrnDim.x / 2, 0), glm::vec2(scrnDim.x/2, scrnDim.y));
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	helicopter->handleKeyInput(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	helicopter->handleKeyRelease(key);
 }
 
 //--------------------------------------------------------------
@@ -49,7 +41,6 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-	box->setPos(glm::vec2(x, y)-glm::vec2(ofGetWindowWidth(), ofGetWindowHeight())/2);
 }
 
 //--------------------------------------------------------------

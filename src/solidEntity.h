@@ -13,4 +13,5 @@ public:
 	solidEntity(entityManager*, collisionManager*, collisionHull);
 	void update();
 	void draw() const;
+	~solidEntity();
 };

@@ -6,7 +6,8 @@ entityManager::entityManager()
 
 void entityManager::addSprite(entity* target)
 {
-	contents.insert({ target->getID(), target });
+	if (contents.find(target->getID())==contents.end())
+		contents.insert({ target->getID(), target });
 }
 
 void entityManager::deleteSprite(EID key)

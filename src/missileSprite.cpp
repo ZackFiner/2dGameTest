@@ -1,6 +1,6 @@
 #include "missileSprite.h"
 
-#define MISSILE_LIFETIME 10.0f
+#define MISSILE_LIFETIME 5.0f
 
 missile::missile(entityManager* em, const glm::vec2& origin, const glm::vec2& vel)
 	: entity(em)
@@ -17,13 +17,13 @@ void missile::draw()
 	ofTranslate(getPos());
 	ofRotate(getRot());
 	glm::vec2 dim = glm::vec2(5.0f, 5.0f);
-	ofDrawRectangle(dim / 2, dim.x, dim.y);
+	ofDrawRectangle(-dim / 2, dim.x, dim.y);
 	ofPopMatrix();
 }
 
 void missile::update()
 {
-	auto dim = glm::vec2(ofGetScreenWidth(), ofGetScreenHeight());
+	auto dim = glm::vec2(ofGetWidth(), ofGetHeight());
 	auto pos = getPos();
 	dead = glm::abs(pos.x) > dim.x / 2 || glm::abs(pos.y) > dim.y / 2; // delete if we're out of screen range
 	entity::update();

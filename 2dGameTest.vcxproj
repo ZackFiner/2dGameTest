@@ -186,11 +186,16 @@
     <ClCompile Include="src\collisionUtil.cpp" />
     <ClCompile Include="src\drawnObject.cpp" />
     <ClCompile Include="src\EID.cpp" />
+    <ClCompile Include="src\emitter.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\entityManager.cpp" />
+    <ClCompile Include="src\heliSprite.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\missileSprite.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\projectileEmitter.cpp" />
     <ClCompile Include="src\quadTree.cpp" />
+    <ClCompile Include="src\solidEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\boxSprite.h" />
@@ -202,9 +207,13 @@
     <ClInclude Include="src\emitter.h" />
     <ClInclude Include="src\entity.h" />
     <ClInclude Include="src\entityManager.h" />
+    <ClInclude Include="src\heliSprite.h" />
+    <ClInclude Include="src\missileSprite.h" />
     <ClInclude Include="src\motionPath.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\projectileEmitter.h" />
     <ClInclude Include="src\quadTree.h" />
+    <ClInclude Include="src\solidEntity.h" />
     <ClInclude Include="src\sprite.h" />
   </ItemGroup>
   <ItemGroup>

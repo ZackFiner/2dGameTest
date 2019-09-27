@@ -34,6 +34,21 @@
     <ClCompile Include="src\quadTree.cpp">
       <Filter>src\phys</Filter>
     </ClCompile>
+    <ClCompile Include="src\solidEntity.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\heliSprite.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emitter.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectileEmitter.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\missileSprite.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -94,6 +109,18 @@
     </ClInclude>
     <ClInclude Include="src\motionPath.h">
       <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\solidEntity.h">
+      <Filter>src\entities\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\heliSprite.h">
+      <Filter>src\entities\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\missileSprite.h">
+      <Filter>src\entities\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectileEmitter.h">
+      <Filter>src\entities\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
