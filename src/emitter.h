@@ -7,5 +7,5 @@ class emitter : entity
 protected:
 public:
 	emitter(entityManager*);
-
+	void draw() const;
 };
