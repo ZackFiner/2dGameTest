@@ -28,7 +28,7 @@ void projectileEmitter::update()
 {
 	if (fire)
 	{
-		float ct = ofGetCurrentTime().getAsMilliseconds();
+		long ct = ofGetCurrentTime().getAsMilliseconds();
 		if (ct - lstF > frequency)
 		{
 			fireOne();

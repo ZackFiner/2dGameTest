@@ -3,7 +3,8 @@
 #define DECEL_RATE 0.05f
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	solidEntity(em, cm, collisionHull()),
-	img("ah64.png")
+	img("ah64.png"),
+	rotor("rotor_sheet.png", 50.0f, glm::vec2(106.0f,106.0f), glm::vec2(364,364), 4)
 {
 	gun = new projectileEmitter(em);
 	gun->setSpeed(20.0f);
@@ -23,6 +24,7 @@ void heliSprite::draw()
 	//draw
 	//ofDrawRectangle(-dim/2, dim.x,dim.y);
 	img.draw(-dim / 2);
+	rotor.draw(-rotor.getSize()/2 + glm::vec2(0.0f, 10.0f));
 	ofPopMatrix();
 }
 
@@ -33,6 +35,7 @@ bool heliSprite::isDead() const
 
 void heliSprite::update()
 {
+	rotor.update();
 	solidEntity::update();
 	
 	if (abs(f) > 0.0f || abs(b) > 0.0f)

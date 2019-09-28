@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofSetBackgroundColor(ofColor::black);
+	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	
 }

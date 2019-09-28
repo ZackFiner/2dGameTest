@@ -2,6 +2,7 @@
 #include "solidEntity.h"
 #include "emitter.h"
 #include "projectileEmitter.h"
+#include "spriteSheet.h"
 class heliSprite : public solidEntity
 {
 	int health = 100;
@@ -10,6 +11,7 @@ class heliSprite : public solidEntity
 	float f=0.0f, l = 0.0f, r = 0.0f, b = 0.0f;
 	float angAcc, angV;
 	ofImage img;
+	spriteSheet rotor;
 	glm::vec2 dim;
 public:
 	heliSprite(entityManager*, collisionManager*);

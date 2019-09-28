@@ -196,6 +196,7 @@
     <ClCompile Include="src\projectileEmitter.cpp" />
     <ClCompile Include="src\quadTree.cpp" />
     <ClCompile Include="src\solidEntity.cpp" />
+    <ClCompile Include="src\spriteSheet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\boxSprite.h" />
@@ -215,6 +216,7 @@
     <ClInclude Include="src\quadTree.h" />
     <ClInclude Include="src\solidEntity.h" />
     <ClInclude Include="src\sprite.h" />
+    <ClInclude Include="src\spriteSheet.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

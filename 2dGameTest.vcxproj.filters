@@ -49,6 +49,9 @@
     <ClCompile Include="src\missileSprite.cpp">
       <Filter>src\entities\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="src\spriteSheet.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="src\projectileEmitter.h">
       <Filter>src\entities\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spriteSheet.h">
+      <Filter>src\entities\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
