@@ -52,6 +52,15 @@
     <ClCompile Include="src\spriteSheet.cpp">
       <Filter>src\entities\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="src\playState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menuState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -71,6 +80,9 @@
     </Filter>
     <Filter Include="src\entities\entity">
       <UniqueIdentifier>{c5225050-715f-4844-ba93-1248008fe95e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\state">
+      <UniqueIdentifier>{759f5cc3-f4c3-4ef2-a32a-9ed39fbc026f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="src\spriteSheet.h">
       <Filter>src\entities\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameState.h">
+      <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playState.h">
+      <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\menuState.h">
+      <Filter>src\state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

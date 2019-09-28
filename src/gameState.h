@@ -26,6 +26,7 @@
  ***************************************************************/
 class gameState
 {
+public:
 	virtual void setup() = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
@@ -41,6 +42,6 @@ class gameState
 	virtual void windowResized(int w, int h) = 0;
 	virtual void dragEvent(ofDragInfo dragInfo) = 0;
 	virtual void gotMessage(ofMessage msg) = 0;
-	virtual gameState* tranitionState() = 0;
+	virtual gameState* transitionState() = 0;
 	virtual ~gameState() = 0;
 };
