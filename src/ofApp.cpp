@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofSetBackgroundColor(ofColor::black);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	
 }
@@ -13,18 +14,16 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::draw() {
+
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth()/2, ofGetHeight()/2, 0));
 	ofRotateDeg(180.0f);
-
 	//collisionEngine.drawDebug();
 	sceneGraph.draw();
 
 	ofPopMatrix();
-	ofDrawLine(glm::vec2(0, scrnDim.y / 2), glm::vec2(scrnDim.x, scrnDim.y / 2));
-	ofDrawLine(glm::vec2(scrnDim.x / 2, 0), glm::vec2(scrnDim.x/2, scrnDim.y));
 }
 
 //--------------------------------------------------------------
