@@ -1,5 +1,15 @@
 #pragma once
 #include "ofMain.h"
+/*H******************************************************************
+ * FILENAME: scrollingBg.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * scrollingBg is used to display scrolling background images, such
+ * as those used for level terrain. Right now it only supports
+ * vertical scrolling.
+ *
+ ********************************************************************/
 class scrollingBg
 {
 	ofImage tile1, tile2;

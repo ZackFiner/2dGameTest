@@ -1,6 +1,15 @@
 #pragma once
 #include "ofMain.h"
-
+/*H******************************************************************
+ * FILENAME: spriteSheet.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * spriteSheet is a class which can be used to draw animated sprites
+ * using a spriteSheet. It is currently used by the helicopter class
+ * to draw the spinning rotor blades.
+ *
+ ********************************************************************/
 class spriteSheet
 {
 	ofImage sheet;

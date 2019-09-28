@@ -1,5 +1,17 @@
 #include "playState.h"
 
+/*H******************************************************************
+ * FILENAME: gameState.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * playState is the state associated with gameplay (when the player
+ * is flying the helicopter and shooting things). As such, it contains
+ * a helicopter sprite and various other critical data structures (
+ * such as a scene manager and collision engine).
+ *
+ ********************************************************************/
+
 void playState::setup() {
 	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);

@@ -1,4 +1,20 @@
 #include "heliSprite.h"
+
+/*H******************************************************************
+ * FILENAME: heliSprite.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * heliSprite is the sprite controlled by the player. It takes input
+ * from the keyboard to move, and has a projectile launcher to shoot
+ * bullets at things.
+ *
+ * heliSprite is a solidEntity, meaning it will be considered during
+ * collision detection calculations. This will allow it to take damage
+ * when hit by enemy projectiles.
+ *
+ ********************************************************************/
+
 #define ACCEL_RATE 0.1f
 #define DECEL_RATE 0.05f
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :

@@ -1,5 +1,16 @@
 #include "spriteSheet.h"
 
+/*H******************************************************************
+ * FILENAME: spriteSheet.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * spriteSheet is a class which can be used to draw animated sprites
+ * using a spriteSheet. It is currently used by the helicopter class
+ * to draw the spinning rotor blades.
+ *
+ ********************************************************************/
+
 spriteSheet::spriteSheet(const std::string& fpath, float frequency, const glm::vec2& desiredSize, const glm::vec2& frameSize, int frameCount):
 	sheet(fpath)
 {

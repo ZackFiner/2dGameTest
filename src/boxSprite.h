@@ -3,7 +3,17 @@
 #include "entity.h"
 #include "collisionHull.h"
 #include "collisionManager.h"
-
+/*H******************************************************************
+ * FILENAME: boxSprite.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This entity is essentially a debug entity used to test various
+ * systems, such as the collision detection and entity management
+ * system. It calculates it's own collisions, and jossles around the
+ * screen.
+ *
+ ********************************************************************/
 class boxSprite : public entity
 {
 private:

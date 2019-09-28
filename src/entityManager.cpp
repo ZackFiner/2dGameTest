@@ -1,6 +1,19 @@
 #include "entity.h"
 #include "entityManager.h"
 
+/*H******************************************************************
+ * FILENAME: entityManager.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This class is responsible for managing entities. That is, it must:
+ * call entities update methods, delete entities when they "die", draw
+ * entities, and add new entities to itself as needed.
+ *
+ * This is the "sprite manager" class for this project.
+ *
+ ********************************************************************/
+
 entityManager::entityManager()
 {}
 

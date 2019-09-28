@@ -1,5 +1,17 @@
 #pragma once
 #include "gameState.h"
+
+/*H******************************************************************
+ * FILENAME: gameState.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * menuState represents the state in which the player is in the main
+ * or start menu. Right now, it only prompts the player to press
+ * space before transitioning into playState.
+ *
+ ********************************************************************/
+
 class menuState : public gameState
 {
 	gameState* nextState = nullptr;

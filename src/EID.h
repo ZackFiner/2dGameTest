@@ -1,7 +1,20 @@
 #pragma once
 #include <thread>
 #include <mutex>
-
+/*H******************************************************************
+ * FILENAME: EID.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * EID (Entity IDentifier) is class used to uniquely identify an entity
+ * in our game. It is also responsible for generating new unique 
+ * identification numbers.
+ * 
+ * Ontop of this, the header includes an injected std::hash template
+ * specialization for EID so that objects of this class can be used
+ * as the key in unordered_maps (hash maps).
+ *
+ ********************************************************************/
 class EID
 {
 	private:

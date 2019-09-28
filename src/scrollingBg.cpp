@@ -1,5 +1,16 @@
 #include "scrollingBg.h"
 
+/*H******************************************************************
+ * FILENAME: scrollingBg.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * scrollingBg is used to display scrolling background images, such
+ * as those used for level terrain. Right now it only supports
+ * vertical scrolling.
+ *
+ ********************************************************************/
+
 scrollingBg::scrollingBg(const std::string& fpath, float spd) :
 	tile1(fpath),
 	tile2(fpath)

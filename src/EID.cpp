@@ -1,5 +1,19 @@
 #include "EID.h"
 
+/*H******************************************************************
+ * FILENAME: EID.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * EID (Entity IDentifier) is class used to uniquely identify an entity
+ * in our game. It is also responsible for generating new unique
+ * identification numbers.
+ *
+ * I've tried to implement this class atomically, although I have not 
+ * tested how well it works.
+ *
+ ********************************************************************/
+
 std::mutex EID::accessLock;
 unsigned int EID::lastID;
 unsigned int EID::getNewID()

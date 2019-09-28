@@ -1,6 +1,18 @@
 #include "menuState.h"
 #include "ofMain.h"
 #include "playState.h"
+
+/*H******************************************************************
+ * FILENAME: gameState.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * menuState represents the state in which the player is in the main
+ * or start menu. Right now, it only prompts the player to press
+ * space before transitioning into playState.
+ *
+ ********************************************************************/
+
 void menuState::setup()
 {
 	ofSetBackgroundColor(ofColor::black);

@@ -1,6 +1,21 @@
 #include "projectileEmitter.h"
 #include "missileSprite.h"
 
+/*H******************************************************************
+ * FILENAME: projectileEmitter.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This emitter is used to emit projectiles (such as bullets or missiles).
+ * It 'shoots' these projectiles from it's origin point, in a direction
+ * specified during it's creation (dir), at a frequency specified
+ * (frequency, in ms).
+ *
+ * The projectiles created by this emitter will travel at a speed
+ * specified by the speed member variable.
+ *
+ ********************************************************************/
+
 projectileEmitter::projectileEmitter(entityManager* em) :
 	emitter(em)
 {

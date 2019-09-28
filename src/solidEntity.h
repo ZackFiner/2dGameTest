@@ -3,6 +3,18 @@
 #include "collisionHull.h"
 #include "collisionManager.h"
 
+/*H******************************************************************
+ * FILENAME: solidEntity.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This subclass of entity essentially integrates the entity class with
+ * the collision management system. As such, solidEntities are considered
+ * in collsion detection calculations, and should be used to implement
+ * sprites (entities) that can be hit by other entities.
+ *
+ ********************************************************************/
+
 class solidEntity : public entity
 {
 protected:

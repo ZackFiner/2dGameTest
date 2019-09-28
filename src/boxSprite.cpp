@@ -1,5 +1,16 @@
 #include "boxSprite.h"
 
+/*H******************************************************************
+ * FILENAME: boxSprite.cpp
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * This entity is essentially a debug entity used to test various
+ * systems, such as the collision detection and entity management
+ * system. It calculates it's own collisions, and jossles around the
+ * screen.
+ *
+ ********************************************************************/
 
 boxSprite::boxSprite(entityManager* _manager, float _size, collisionManager* h_manager) :
 	entity(_manager),

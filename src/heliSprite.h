@@ -3,6 +3,22 @@
 #include "emitter.h"
 #include "projectileEmitter.h"
 #include "spriteSheet.h"
+
+/*H******************************************************************
+ * FILENAME: heliSprite.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ * heliSprite is the sprite controlled by the player. It takes input
+ * from the keyboard to move, and has a projectile launcher to shoot
+ * bullets at things.
+ *
+ * heliSprite is a solidEntity, meaning it will be considered during
+ * collision detection calculations. This will allow it to take damage
+ * when hit by enemy projectiles.
+ *
+ ********************************************************************/
+
 class heliSprite : public solidEntity
 {
 	int health = 100;
