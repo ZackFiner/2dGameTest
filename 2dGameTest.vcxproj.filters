@@ -61,6 +61,9 @@
     <ClCompile Include="src\gameState.cpp">
       <Filter>src\state</Filter>
     </ClCompile>
+    <ClCompile Include="src\scrollingBg.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="src\menuState.h">
       <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scrollingBg.h">
+      <Filter>src\entities\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

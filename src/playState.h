@@ -7,13 +7,14 @@
 #include "collisionManager.h"
 #include "boxSprite.h"
 #include "heliSprite.h"
-
+#include "scrollingBg.h"
 class playState : public gameState
 {
 	entityManager sceneGraph;
 	quadTreeCollisionManager collisionEngine;
 	drawnObject* dragTarget;
 	heliSprite* helicopter;
+	scrollingBg background = scrollingBg("background.png", 3.0f);
 public:
 	void setup();
 	void update();

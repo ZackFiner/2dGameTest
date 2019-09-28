@@ -8,13 +8,14 @@ void playState::setup() {
 
 //--------------------------------------------------------------
 void playState::update() {
+	background.update();
 	sceneGraph.update();
 	collisionEngine.update();
 }
 
 //--------------------------------------------------------------
 void playState::draw() {
-
+	background.draw();
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
