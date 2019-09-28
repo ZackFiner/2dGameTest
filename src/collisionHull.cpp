@@ -1,5 +1,6 @@
 #include "collisionHull.h"
 #include "entity.h"
+#include <limits>
 
 /*H******************************************************************
  * FILENAME: collisionHull.h
@@ -74,28 +75,55 @@ boundingBox collisionHull::getBB()
 {
 	return boundingBox::getSquare(10.0f);
 }
+void collisionHull::updateAABB()
+{
+	boundingBox bb = getBB();
+	auto t_verts = bb.getTransformed(getPos(), getRot());
+	glm::vec2 max = t_verts[0], min = t_verts[0];
 
+	for (auto vert : t_verts)
+	{
+		if (vert.x <= min.x) min.x = vert.x;
+		if (vert.x >= max.x) max.x = vert.x;
+		if (vert.y <= min.y) min.y = vert.y;
+		if (vert.y >= max.y) max.y = vert.y;
+	}
+	last_val = AABB(max, min);
+}
 AABB collisionHull::getAABB()
 {
 	if (wasModified()) // we will update only when the rotation or position has changed
 	{
-		boundingBox bb = getBB();
-		auto testVal = owner->getPos(); // FIX ME: this returns 0,0 
-		auto t_verts = bb.getTransformed(getPos(), getRot());
-		glm::vec2 max = t_verts[0], min = t_verts[0];
-		
-		for (auto vert : t_verts)
-		{
-			if (vert.x <= min.x) min.x = vert.x;
-			if (vert.x >= max.x) max.x = vert.x;
-			if (vert.y <= min.y) min.y = vert.y;
-			if (vert.y >= max.y) max.y = vert.y;
-		}
-		last_val = AABB(max, min);
+		updateAABB();
+		updateRadius();
 		changed = false;
 	}
 	return last_val;
 
+}
+
+void collisionHull::updateRadius()
+{
+	float sqrDst = FLT_MIN;
+	auto t_verts = getBB().verts;
+	for (auto p : t_verts)
+	{
+		auto dist = glm::dot(p,p);
+		if (sqrDst < dist)
+			sqrDst = dist;
+	}
+	radius_last = glm::sqrt(glm::max(0.0f, sqrDst));
+}
+
+float collisionHull::getRadius()
+{
+	if (wasModified())
+	{
+		updateAABB();
+		updateRadius();
+		changed = false;
+	}
+	return radius_last;
 }
 
 void collisionHull::debugDrawAABB()

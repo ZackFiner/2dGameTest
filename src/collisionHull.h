@@ -35,8 +35,12 @@ class collisionHull
 {
 	glm::vec2 pos;
 	float rot;
+	float radius_last;
 	AABB last_val;
+	void updateAABB();
+	void updateRadius();
 public:
+	float getRadius();
 	bool changed = true;
 	bool wasModified();
 	entity* owner;

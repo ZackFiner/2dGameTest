@@ -38,3 +38,8 @@ bool missile::isDead() const
 {
 	return entity::isDead() || dead;
 }
+
+glm::vec2 missile::getVelocity() const
+{
+	return velocity;
+}

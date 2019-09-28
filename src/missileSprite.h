@@ -14,5 +14,5 @@ public:
 	void draw();
 	void update(); //right now, travels to the edge of the screen and dies
 	bool isDead() const;
-
+	glm::vec2 getVelocity() const;
 };
