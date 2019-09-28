@@ -2,90 +2,84 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofSetBackgroundColor(ofColor::white);
-	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
-	
+	currentState = new menuState();
+	currentState->setup();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	sceneGraph.update();
-	collisionEngine.update();
+	currentState->update();
+	gameState* nextState;
+	if ((nextState = currentState->transitionState())!=nullptr) //handle state transition
+	{
+		delete currentState; // de-allocate old state
+		currentState = nextState;
+		currentState->setup();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	currentState->draw();
 
-	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
-	ofPushMatrix();
-	ofTranslate(glm::vec3(ofGetWidth()/2, ofGetHeight()/2, 0));
-	ofRotateDeg(180.0f);
-	//collisionEngine.drawDebug();
-	sceneGraph.draw();
-
-	ofPopMatrix();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	helicopter->handleKeyInput(key);
+	currentState->keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	helicopter->handleKeyRelease(key);
+	currentState->keyReleased(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
+	currentState->mouseMoved(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+	currentState->mouseDragged(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	currentState->mousePressed(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+	currentState->mouseReleased(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
+	currentState->mouseEntered(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
-
+	currentState->mouseExited(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+	currentState->windowResized(w, h);
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+	currentState->gotMessage(msg);
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+	currentState->dragEvent(dragInfo);
 }
 
 ofApp::~ofApp()
 {
-	/*
-	delete box;
-	for (auto sbox : sceneObjects)
-	{
-		delete sbox;
-	}*/
-	sceneGraph.clear();
+	delete currentState;
 }

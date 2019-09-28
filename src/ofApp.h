@@ -6,13 +6,11 @@
 #include "collisionManager.h"
 #include "boxSprite.h"
 #include "heliSprite.h"
-
+#include "menuState.h"
+#include "playState.h"
 class ofApp : public ofBaseApp{
 private:
-	entityManager sceneGraph;
-	quadTreeCollisionManager collisionEngine;
-	drawnObject* dragTarget;
-	heliSprite* helicopter;
+	gameState* currentState;
 	public:
 		void setup();
 		void update();
