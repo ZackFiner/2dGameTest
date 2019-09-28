@@ -13,7 +13,7 @@ void menuState::draw()
 {
 	
 	glm::vec2 dim = glm::vec2(ofGetWidth(), ofGetHeight());
-	ofDrawBitmapString("PRESS SPACE TO START GAME", dim / 2 - (glm::vec2(8, 11 * 25) / 2));
+	ofDrawBitmapString("PRESS SPACE TO START GAME", dim / 2-glm::vec2(12.5*8,4));
 }
 void menuState::keyPressed(int key)
 {
