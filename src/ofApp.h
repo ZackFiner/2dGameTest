@@ -10,7 +10,7 @@
 class ofApp : public ofBaseApp{
 private:
 	entityManager sceneGraph;
-	collisionManager collisionEngine;
+	quadTreeCollisionManager collisionEngine;
 	drawnObject* dragTarget;
 	heliSprite* helicopter;
 	public:

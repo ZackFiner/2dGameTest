@@ -12,6 +12,7 @@ class heliSprite : public solidEntity
 	float angAcc, angV;
 	ofImage img;
 	spriteSheet rotor;
+	ofSoundPlayer main, whine;
 	glm::vec2 dim;
 public:
 	heliSprite(entityManager*, collisionManager*);

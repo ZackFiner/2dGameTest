@@ -1,29 +1,29 @@
 #include "collisionManager.h"
 
-collisionManager::collisionManager()
+quadTreeCollisionManager::quadTreeCollisionManager()
 {
 }
 
-void collisionManager::addEntity(collisionHull* obj)
+void quadTreeCollisionManager::addEntity(collisionHull* obj)
 {
 	broadPhaseDetector.addEntry(obj);
 }
 
-void collisionManager::removeEntity(collisionHull* obj)
+void quadTreeCollisionManager::removeEntity(collisionHull* obj)
 {
 	broadPhaseDetector.removeEntry(obj);
 }
-void collisionManager::update()
+void quadTreeCollisionManager::update()
 {
 	broadPhaseDetector.update();
 }
 
-void collisionManager::drawDebug()
+void quadTreeCollisionManager::drawDebug()
 {
 	broadPhaseDetector.drawDebug();
 }
 
-std::vector<collisionHull*> collisionManager::queryCollision(collisionHull* obj)
+std::vector<collisionHull*> quadTreeCollisionManager::queryCollision(collisionHull* obj)
 {
 	return broadPhaseDetector.queryCollision(obj);
 }

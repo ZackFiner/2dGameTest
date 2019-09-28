@@ -1,5 +1,5 @@
 #include "heliSprite.h"
-#define ACCEL_RATE 0.5f
+#define ACCEL_RATE 0.1f
 #define DECEL_RATE 0.05f
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	solidEntity(em, cm, collisionHull()),
@@ -14,6 +14,15 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	dim = glm::vec2(150.0f, 150.0f);
 	img.resize(dim.x, dim.y);
 	img.mirror(true, false);
+
+	main.load("rotor_loop.wav");
+	main.setVolume(0.2f);
+	main.setLoop(true);
+	main.play();
+	whine.load("whine_loop.wav");
+	whine.setVolume(0.2f);
+	whine.setLoop(true);
+	whine.play();
 }
 
 void heliSprite::draw()
@@ -48,7 +57,7 @@ void heliSprite::update()
 	else
 		vel.x -= vel.x*DECEL_RATE;
 
-
+	whine.setSpeed(1+(glm::fastLength(vel)/5.0f)*0.2f);
 	glm::vec2 front = glm::normalize(vel + glm::vec2(0, 15.0f));
 	float theta = glm::degrees(glm::orientedAngle(glm::vec2(0.0f, 1.0f),front));
 	gun->setDir(front);
@@ -56,7 +65,7 @@ void heliSprite::update()
 	//std::cout << cont << std::endl;
 	//std::cout << getPos() << std::endl;
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
-	glm::vec2 newPos = glm::clamp(vel + position, -scrnDim / 2, scrnDim / 2);
+	glm::vec2 newPos = glm::clamp(vel + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
 	setPos(newPos);
 	setRot(theta);
 }
