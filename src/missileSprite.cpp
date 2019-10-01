@@ -43,11 +43,12 @@ void missile::draw()
 
 void missile::update()
 {
+	float dT = ofGetLastFrameTime()*VEL_TIME_CONST;
 	auto dim = glm::vec2(ofGetWidth(), ofGetHeight());
 	auto pos = getPos();
 	dead = glm::abs(pos.x) > dim.x / 2 || glm::abs(pos.y) > dim.y / 2; // delete if we're out of screen range
 	entity::update();
-	setPos(getPos() + velocity);
+	setPos(getPos() + velocity*dT);
 }
 
 bool missile::isDead() const

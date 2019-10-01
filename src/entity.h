@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "EID.h"
 
+#define VEL_TIME_CONST 150.0f
 /*H**********************************************************************
  * FILENAME: entity.h
  * AUTHOR: Zackary Finer
@@ -27,6 +28,7 @@
  * missile, projectileEmitter are all examples of concrete entities).
  *
  ************************************************************************/
+
 
 class entityManager;
 class entity

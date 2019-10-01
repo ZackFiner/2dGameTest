@@ -17,6 +17,7 @@
 
 #define ACCEL_RATE 0.1f
 #define DECEL_RATE 0.05f
+
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	solidEntity(em, cm, collisionHull()),
 	img("ah64.png"),
@@ -30,7 +31,7 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	dim = glm::vec2(150.0f, 150.0f);
 	img.resize(dim.x, dim.y);
 	img.mirror(true, false);
-
+	/*
 	main.load("rotor_loop.wav");
 	main.setVolume(0.2f);
 	main.setLoop(true);
@@ -39,6 +40,7 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	whine.setVolume(0.2f);
 	whine.setLoop(true);
 	whine.play();
+	*/
 }
 
 void heliSprite::draw()
@@ -62,14 +64,14 @@ void heliSprite::update()
 {
 	rotor.update();
 	solidEntity::update();
-	
+	float dT = ofGetLastFrameTime()*VEL_TIME_CONST;
 	if (abs(f) > 0.0f || abs(b) > 0.0f)
-		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE, -5.0f, 5.0f);
+		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE*dT, -5.0f, 5.0f);
 	else
 		vel.y -= vel.y*DECEL_RATE;
 
 	if (abs(l) > 0.0f || abs(r) > 0.0f)
-		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE, -5.0f, 5.0f);
+		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE*dT, -5.0f, 5.0f);
 	else
 		vel.x -= vel.x*DECEL_RATE;
 
@@ -81,7 +83,7 @@ void heliSprite::update()
 	//std::cout << cont << std::endl;
 	//std::cout << getPos() << std::endl;
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
-	glm::vec2 newPos = glm::clamp(vel + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
+	glm::vec2 newPos = glm::clamp(vel*dT + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
 	setPos(newPos);
 	setRot(theta);
 }
