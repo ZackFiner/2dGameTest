@@ -30,6 +30,7 @@ class heliSprite : public solidEntity
 	spriteSheet rotor;
 	ofSoundPlayer main, whine;
 	glm::vec2 dim;
+	bool updateCannon = true;
 public:
 	heliSprite(entityManager*, collisionManager*);
 	void draw();
@@ -39,5 +40,8 @@ public:
 	void setHealth(int);
 	void handleKeyInput(int);
 	void handleKeyRelease(int);
+	void setUpdateCannonDir(bool);
+	void setGunAng(float);
+	void setGunRPM(float);
 	~heliSprite();
 };

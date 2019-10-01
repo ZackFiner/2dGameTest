@@ -78,7 +78,8 @@ void heliSprite::update()
 	whine.setSpeed(1+(glm::fastLength(vel)/5.0f)*0.2f);
 	glm::vec2 front = glm::normalize(vel + glm::vec2(0, 15.0f));
 	float theta = glm::degrees(glm::orientedAngle(glm::vec2(0.0f, 1.0f),front));
-	gun->setDir(front);
+	if (updateCannon)
+		gun->setDir(front);
 	//std::cout << vel << std::endl;
 	//std::cout << cont << std::endl;
 	//std::cout << getPos() << std::endl;
@@ -143,6 +144,9 @@ void heliSprite::handleKeyRelease(int key)
 	}
 }
 
+void heliSprite::setUpdateCannonDir(bool val) { updateCannon = val; }
+void heliSprite::setGunAng(float rot) { this->gun->setDir(glm::rotate(glm::vec2(0.0f, 1.0f), glm::radians(rot))); }
+void heliSprite::setGunRPM(float rpm) { this->gun->setFireRate(1000.0f*60.0f / rpm); }
 heliSprite::~heliSprite()
 {
 

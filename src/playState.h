@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 #include "gameState.h"
 #include "drawnObject.h"
 #include "entityManager.h"
@@ -29,6 +30,9 @@ class playState : public gameState
 	drawnObject* dragTarget;
 	heliSprite* helicopter;
 	scrollingBg background = scrollingBg("background.png", 3.0f);
+	ofxFloatSlider rpm;
+	ofxFloatSlider cannonDir;
+	ofxPanel debugGui;
 public:
 	void setup();
 	void update();

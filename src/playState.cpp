@@ -15,11 +15,17 @@
 void playState::setup() {
 	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
+	helicopter->setUpdateCannonDir(false);
+	debugGui.setup();
+	debugGui.add(rpm.setup("gun RPM", 600, 60, 2000));//starts at a M2, max is a GAU-12
+	debugGui.add(cannonDir.setup("gun Direction (in degrees)", 0, -180, 180));
 
 }
 
 //--------------------------------------------------------------
 void playState::update() {
+	helicopter->setGunAng(cannonDir);
+	helicopter->setGunRPM(rpm);
 	background.update();
 	sceneGraph.update();
 	collisionEngine.update();
@@ -36,6 +42,7 @@ void playState::draw() {
 	sceneGraph.draw();
 
 	ofPopMatrix();
+	debugGui.draw();
 }
 
 //--------------------------------------------------------------

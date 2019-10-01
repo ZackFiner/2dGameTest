@@ -22,6 +22,16 @@ public:
 	virtual std::vector<collisionHull*> queryCollision(collisionHull*) = 0;
 };
 
+class genericCollisionManager : public collisionManager
+{
+public:
+	genericCollisionManager() {}
+	void addEntity(collisionHull* obj) {}
+	void removeEntity(collisionHull* obj) {}
+	void update() {}
+	void drawDebug() {}
+	std::vector<collisionHull*> queryCollision(collisionHull*obj) { return std::vector<collisionHull*>(); }
+};
 class quadTreeCollisionManager : public collisionManager
 {
 private:
