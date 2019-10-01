@@ -7,64 +7,13 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\boxSprite.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collisionHull.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collisionManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collisionUtil.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\drawnObject.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EID.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\emitter.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gameState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\heliSprite.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\menuState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\missileSprite.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\playState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\projectileEmitter.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scrollingBg.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\solidEntity.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\spriteSheet.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp">
@@ -97,8 +46,59 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\collisionHull.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collisionManager.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collisionUtil.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
     <ClCompile Include="src\quadTree.cpp">
-      <Filter>src</Filter>
+      <Filter>src\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EID.cpp">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\boxSprite.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\heliSprite.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\missileSprite.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spriteSheet.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scrollingBg.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emitter.cpp">
+      <Filter>src\entity\emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\projectileEmitter.cpp">
+      <Filter>src\entity\emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityManager.cpp">
+      <Filter>src\entity\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity.cpp">
+      <Filter>src\entity\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\solidEntity.cpp">
+      <Filter>src\entity\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menuState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playState.cpp">
+      <Filter>src\state</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,72 +114,36 @@
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\phys">
+      <UniqueIdentifier>{9ea9496d-13a7-4832-a1cc-3e890272ddbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity">
+      <UniqueIdentifier>{692cd4ea-5054-471b-b241-1d31a1d33dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\state">
+      <UniqueIdentifier>{1f9c6735-ad9e-49db-81f8-d0fced2e7ec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\emitter">
+      <UniqueIdentifier>{63879e5b-5b13-46e2-9e40-0fa5da80cc3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\sprite">
+      <UniqueIdentifier>{aa3f4802-70e9-44a7-9808-2c393b99e76a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\manager">
+      <UniqueIdentifier>{14c47ac5-6827-4584-be07-0ddb196cde4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\entities">
+      <UniqueIdentifier>{c43a1d7b-b760-4833-84ad-492c500d886a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\boxSprite.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collisionHull.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collisionManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collisionUtil.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\drawnObject.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EID.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\emitter.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entityManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameState.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\heliSprite.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\menuState.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\missileSprite.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\motionPath.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\playState.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\projectileEmitter.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scrollingBg.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\solidEntity.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sprite.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spriteSheet.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h">
@@ -215,8 +179,65 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
+    <ClInclude Include="src\collisionHull.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collisionManager.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collisionUtil.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
     <ClInclude Include="src\quadTree.h">
-      <Filter>src</Filter>
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EID.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\boxSprite.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\heliSprite.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\missileSprite.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spriteSheet.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scrollingBg.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emitter.h">
+      <Filter>src\entity\emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\projectileEmitter.h">
+      <Filter>src\entity\emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entityManager.h">
+      <Filter>src\entity\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity.h">
+      <Filter>src\entity\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\solidEntity.h">
+      <Filter>src\entity\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameState.h">
+      <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\menuState.h">
+      <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playState.h">
+      <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\motionPath.h">
+      <Filter>src\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sprite.h">
+      <Filter>src\entity\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
