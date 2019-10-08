@@ -46,3 +46,11 @@ bool collisionUtil::AABBIntersect(collisionHull* target, collisionHull* obj)
 	AABB aabb = target->getAABB();
 	return AABBIntersect(aabb.NW_Corner, aabb.SE_Corner, obj);
 }
+
+bool collisionUtil::sphereIntersect(const glm::vec2& orig1, float r1, const glm::vec2& orig2, float r2)
+{
+	glm::vec2 diff = orig1 - orig2;
+	float sqrDst = glm::dot(diff, diff);
+	float minSafeDistSqr = (r1 + r2)*(r1 + r2);
+	return sqrDst <= minSafeDistSqr;
+}

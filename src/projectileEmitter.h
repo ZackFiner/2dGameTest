@@ -1,6 +1,6 @@
 #pragma once
 #include "emitter.h"
-
+#include "collisionManager.h"
 /*H******************************************************************
  * FILENAME: projectileEmitter.h
  * AUTHOR: Zackary Finer
@@ -24,8 +24,9 @@ class projectileEmitter : public emitter
 	bool fire = false;
 	glm::vec2 dir;
 	ofSoundPlayer shootfx;
+	collisionManager* hitManager;
 public:
-	projectileEmitter(entityManager*);
+	projectileEmitter(entityManager*, collisionManager*);
 	void setDir(const glm::vec2&);
 	void toggleFire(bool);
 	void fireOne();

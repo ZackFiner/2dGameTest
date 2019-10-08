@@ -23,7 +23,7 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	img("ah64.png"),
 	rotor("rotor_sheet.png", 50.0f, glm::vec2(106.0f,106.0f), glm::vec2(364,364), 4)
 {
-	gun = new projectileEmitter(em);
+	gun = new projectileEmitter(em, cm);
 	gun->setSpeed(20.0f);
 	gun->setParent((entity*)this);
 	gun->setDir(glm::vec2(0.0f, 1.0f));

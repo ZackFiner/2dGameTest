@@ -44,3 +44,16 @@ public:
 	void drawDebug();
 	std::vector<collisionHull*> queryCollision(collisionHull*);
 };
+
+class simpleCollisionManager : public collisionManager
+{
+private:
+	std::unordered_map<EID, collisionHull*> content;
+public:
+	simpleCollisionManager();
+	void addEntity(collisionHull* obj);
+	void removeEntity(collisionHull* obj);
+	void update();
+	void drawDebug();
+	std::vector<collisionHull*> queryCollision(collisionHull*obj);
+};

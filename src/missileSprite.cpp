@@ -18,8 +18,8 @@
 
 #define MISSILE_LIFETIME 5.0f
 
-missile::missile(entityManager* em, const glm::vec2& origin, const glm::vec2& vel)
-	: entity(em),
+missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin, const glm::vec2& vel)
+	: solidEntity(em, cm, collisionHull()),
 	img("bullet.png")
 {
 	setPos(origin);

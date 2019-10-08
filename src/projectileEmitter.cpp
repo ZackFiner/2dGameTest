@@ -16,9 +16,10 @@
  *
  ********************************************************************/
 
-projectileEmitter::projectileEmitter(entityManager* em) :
+projectileEmitter::projectileEmitter(entityManager* em, collisionManager* coll) :
 	emitter(em)
 {
+	hitManager = coll;
 	shootfx.load("mg_fire4.wav");
 	shootfx.setVolume(0.2f);
 }
@@ -35,7 +36,7 @@ void projectileEmitter::toggleFire(bool f)
 
 void projectileEmitter::fireOne()
 {
-	missile* msl = new missile(manager, getPos(), this->dir*speed);
+	missile* msl = new missile(manager, hitManager, getPos(), this->dir*speed);
 	shootfx.play();
 }
 

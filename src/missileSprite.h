@@ -1,5 +1,5 @@
 #pragma once
-#include "entity.h"
+#include "solidEntity.h"
 
 /*H******************************************************************
  * FILENAME: missileSprite.h
@@ -17,7 +17,7 @@
  *
  ********************************************************************/
 
-class missile : public entity
+class missile : public solidEntity
 {
 	bool dead = false;
 	glm::vec2 velocity;
@@ -27,7 +27,7 @@ public:
 	/*
 	manager, origin, velocity
 	*/
-	missile(entityManager*, const glm::vec2&, const glm::vec2&);
+	missile(entityManager*, collisionManager*, const glm::vec2&, const glm::vec2&);
 	void draw();
 	void update(); //right now, travels to the edge of the screen and dies
 	bool isDead() const;

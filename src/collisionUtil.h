@@ -14,4 +14,5 @@ namespace collisionUtil
 {
 	bool AABBIntersect(const glm::vec2&, const glm::vec2&, collisionHull*);
 	bool AABBIntersect(collisionHull*, collisionHull*);
+	bool sphereIntersect(const glm::vec2&, float, const glm::vec2&, float);
 }

@@ -239,6 +239,9 @@
     <ClInclude Include="src\sprite.h">
       <Filter>src\entity\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="TankSprite.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
