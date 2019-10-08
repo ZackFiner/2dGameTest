@@ -80,7 +80,7 @@ std::vector<collisionHull*> simpleCollisionManager::queryCollision(collisionHull
 	Naieve collision query, O(n^2). We use swept radius (bounding radius + objects velocity)
 	*/
 	std::vector<collisionHull*> results;
-	for (auto iter = content.begin(); iter != content.end(); iter++)
+	for (auto iter = content.begin(); iter != content.end(); ++iter)
 	{
 		if (iter->first == obj->owner->getID())
 			continue; // we don't test collision against ourselves
