@@ -124,6 +124,7 @@ bool entity::isDead() const
 }
 
 void entity::setHealth(int hp) {/*child class implements this*/}
+int entity::getHealth() const { return 0; }
 glm::vec2 entity::getVelocity() const { return glm::vec2(); }
 float entity::getLifeTime() const { return lifetime; }
 float entity::getAge() const { return age; }
