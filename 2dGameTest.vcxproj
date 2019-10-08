@@ -181,6 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\motionPath.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\boxSprite.cpp" />
     <ClCompile Include="src\collisionHull.cpp" />
@@ -211,6 +212,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\tankSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -246,7 +248,8 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
-    <ClInclude Include="TankSprite.h" />
+    <ClInclude Include="src\tankSpawner.h" />
+    <ClInclude Include="src\TankSprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

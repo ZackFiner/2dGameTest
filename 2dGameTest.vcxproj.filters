@@ -100,6 +100,12 @@
     <ClCompile Include="src\playState.cpp">
       <Filter>src\state</Filter>
     </ClCompile>
+    <ClCompile Include="src\tankSprite.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\motionPath.cpp">
+      <Filter>src\phys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -239,7 +245,10 @@
     <ClInclude Include="src\sprite.h">
       <Filter>src\entity\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="TankSprite.h">
+    <ClInclude Include="src\tankSpawner.h">
+      <Filter>src\entity\emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TankSprite.h">
       <Filter>src\entity\sprite</Filter>
     </ClInclude>
   </ItemGroup>
