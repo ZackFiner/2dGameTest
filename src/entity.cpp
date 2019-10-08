@@ -127,3 +127,4 @@ void entity::setHealth(int hp) {/*child class implements this*/}
 glm::vec2 entity::getVelocity() const { return glm::vec2(); }
 float entity::getLifeTime() const { return lifetime; }
 float entity::getAge() const { return age; }
+int entity::getPoints() const { return 0; }

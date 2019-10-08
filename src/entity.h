@@ -63,5 +63,6 @@ public:
 	virtual bool isDead() const;
 	virtual void setHealth(int);
 	virtual glm::vec2 getVelocity() const;
+	virtual int getPoints() const;
 
 };
