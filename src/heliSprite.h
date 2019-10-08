@@ -43,5 +43,6 @@ public:
 	void setUpdateCannonDir(bool);
 	void setGunAng(float);
 	void setGunRPM(float);
+	glm::vec2 getVelocity() const;
 	~heliSprite();
 };

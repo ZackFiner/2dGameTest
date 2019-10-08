@@ -91,7 +91,10 @@ void heliSprite::update()
 
 int heliSprite::getHealth() const { return health; }
 void heliSprite::setHealth(int _health) { health = _health; }
-
+glm::vec2 heliSprite::getVelocity() const
+{
+	return vel;
+}
 void heliSprite::handleKeyInput(int key)
 {
 	switch (key)

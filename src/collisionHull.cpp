@@ -12,7 +12,25 @@
  * it also include declerations for periphreal helper classes like
  * AABB (axis-aligned bounding box) and regular bounding boxes.
  */
+boundingBox::boundingBox()
+{
+	verts.push_back(glm::vec2(-DEFAULT_BOX_SIZE / 2, -DEFAULT_BOX_SIZE / 2));
+	verts.push_back(glm::vec2(-DEFAULT_BOX_SIZE / 2, DEFAULT_BOX_SIZE / 2));
+	verts.push_back(glm::vec2(DEFAULT_BOX_SIZE / 2, DEFAULT_BOX_SIZE / 2));
+	verts.push_back(glm::vec2(DEFAULT_BOX_SIZE / 2, -DEFAULT_BOX_SIZE / 2));
+	rot = 0.0f;
+	pos = glm::vec2(0.0f, 0.0f);
+}
 
+boundingBox::boundingBox(const glm::vec2& v0, const glm::vec2& v1, const glm::vec2& v2, const glm::vec2& v3)
+{
+	verts.push_back(v0);
+	verts.push_back(v1);
+	verts.push_back(v2);
+	verts.push_back(v3);
+	rot = 0.0f;
+	pos = glm::vec2(0.0f, 0.0f);
+}
 boundingBox boundingBox::getSquare(float size)
 {
 	boundingBox square;
@@ -73,7 +91,7 @@ bool collisionHull::wasModified()
 
 boundingBox collisionHull::getBB()
 {
-	return boundingBox::getSquare(10.0f);
+	return bb;
 }
 void collisionHull::updateAABB()
 {
@@ -126,10 +144,23 @@ float collisionHull::getRadius()
 	return radius_last;
 }
 
+float collisionHull::getSweptRadius()
+{
+	if (owner != nullptr)
+		return getRadius() + glm::fastLength(owner->getVelocity());
+	return getRadius();
+}
+
+
 void collisionHull::debugDrawAABB()
 {
 	ofNoFill();
 	glm::vec2 dim = last_val.NW_Corner - last_val.SE_Corner;
 	ofDrawRectangle(last_val.SE_Corner, dim.x, dim.y);
 	ofFill();
+}
+
+void collisionHull::setBB(const glm::vec2& v0, const glm::vec2& v1, const glm::vec2& v2, const glm::vec2& v3)
+{
+	bb = boundingBox(v0, v1, v2, v3);
 }

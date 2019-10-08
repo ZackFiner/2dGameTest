@@ -11,7 +11,7 @@
  * it also include declerations for periphreal helper classes like
  * AABB (axis-aligned bounding box) and regular bounding boxes.
  */
-
+#define DEFAULT_BOX_SIZE 50.0f
 class entity;
 
 struct boundingBox
@@ -21,6 +21,8 @@ struct boundingBox
 	float rot;
 	glm::vec2 pos;
 	std::vector<glm::vec2> getTransformed(const glm::vec2&, float);
+	boundingBox(const glm::vec2&, const glm::vec2&, const glm::vec2&, const glm::vec2&);
+	boundingBox();
 };
 
 struct AABB
@@ -39,11 +41,14 @@ class collisionHull
 	AABB last_val;
 	void updateAABB();
 	void updateRadius();
+	boundingBox bb;
 public:
 	float getRadius();
+	float getSweptRadius();
 	bool changed = true;
 	bool wasModified();
-	entity* owner;
+	void setBB(const glm::vec2&, const glm::vec2&, const glm::vec2&, const glm::vec2&);
+	entity* owner = nullptr;
 	glm::vec2 getPos();
 	float getRot();
 	boundingBox getBB();
