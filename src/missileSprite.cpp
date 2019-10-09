@@ -48,10 +48,16 @@ void missile::update()
 		!(hits[0]->getID() == shotFrom->getParent()->getID()) //and it isn't just our parent
 		)
 	{
+		int score_gained;
 		for (auto hit : hits)
 		{
 			hit->setHealth(hit->getHealth() - DEFAULT_DAMAGE);//if we hit multiple objects, disperse the damage amongst all of them
+			if (hit->getHealth() < 0) // if we killed it.
+			{
+				score_gained += hit->getPoints();
+			}
 		}
+		shotFrom->getParent()->setScore(score_gained);
 		dead = true; //we blew up
 		return; //terminate, don't waste any more time updating dead missiles
 	}

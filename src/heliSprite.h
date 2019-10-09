@@ -31,6 +31,8 @@ class heliSprite : public solidEntity
 	ofSoundPlayer main, whine;
 	glm::vec2 dim;
 	bool updateCannon = true;
+
+	int score;
 public:
 	heliSprite(entityManager*, collisionManager*);
 	void draw();
@@ -45,4 +47,5 @@ public:
 	void setGunRPM(float);
 	glm::vec2 getVelocity() const;
 	~heliSprite();
+	void setScore(int);
 };

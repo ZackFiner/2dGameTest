@@ -65,5 +65,6 @@ public:
 	virtual int getHealth() const;
 	virtual glm::vec2 getVelocity() const;
 	virtual int getPoints() const;
+	virtual void setScore(int);
 
 };

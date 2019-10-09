@@ -87,6 +87,8 @@ entity* entity::getParent() const
 	return parent;
 }
 
+void entity::setScore(int amnt) {}
+
 void entity::setParent(entity* p)
 {
 	parent = p;
