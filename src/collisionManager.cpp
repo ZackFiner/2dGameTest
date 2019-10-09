@@ -65,6 +65,7 @@ void simpleCollisionManager::update()
 
 void simpleCollisionManager::drawDebug()
 {
+	ofPushMatrix();
 	ofSetColor(ofColor::red);
 	ofNoFill();
 	for (auto pair : content)
@@ -72,6 +73,8 @@ void simpleCollisionManager::drawDebug()
 		ofDrawCircle(pair.second->getPos(), pair.second->getSweptRadius());
 	}
 	ofFill();
+	ofSetColor(ofColor::white);
+	ofPopMatrix();
 }
 
 std::vector<collisionHull*> simpleCollisionManager::queryCollision(collisionHull * obj)

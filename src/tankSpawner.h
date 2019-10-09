@@ -1,5 +1,6 @@
 #pragma once
 #include "emitter.h"
+#include "collisionManager.h"
 
 #define DEFAULT_SPAWN_RATE 1.0f
 class tankSpawner : public emitter

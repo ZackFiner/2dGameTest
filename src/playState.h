@@ -9,6 +9,7 @@
 #include "boxSprite.h"
 #include "heliSprite.h"
 #include "scrollingBg.h"
+#include "tankSpawner.h"
 
 /*H******************************************************************
  * FILENAME: gameState.h
@@ -26,9 +27,10 @@
 class playState : public gameState
 {
 	entityManager sceneGraph;
-	quadTreeCollisionManager collisionEngine;
+	simpleCollisionManager collisionEngine;
 	drawnObject* dragTarget;
 	heliSprite* helicopter;
+	tankSpawner* spawner;
 	scrollingBg background = scrollingBg("background.png", 3.0f);
 	ofxFloatSlider rpm;
 	ofxFloatSlider cannonDir;

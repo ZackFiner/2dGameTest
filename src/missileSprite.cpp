@@ -44,17 +44,19 @@ void missile::draw()
 void missile::update()
 {
 	auto hits = getCollisions();
-	if (hits.size > 0 && //if we've detected a hit
+	if (hits.size() > 0 && //if we've detected a hit
 		!(hits[0]->getID() == shotFrom->getParent()->getID()) //and it isn't just our parent
 		)
 	{
-		int score_gained;
+		int score_gained = 0;
 		for (auto hit : hits)
 		{
+			std::cout << "hit detected\n";
 			hit->setHealth(hit->getHealth() - DEFAULT_DAMAGE);//if we hit multiple objects, disperse the damage amongst all of them
 			if (hit->getHealth() < 0) // if we killed it.
 			{
 				score_gained += hit->getPoints();
+				std::cout << "good hit, good kill (+" << hit->getPoints() << ")\n";
 			}
 		}
 		shotFrom->getParent()->setScore(score_gained);
@@ -77,5 +79,5 @@ bool missile::isDead() const
 
 glm::vec2 missile::getVelocity() const
 {
-	return velocity;
+	return velocity*150.0f;
 }

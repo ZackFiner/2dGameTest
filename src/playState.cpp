@@ -16,6 +16,7 @@ void playState::setup() {
 	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	helicopter->setUpdateCannonDir(false);
+	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
 	debugGui.setup();
 	debugGui.add(rpm.setup("gun RPM", 600, 60, 2000));//starts at a M2, max is a GAU-12
 	debugGui.add(cannonDir.setup("gun Direction (in degrees)", 0, -180, 180));
@@ -38,7 +39,7 @@ void playState::draw() {
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
 	ofRotateDeg(180.0f);
-	//collisionEngine.drawDebug();
+	collisionEngine.drawDebug();
 	sceneGraph.draw();
 
 	ofPopMatrix();

@@ -212,6 +212,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\tankSpawner.cpp" />
     <ClCompile Include="src\tankSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
