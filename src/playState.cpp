@@ -39,11 +39,14 @@ void playState::draw() {
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
 	ofRotateDeg(180.0f);
-	collisionEngine.drawDebug();
+	//collisionEngine.drawDebug();
 	sceneGraph.draw();
 
 	ofPopMatrix();
 	debugGui.draw();
+	std::stringstream ss;
+	ss << "Score: " << helicopter->getScore() << "\n";
+	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()));
 }
 
 //--------------------------------------------------------------

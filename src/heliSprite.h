@@ -32,7 +32,7 @@ class heliSprite : public solidEntity
 	glm::vec2 dim;
 	bool updateCannon = true;
 
-	int score;
+	int score = 0;
 public:
 	heliSprite(entityManager*, collisionManager*);
 	void draw();
@@ -48,4 +48,5 @@ public:
 	glm::vec2 getVelocity() const;
 	~heliSprite();
 	void setScore(int);
+	int getScore() const;
 };

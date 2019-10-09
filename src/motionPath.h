@@ -1,7 +1,17 @@
 #pragma once
 #include "ofMain.h"
 
-#define STEP_SIZE 0.001f
+#define STEP_SIZE 0.1f
+#define VERTICAL_MOVEMENT 40.0f
+
+/*H******************************************************************
+ * FILENAME: motionPath.h
+ * AUTHOR: Zackary Finer
+ *
+ * DESCRIPTION:
+ *
+ *
+ ********************************************************************/
 
 class motionPath
 {

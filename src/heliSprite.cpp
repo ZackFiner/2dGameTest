@@ -150,7 +150,7 @@ void heliSprite::handleKeyRelease(int key)
 void heliSprite::setUpdateCannonDir(bool val) { updateCannon = val; }
 void heliSprite::setGunAng(float rot) { this->gun->setDir(glm::rotate(glm::vec2(0.0f, 1.0f), glm::radians(rot))); }
 void heliSprite::setGunRPM(float rpm) { this->gun->setFireRate(1000.0f*60.0f / rpm); }
-
+int heliSprite::getScore() const { return score; }
 void heliSprite::setScore(int amnt) { score += amnt; }
 heliSprite::~heliSprite()
 {

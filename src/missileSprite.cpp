@@ -53,13 +53,14 @@ void missile::update()
 		{
 			std::cout << "hit detected\n";
 			hit->setHealth(hit->getHealth() - DEFAULT_DAMAGE);//if we hit multiple objects, disperse the damage amongst all of them
-			if (hit->getHealth() < 0) // if we killed it.
+			if (hit->getHealth() <= 0) // if we killed it.
 			{
 				score_gained += hit->getPoints();
+				shotFrom->getParent()->setScore(hit->getPoints());
 				std::cout << "good hit, good kill (+" << hit->getPoints() << ")\n";
 			}
 		}
-		shotFrom->getParent()->setScore(score_gained);
+		
 		dead = true; //we blew up
 		return; //terminate, don't waste any more time updating dead missiles
 	}
