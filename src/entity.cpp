@@ -131,3 +131,5 @@ glm::vec2 entity::getVelocity() const { return glm::vec2(); }
 float entity::getLifeTime() const { return lifetime; }
 float entity::getAge() const { return age; }
 int entity::getPoints() const { return 0; }
+void entity::onKeyPress(int key) {}
+void entity::onKeyRelease(int key) {}

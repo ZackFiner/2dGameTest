@@ -95,7 +95,7 @@ glm::vec2 heliSprite::getVelocity() const
 {
 	return vel;
 }
-void heliSprite::handleKeyInput(int key)
+void heliSprite::onKeyPress(int key)
 {
 	switch (key)
 	{
@@ -121,7 +121,7 @@ void heliSprite::handleKeyInput(int key)
 	}
 }
 
-void heliSprite::handleKeyRelease(int key)
+void heliSprite::onKeyRelease(int key)
 {
 	switch (key)
 	{

@@ -67,4 +67,6 @@ public:
 	virtual int getPoints() const;
 	virtual void setScore(int);
 
+	virtual void onKeyPress(int);
+	virtual void onKeyRelease(int);
 };

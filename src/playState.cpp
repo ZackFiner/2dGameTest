@@ -25,8 +25,8 @@ void playState::setup() {
 
 //--------------------------------------------------------------
 void playState::update() {
-	helicopter->setGunAng(cannonDir);
-	helicopter->setGunRPM(rpm);
+	//helicopter->setGunAng(cannonDir);
+	//helicopter->setGunRPM(rpm);
 	background.update();
 	sceneGraph.update();
 	collisionEngine.update();
@@ -51,12 +51,12 @@ void playState::draw() {
 
 //--------------------------------------------------------------
 void playState::keyPressed(int key) {
-	helicopter->handleKeyInput(key);
+	sceneGraph.handleKeyPressed(key);
 }
 
 //--------------------------------------------------------------
 void playState::keyReleased(int key) {
-	helicopter->handleKeyRelease(key);
+	sceneGraph.handleKeyRelease(key);
 }
 
 //--------------------------------------------------------------

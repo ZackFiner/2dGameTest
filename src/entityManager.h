@@ -49,7 +49,8 @@ public:
 	void draw();
 
 	entity* getSprite(EID);
-
+	void handleKeyPressed(int key);
+	void handleKeyRelease(int key);
 	bool containsSprite(EID);
 	bool containsSprite(entity*);
 	~entityManager();

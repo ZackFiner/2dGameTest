@@ -40,8 +40,8 @@ public:
 	void update();
 	int getHealth() const;
 	void setHealth(int);
-	void handleKeyInput(int);
-	void handleKeyRelease(int);
+	void onKeyPress(int);
+	void onKeyRelease(int);
 	void setUpdateCannonDir(bool);
 	void setGunAng(float);
 	void setGunRPM(float);

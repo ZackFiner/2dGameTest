@@ -100,6 +100,22 @@ entityManager::~entityManager()
 	}
 }
 
+void entityManager::handleKeyPressed(int key)
+{
+	for (auto pair : contents)
+	{
+		pair.second->onKeyPress(key);
+	}
+}
+
+void entityManager::handleKeyRelease(int key)
+{
+	for (auto pair : contents)
+	{
+		pair.second->onKeyRelease(key);
+	}
+}
+
 int entityManager::getCount()
 {
 	return contents.size();
