@@ -10,7 +10,7 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	pathManager = manager;
 }
 
-void tankSprite::draw() const
+void tankSprite::draw()
 {
 	ofPushMatrix();
 	ofTranslate(this->getPos());

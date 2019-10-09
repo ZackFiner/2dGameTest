@@ -14,7 +14,7 @@ class tankSprite : public solidEntity
 public:
 	tankSprite(entityManager*, collisionManager*, motionPath*);
 	void update();
-	void draw() const;
+	void draw();
 	bool isDead() const;
 	glm::vec2 getVelocity() const;
 	void setHealth(int);

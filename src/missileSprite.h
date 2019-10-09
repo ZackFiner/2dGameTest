@@ -17,17 +17,21 @@
  *
  ********************************************************************/
 
+#define MISSILE_LIFETIME 5.0f
+#define DEFAULT_DAMAGE 25.0f
+
 class missile : public solidEntity
 {
 	bool dead = false;
 	glm::vec2 velocity;
 	glm::vec2 dim;
 	ofImage img;
+	entity* shotFrom = nullptr;
 public:
 	/*
 	manager, origin, velocity
 	*/
-	missile(entityManager*, collisionManager*, const glm::vec2&, const glm::vec2&);
+	missile(entityManager*, collisionManager*, const glm::vec2&, const glm::vec2&, entity*);
 	void draw();
 	void update(); //right now, travels to the edge of the screen and dies
 	bool isDead() const;

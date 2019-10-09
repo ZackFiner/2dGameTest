@@ -16,12 +16,12 @@
  *
  ********************************************************************/
 
-#define MISSILE_LIFETIME 5.0f
 
-missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin, const glm::vec2& vel)
+missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin, const glm::vec2& vel, entity* _shotFrom)
 	: solidEntity(em, cm, collisionHull()),
 	img("bullet.png")
 {
+	shotFrom = _shotFrom;
 	setPos(origin);
 	float theta = glm::orientedAngle(glm::vec2(0.0, 1.0f), glm::normalize(vel));
 	setRot(glm::degrees(glm::orientedAngle(glm::vec2(0.0,1.0f), glm::normalize(vel)))); // point the missile towards it's target
@@ -43,6 +43,19 @@ void missile::draw()
 
 void missile::update()
 {
+	auto hits = getCollisions();
+	if (hits.size > 0 && //if we've detected a hit
+		!(hits[0]->getID() == shotFrom->getParent()->getID()) //and it isn't just our parent
+		)
+	{
+		for (auto hit : hits)
+		{
+			hit->setHealth(hit->getHealth() - DEFAULT_DAMAGE);//if we hit multiple objects, disperse the damage amongst all of them
+		}
+		dead = true; //we blew up
+		return; //terminate, don't waste any more time updating dead missiles
+	}
+
 	float dT = ofGetLastFrameTime()*VEL_TIME_CONST;
 	auto dim = glm::vec2(ofGetWidth(), ofGetHeight());
 	auto pos = getPos();

@@ -26,7 +26,7 @@ void solidEntity::update()
 	entity::update();
 }
 
-void solidEntity::draw() const {/*we don't draw these*/}
+void solidEntity::draw() {/*we don't draw these*/}
 
 std::vector<entity*> solidEntity::getCollisions()
 {

@@ -147,7 +147,7 @@ float collisionHull::getRadius()
 float collisionHull::getSweptRadius()
 {
 	if (owner != nullptr)
-		return getRadius() + glm::fastLength(owner->getVelocity());
+		return getRadius() + glm::fastLength(owner->getVelocity()*ofGetLastFrameTime());
 	return getRadius();
 }
 

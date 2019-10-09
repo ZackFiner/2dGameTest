@@ -36,7 +36,7 @@ void projectileEmitter::toggleFire(bool f)
 
 void projectileEmitter::fireOne()
 {
-	missile* msl = new missile(manager, hitManager, getPos(), this->dir*speed);
+	missile* msl = new missile(manager, hitManager, getPos(), this->dir*speed, (entity*)this);
 	shootfx.play();
 }
 
