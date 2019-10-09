@@ -69,7 +69,6 @@ void entityManager::update()
 		if ((lt > 0.0f && it->second->getAge() > lt) || it->second->isDead()) // when our entities lifetime is up
 		{
 
-			std::cout << "deleting ent" << it->first.id << std::endl;
 			delete it->second; // de-allocate the entity
 			it = contents.erase(it); // remove it from the table, then update our iterator
 		}

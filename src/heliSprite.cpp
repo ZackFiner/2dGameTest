@@ -154,5 +154,8 @@ int heliSprite::getScore() const { return score; }
 void heliSprite::setScore(int amnt) { score += amnt; }
 heliSprite::~heliSprite()
 {
-
+	/*WARNING: If you are having issues with things not getting iterated through, look here*/
+	/*It may be possible for the cannon to get deleted in the while loop and */
+	std::cout << "destructor called" << std::endl;
+	manager->deleteSprite(gun->getID());
 }
