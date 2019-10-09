@@ -44,11 +44,11 @@ void projectileEmitter::update()
 {
 	if (fire)
 	{
-		long ct = ofGetCurrentTime().getAsMilliseconds();
+		unsigned long ct = ofGetCurrentTime().getAsMilliseconds();
 		if (ct - lstF > frequency)
 		{
 			fireOne();
-			lstF = ofGetCurrentTime().getAsMilliseconds();
+			lstF = ct;
 		}
 	}
 }

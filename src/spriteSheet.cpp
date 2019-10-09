@@ -26,7 +26,7 @@ spriteSheet::spriteSheet(const std::string& fpath, float frequency, const glm::v
 
 void spriteSheet::update()
 {
-	long updateT = ofGetCurrentTime().getAsMilliseconds();
+	unsigned long updateT = ofGetCurrentTime().getAsMilliseconds();
 	if (updateT - lstF > frequency)
 	{
 		curFrame++;

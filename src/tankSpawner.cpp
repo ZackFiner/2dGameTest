@@ -16,7 +16,7 @@ tankSpawner::tankSpawner(entityManager* em, collisionManager* cm) :
 
 void tankSpawner::update()
 {
-	long cur = ofGetSystemTimeMillis();
+	unsigned long cur = ofGetCurrentTime().getAsMilliseconds();
 	if (cur - last_spawn > (spawnRate*1000.0f))
 	{
 		bool on_left_side = ofRandomuf() > 0.5f;

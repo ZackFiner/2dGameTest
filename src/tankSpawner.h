@@ -16,7 +16,7 @@
 class tankSpawner : public emitter
 {
 	float spawnRate = DEFAULT_SPAWN_RATE;
-	long last_spawn;
+	unsigned long last_spawn;
 	collisionManager* hitManager;
 public:
 	tankSpawner(entityManager* em, collisionManager* cm);

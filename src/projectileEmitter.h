@@ -20,7 +20,7 @@ class projectileEmitter : public emitter
 {
 	float frequency = 100.0f;//ms between shots
 	float speed = 5.0f;
-	long lstF = 0.0f;
+	unsigned long lstF = 0;
 	bool fire = false;
 	glm::vec2 dir;
 	ofSoundPlayer shootfx;

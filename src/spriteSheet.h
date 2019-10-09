@@ -15,7 +15,7 @@ class spriteSheet
 	ofImage sheet;
 	float frequency;
 	int curFrame = 0, frameCount;
-	long lstF=0.0;
+	unsigned long lstF=0;
 	glm::vec2 dim;
 	glm::vec2 frameSize;
 	glm::vec2 adj;
