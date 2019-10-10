@@ -19,6 +19,7 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	lifetime = TANK_LIFETIME;
 	pathManager = manager;
 	update();
+	setPos(pathManager->getPos(getAge()));
 	img.resize(70, 70);
 	img.mirror(true, false);
 }
@@ -56,11 +57,16 @@ void tankSprite::update()
 {
 	solidEntity::update();
 	dead = hp <= 0;
-	setPos(pathManager->getPos(getAge()));
+	vel = pathManager->getPos(getAge() + ofGetLastFrameTime()) - pathManager->getPos(getAge());
+	setPos(getPos()+vel);
+
+	
 	setRot(glm::degrees(pathManager->getRot(getAge())));
-	vel = pathManager->getPos(getAge() + ofGetLastFrameTime()) - getPos();
+	
 	auto border = glm::vec2(ofGetWidth(), ofGetHeight());
+	
 	turretRot = -getRot(); // point the turrets forward for now
+	
 	if (glm::abs(getPos().x) > (border.x / 2 + DESPAWN_RADIUS) || glm::abs(getPos().y) > (border.y / 2 + DESPAWN_RADIUS))
 		dead = true;
 }

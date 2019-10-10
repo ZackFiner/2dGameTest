@@ -28,6 +28,7 @@ missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin
 	velocity = vel;
 	lifetime = MISSILE_LIFETIME;
 	dim = glm::vec2(32.0f, 128.0f);
+	hitBox.setBB(glm::vec2(-5,-20), glm::vec2(5,-20), glm::vec2(5,20), glm::vec2(-5,20));
 	img.mirror(true, false);
 	img.resize(dim.x, dim.y);
 }

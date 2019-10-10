@@ -15,7 +15,7 @@
 void playState::setup() {
 	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
-	helicopter->setUpdateCannonDir(false);
+	helicopter->setUpdateCannonDir(true);
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
 	debugGui.setup();
 	debugGui.add(rpm.setup("gun RPM", 600, 60, 2000));//starts at a M2, max is a GAU-12

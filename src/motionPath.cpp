@@ -32,3 +32,20 @@ float sinPath::getRot(float time) const
 	glm::vec2 lstPos = getPos(time - STEP_SIZE);
 	return -glm::orientedAngle(glm::normalize(getPos(time) - lstPos+glm::vec2(0,VERTICAL_MOVEMENT)), glm::vec2(0.0f, 1.0f));
 }
+
+linearPath::linearPath(const glm::vec2& _start, const glm::vec2& _heading, float _spd)
+{
+	start = _start;
+	heading = _heading;
+	spd = _spd;
+}
+
+glm::vec2 linearPath::getPos(float time) const
+{
+	return start + heading * time*spd;
+}
+
+float linearPath::getRot(float time) const
+{
+	return -glm::orientedAngle(glm::normalize(heading+glm::vec2(0,1.0f)), glm::vec2(0.0f, 1.0f));
+}

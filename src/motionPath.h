@@ -30,3 +30,14 @@ public:
 	glm::vec2 getPos(float time) const;
 	float getRot(float time) const;
 };
+
+class linearPath : public motionPath
+{
+	glm::vec2 start;
+	glm::vec2 heading;
+	float spd;
+public:
+	linearPath(const glm::vec2& _start, const glm::vec2& _heading, float _spd);
+	glm::vec2 getPos(float time) const;
+	float getRot(float time) const;
+};
