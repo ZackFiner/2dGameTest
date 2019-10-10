@@ -21,7 +21,7 @@ void tankSpawner::update()
 	{
 		bool on_left_side = ofRandomuf() > 0.5f;
 		new tankSprite(manager, hitManager,
-			new sinPath(100.0f, 100.0f, 50.0f, 150.0f, glm::vec2(-600*(on_left_side ? -1 : 1), 200), on_left_side));
+			new sinPath(ofRandom(5.0f,50.0f), 100.0f, ofRandom(50.0f,150.0f), ofRandom(150.0f,250.0f), glm::vec2(-600*(on_left_side ? -1 : 1), 200), on_left_side));
 
 
 		last_spawn = cur;

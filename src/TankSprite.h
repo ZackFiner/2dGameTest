@@ -21,6 +21,8 @@ class tankSprite : public solidEntity
 	int hp;
 	bool dead = false;
 	glm::vec2 vel;
+	float turretRot;
+	ofImage img;
 public:
 	tankSprite(entityManager*, collisionManager*, motionPath*);
 	void update();

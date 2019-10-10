@@ -64,14 +64,14 @@ void heliSprite::update()
 {
 	rotor.update();
 	solidEntity::update();
-	float dT = ofGetLastFrameTime()*VEL_TIME_CONST;
+	float dT = ofGetLastFrameTime();
 	if (abs(f) > 0.0f || abs(b) > 0.0f)
-		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE*dT, -5.0f, 5.0f);
+		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE*dT*VEL_TIME_CONST, -5.0f, 5.0f);
 	else
 		vel.y -= vel.y*DECEL_RATE;
 
 	if (abs(l) > 0.0f || abs(r) > 0.0f)
-		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE*dT, -5.0f, 5.0f);
+		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE*dT*VEL_TIME_CONST, -5.0f, 5.0f);
 	else
 		vel.x -= vel.x*DECEL_RATE;
 
@@ -84,7 +84,7 @@ void heliSprite::update()
 	//std::cout << cont << std::endl;
 	//std::cout << getPos() << std::endl;
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
-	glm::vec2 newPos = glm::clamp(vel*dT + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
+	glm::vec2 newPos = glm::clamp(vel*dT*VEL_TIME_CONST + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
 	setPos(newPos);
 	setRot(theta);
 }
@@ -93,7 +93,7 @@ int heliSprite::getHealth() const { return health; }
 void heliSprite::setHealth(int _health) { health = _health; }
 glm::vec2 heliSprite::getVelocity() const
 {
-	return vel;
+	return vel * VEL_TIME_CONST;
 }
 void heliSprite::onKeyPress(int key)
 {

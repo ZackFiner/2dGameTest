@@ -65,12 +65,12 @@ void missile::update()
 		return; //terminate, don't waste any more time updating dead missiles
 	}
 
-	float dT = ofGetLastFrameTime()*VEL_TIME_CONST;
+	float dT = ofGetLastFrameTime();
 	auto dim = glm::vec2(ofGetWidth(), ofGetHeight());
 	auto pos = getPos();
 	dead = glm::abs(pos.x) > dim.x / 2 || glm::abs(pos.y) > dim.y / 2; // delete if we're out of screen range
 	entity::update();
-	setPos(getPos() + velocity*dT);
+	setPos(getPos() + velocity*dT*VEL_TIME_CONST);
 }
 
 bool missile::isDead() const
@@ -80,5 +80,5 @@ bool missile::isDead() const
 
 glm::vec2 missile::getVelocity() const
 {
-	return velocity*150.0f;
+	return velocity * VEL_TIME_CONST;
 }
