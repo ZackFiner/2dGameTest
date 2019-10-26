@@ -3,6 +3,7 @@
 /*H******************************************************************
  * FILENAME: scrollingBg.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * scrollingBg is used to display scrolling background images, such

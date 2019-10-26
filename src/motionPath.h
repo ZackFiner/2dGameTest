@@ -7,9 +7,15 @@
 /*H******************************************************************
  * FILENAME: motionPath.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
- *
+ * MotionPath provides an interface which can be implemented to define
+ * a parametric path along which an object can travel. This file also
+ * contains a few concrete implementations of the motion path method.
+ * 
+ * These paths are used by enemy sprites to determine their path of
+ * travel.
  *
  ********************************************************************/
 

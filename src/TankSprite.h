@@ -5,8 +5,13 @@
 /*H******************************************************************
  * FILENAME: tankSprite.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
+ * Tank's are one of the basic entities in the game. They follow
+ * a predetermined path of movement, and are spawned by a tank
+ * -spawner. They shoot projectiles down towards the player at
+ * random intervals.
  *
  *
  ********************************************************************/

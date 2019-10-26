@@ -4,6 +4,7 @@
 /*H******************************************************************
  * FILENAME: missileSprite.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * missileSprite is what is sounds like: a sprite for a missile.

@@ -5,13 +5,15 @@
 /*H******************************************************************
  * FILENAME: collisionHull.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This file contains definitions for the collisionHull class, which
  * is used to reprsent a collision hull or hitbox for a given object.
  * it also include declerations for periphreal helper classes like
  * AABB (axis-aligned bounding box) and regular bounding boxes.
- */
+ *
+ ********************************************************************/
 boundingBox::boundingBox()
 {
 	verts.push_back(glm::vec2(-DEFAULT_BOX_SIZE / 2, -DEFAULT_BOX_SIZE / 2));

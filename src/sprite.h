@@ -5,6 +5,7 @@
 /*H******************************************************************
  * FILENAME: sprite.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * I don't know if i want to keep this class, as I feel that entity

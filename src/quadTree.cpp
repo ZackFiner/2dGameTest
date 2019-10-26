@@ -6,6 +6,7 @@
 /*H******************************************************************
  * FILENAME: quadTree.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This file contains an implementation of a quad tree.
@@ -17,7 +18,8 @@
  * masterQuad is essentially a wrapper class around the quadTree class,
  * and adds a fast lookup table for objects aswell as methods to remove
  * objects from the tree quickly.
- */
+ * 
+ **********************************************************************/
 
 std::pair<glm::vec2, glm::vec2> quadTree::getSector(int region)
 {

@@ -4,13 +4,15 @@
 /*H******************************************************************
  * FILENAME: collisionHull.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This file contains declerations for the collisionHull class, which
  * is used to reprsent a collision hull or hitbox for a given object.
  * it also include declerations for periphreal helper classes like
  * AABB (axis-aligned bounding box) and regular bounding boxes.
- */
+ *
+ *********************************************************************/
 #define DEFAULT_BOX_SIZE 50.0f
 class entity;
 

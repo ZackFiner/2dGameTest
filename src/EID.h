@@ -4,6 +4,7 @@
 /*H******************************************************************
  * FILENAME: EID.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * EID (Entity IDentifier) is class used to uniquely identify an entity

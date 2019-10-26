@@ -3,9 +3,13 @@
 /*H******************************************************************
  * FILENAME: tankSpawner.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
- * 
+ * The tank spawner is a specialized type of sprite emitter which
+ * dynamically creates "tank" entities. It does this by creating
+ * them on either side of the play screen and intializing them
+ * to move to the other side of the screen.
  *
  ********************************************************************/
 tankSpawner::tankSpawner(entityManager* em, collisionManager* cm) :

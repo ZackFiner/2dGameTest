@@ -6,6 +6,7 @@
 /*H**********************************************************************
  * FILENAME: entity.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * Entities are at the center of this game engine. An entity represents

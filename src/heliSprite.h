@@ -7,6 +7,7 @@
 /*H******************************************************************
  * FILENAME: heliSprite.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * heliSprite is the sprite controlled by the player. It takes input

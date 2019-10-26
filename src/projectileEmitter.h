@@ -4,6 +4,7 @@
 /*H******************************************************************
  * FILENAME: projectileEmitter.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This emitter is used to emit projectiles (such as bullets or missiles).

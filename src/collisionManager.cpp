@@ -4,6 +4,7 @@
 /*H******************************************************************
  * FILENAME: collisionManager.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * collisionManager serves as a wrapper interface for collision

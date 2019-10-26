@@ -4,6 +4,7 @@
 /*H******************************************************************
  * FILENAME: entityManager.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This class is responsible for managing entities. That is, it must:

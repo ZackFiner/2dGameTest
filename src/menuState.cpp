@@ -5,6 +5,7 @@
 /*H******************************************************************
  * FILENAME: gameState.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * menuState represents the state in which the player is in the main

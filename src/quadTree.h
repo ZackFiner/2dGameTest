@@ -5,6 +5,7 @@
 /*H******************************************************************
  * FILENAME: quadTree.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This file contains an implementation of a quad tree.
@@ -16,7 +17,8 @@
  * masterQuad is essentially a wrapper class around the quadTree class,
  * and adds a fast lookup table for objects aswell as methods to remove
  * objects from the tree quickly.
- */
+ *
+ ***********************************************************************/
 
 static int max_tree_depth = 8;
 class collisionHull;

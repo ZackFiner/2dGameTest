@@ -14,6 +14,7 @@
 /*H******************************************************************
  * FILENAME: gameState.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * playState is the state associated with gameplay (when the player

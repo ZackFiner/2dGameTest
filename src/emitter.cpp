@@ -3,6 +3,7 @@
 /*H**********************************************************************
  * FILENAME: emitter.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * Emitters are a type of entity which creates other entities in a

@@ -3,6 +3,7 @@
 /*H******************************************************************
  * FILENAME: spriteSheet.h
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * spriteSheet is a class which can be used to draw animated sprites

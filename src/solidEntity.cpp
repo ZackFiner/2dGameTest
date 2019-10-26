@@ -3,6 +3,7 @@
 /*H******************************************************************
  * FILENAME: solidEntity.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This subclass of entity essentially integrates the entity class with

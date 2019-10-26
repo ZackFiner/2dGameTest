@@ -3,6 +3,7 @@
 /*H******************************************************************
  * FILENAME: boxSprite.cpp
  * AUTHOR: Zackary Finer
+ * DATE: 10/26/2019
  *
  * DESCRIPTION:
  * This entity is essentially a debug entity used to test various
