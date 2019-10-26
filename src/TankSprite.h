@@ -25,10 +25,12 @@ class tankSprite : public solidEntity
 	motionPath* pathManager;
 	int hp;
 	bool dead = false;
+	float accuracy = 20.0f;
 	glm::vec2 vel;
 	float turretRot;
 	ofImage img;
 	projectileEmitter* gun;
+	float lastTurretRot = turretRot;
 public:
 	tankSprite(entityManager*, collisionManager*, motionPath*);
 	void update();

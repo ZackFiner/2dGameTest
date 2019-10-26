@@ -69,6 +69,7 @@ void tankSprite::draw()
 }
 void tankSprite::update()
 {
+
 	solidEntity::update();
 	dead = hp <= 0;
 	vel = pathManager->getPos(getAge() + ofGetLastFrameTime()) - pathManager->getPos(getAge());
@@ -79,10 +80,24 @@ void tankSprite::update()
 	
 	auto border = glm::vec2(ofGetWidth(), ofGetHeight());
 	
-	turretRot = 180-getRot(); // point the turrets forward for now
+	auto p = manager->getSprite(manager->getPlayer());
+	
+	float angToP;
+	if (p != nullptr)
+		angToP = -glm::degrees(glm::orientedAngle(glm::normalize(p->getPos()+glm::ballRand(accuracy) - getPos()), glm::vec2(0.0f, 1.0f)));
+	else
+		angToP = 180.0f;
+	
+	float newAng = angToP - getRot();
+	float deltaA = glm::clamp(newAng - lastTurretRot, -0.1f, 0.1f);
+	lastTurretRot = turretRot;
+	turretRot += deltaA; // stuff and stuff here 
+
+	
 	gun->setDir(glm::rotate(glm::vec2(0.0f, 1.0f), glm::radians(turretRot+getRot())));
 	if (glm::abs(getPos().x) > (border.x / 2 + DESPAWN_RADIUS) || glm::abs(getPos().y) > (border.y / 2 + DESPAWN_RADIUS))
 		dead = true;
+
 }
 
 bool tankSprite::isDead() const

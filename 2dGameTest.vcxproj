@@ -181,6 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="particleEmitter.cpp" />
+    <ClCompile Include="particleSystem.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\motionPath.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -218,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="particleEmitter.h" />
+    <ClInclude Include="particleSystem.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\boxSprite.h" />
     <ClInclude Include="src\collisionHull.h" />
