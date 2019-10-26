@@ -29,7 +29,11 @@
  *
  ************************************************************************/
 
-
+#define TEAM_0 0
+#define TEAM_1 1
+#define TEAM_2 2
+#define COLLISION_TYPE_SOLID 0
+#define COLLISION_TYPE_HOLLOW 1
 class entityManager;
 class entity
 {
@@ -66,6 +70,8 @@ public:
 	virtual glm::vec2 getVelocity() const;
 	virtual int getPoints() const;
 	virtual void setScore(int);
+	virtual int getTeam() const;
+	virtual int getCollisionType() const;
 
 	virtual void onKeyPress(int);
 	virtual void onKeyRelease(int);

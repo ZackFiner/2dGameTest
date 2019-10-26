@@ -14,7 +14,17 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	solidEntity(em, cm, collisionHull()),
 	img("T90.png")
 {
+	gun = new projectileEmitter(em, cm);
+	gun->setSpeed(5.0f);
+	gun->setParent((entity*)this);
+	gun->setDir(glm::vec2(0.0f,1.0f));
+	gun->setPos(glm::vec2(0.0f, 7.0f));
+	gun->setFireRate(500.0f);
+	gun->setDamage(5);
+	gun->setRandomFire(true);
+	gun->toggleFire(true);
 	turretRot = 0.0f;
+
 	hp = TANK_DEFAULT_HP;
 	lifetime = TANK_LIFETIME;
 	pathManager = manager;
@@ -65,8 +75,8 @@ void tankSprite::update()
 	
 	auto border = glm::vec2(ofGetWidth(), ofGetHeight());
 	
-	turretRot = -getRot(); // point the turrets forward for now
-	
+	turretRot = 180-getRot(); // point the turrets forward for now
+	gun->setDir(glm::rotate(glm::vec2(0.0f, 1.0f), glm::radians(turretRot+getRot())));
 	if (glm::abs(getPos().x) > (border.x / 2 + DESPAWN_RADIUS) || glm::abs(getPos().y) > (border.y / 2 + DESPAWN_RADIUS))
 		dead = true;
 }
@@ -88,4 +98,7 @@ int tankSprite::getPoints() const { return TANK_POINTS; }
 tankSprite::~tankSprite()
 {
 	delete pathManager;
+	manager->deleteSprite(gun->getID());
 }
+
+int tankSprite::getTeam() const { return TEAM_1; }

@@ -26,7 +26,11 @@ unsigned int EID::getNewID()
 	accessLock.unlock();
 	return id;
 }
-
+EID::EID(int _id) { id = _id; }
+EID EID::nilID() {
+	EID nil(-1);
+	return nil;
+}
 EID::EID() : id(getNewID())
 {}
 

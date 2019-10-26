@@ -133,3 +133,5 @@ float entity::getAge() const { return age; }
 int entity::getPoints() const { return 0; }
 void entity::onKeyPress(int key) {}
 void entity::onKeyRelease(int key) {}
+int entity::getCollisionType() const { return COLLISION_TYPE_SOLID; }
+int entity::getTeam() const { return TEAM_0; }

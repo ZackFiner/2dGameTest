@@ -19,12 +19,15 @@
 class projectileEmitter : public emitter
 {
 	float frequency = 100.0f;//ms between shots
+	float randomFreq = 100.0f;
 	float speed = 5.0f;
+	int projectileDamage = 25;
 	unsigned long lstF = 0;
 	bool fire = false;
 	glm::vec2 dir;
 	ofSoundPlayer shootfx;
 	collisionManager* hitManager;
+	bool randomFire = false;
 public:
 	projectileEmitter(entityManager*, collisionManager*);
 	void setDir(const glm::vec2&);
@@ -33,4 +36,6 @@ public:
 	void update();
 	void setFireRate(float);
 	void setSpeed(float);
+	void setDamage(int);
+	void setRandomFire(bool);
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include "solidEntity.h"
 #include "motionPath.h"
-
+#include "projectileEmitter.h"
 /*H******************************************************************
  * FILENAME: tankSprite.h
  * AUTHOR: Zackary Finer
@@ -23,6 +23,7 @@ class tankSprite : public solidEntity
 	glm::vec2 vel;
 	float turretRot;
 	ofImage img;
+	projectileEmitter* gun;
 public:
 	tankSprite(entityManager*, collisionManager*, motionPath*);
 	void update();
@@ -33,4 +34,5 @@ public:
 	int getHealth() const;
 	int getPoints() const;
 	~tankSprite();
+	int getTeam() const;
 };

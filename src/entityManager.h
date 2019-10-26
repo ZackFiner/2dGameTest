@@ -37,10 +37,12 @@ class entityManager
 
 private:
 	std::unordered_map<EID, entity*> contents;
+	EID playerEnt;
 public:
+	
 	entityManager();
 	void addSprite(entity*);
-
+	EID getPlayer() const;
 	void deleteSprite(entity*);
 	void deleteSprite(EID);
 	void update();

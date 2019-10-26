@@ -26,14 +26,19 @@ class missile : public solidEntity
 	glm::vec2 velocity;
 	glm::vec2 dim;
 	ofImage img;
-	entity* shotFrom = nullptr;
+	EID shotFrom;
+	int team;
+	int dmg = DEFAULT_DAMAGE;
 public:
 	/*
 	manager, origin, velocity
 	*/
-	missile(entityManager*, collisionManager*, const glm::vec2&, const glm::vec2&, entity*);
+	missile(entityManager*, collisionManager*, const glm::vec2&, const glm::vec2&, EID);
 	void draw();
 	void update(); //right now, travels to the edge of the screen and dies
 	bool isDead() const;
 	glm::vec2 getVelocity() const;
+	int getTeam() const;
+	int getCollisionType() const;
+	void setDamage(int);
 };

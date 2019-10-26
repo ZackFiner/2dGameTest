@@ -45,8 +45,9 @@ void playState::draw() {
 	ofPopMatrix();
 	debugGui.draw();
 	std::stringstream ss;
-	ss << "Score: " << helicopter->getScore() << "\n";
-	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()));
+	//ss << "Score: " << helicopter->getScore() << "\n";
+	//ss << "Health: " << helicopter->getHealth() << "\n";
+	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()-20));
 }
 
 //--------------------------------------------------------------

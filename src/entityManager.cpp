@@ -23,6 +23,8 @@ void entityManager::addSprite(entity* target)
 		contents.insert({ target->getID(), target });
 }
 
+EID entityManager::getPlayer() const { return playerEnt; }
+
 void entityManager::deleteSprite(EID key)
 {
 	if (contents.find(key) != contents.end())
@@ -61,10 +63,14 @@ bool entityManager::containsSprite(entity* target)
 
 void entityManager::update()
 {
+	for (auto pair : contents)
+	{
+		pair.second->update();
+	}
+
 	auto it = contents.begin();
 	while (it != contents.end())
 	{
-		it->second->update();
 		float lt = it->second->getLifeTime();
 		if ((lt > 0.0f && it->second->getAge() > lt) || it->second->isDead()) // when our entities lifetime is up
 		{

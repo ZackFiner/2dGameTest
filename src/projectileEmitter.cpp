@@ -36,22 +36,42 @@ void projectileEmitter::toggleFire(bool f)
 
 void projectileEmitter::fireOne()
 {
-	missile* msl = new missile(manager, hitManager, getPos(), this->dir*speed, (entity*)this);
+	missile* msl;
+	if (this->getParent()!=nullptr)
+		msl = new missile(manager, hitManager, getPos(), this->dir*speed, this->getParent()->getID());
+	else
+		msl = new missile(manager, hitManager, getPos(), this->dir*speed, EID::nilID());
+	msl->setDamage(projectileDamage);
 	shootfx.play();
 }
+
+void projectileEmitter::setDamage(int amnt) { projectileDamage = 5; }
 
 void projectileEmitter::update()
 {
 	if (fire)
 	{
+
 		unsigned long ct = ofGetCurrentTime().getAsMilliseconds();
-		if (ct - lstF > frequency)
+		if (randomFire)
 		{
-			fireOne();
-			lstF = ct;
+			if (ct - lstF > randomFreq)
+			{
+				fireOne();
+				lstF = ct;
+				randomFreq = (ofRandomf()+1.0f)*500.0f;
+			}
+		}
+		else {
+			if (ct - lstF > frequency)
+			{
+				fireOne();
+				lstF = ct;
+			}
 		}
 	}
 }
 
 void projectileEmitter::setFireRate(float fr) { frequency = fr; }
 void projectileEmitter::setSpeed(float sp) { speed = sp; }
+void projectileEmitter::setRandomFire(bool v) { randomFire = v; }

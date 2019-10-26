@@ -21,7 +21,9 @@ class EID
 		static std::mutex accessLock;
 		static unsigned int lastID;
 		static unsigned int getNewID();
+		EID(int id);
 	public:
+		static EID nilID();
 		EID(); // we'll do something neat, and make the constructor automatically create a new id.
 		EID(const EID&);
 		EID& operator=(const EID&);

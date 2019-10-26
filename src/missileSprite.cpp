@@ -1,5 +1,5 @@
 #include "missileSprite.h"
-
+#include "entityManager.h"
 /*H******************************************************************
  * FILENAME: missileSprite.cpp
  * AUTHOR: Zackary Finer
@@ -17,11 +17,15 @@
  ********************************************************************/
 
 
-missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin, const glm::vec2& vel, entity* _shotFrom)
+missile::missile(entityManager* em,collisionManager* cm, const glm::vec2& origin, const glm::vec2& vel, EID _shotFrom)
 	: solidEntity(em, cm, collisionHull()),
 	img("bullet.png")
 {
 	shotFrom = _shotFrom;
+	if (manager->getSprite(shotFrom) != nullptr)
+		this->team = manager->getSprite(shotFrom)->getTeam();
+	else
+		this->team = TEAM_2;
 	setPos(origin);
 	float theta = glm::orientedAngle(glm::vec2(0.0, 1.0f), glm::normalize(vel));
 	setRot(glm::degrees(glm::orientedAngle(glm::vec2(0.0,1.0f), glm::normalize(vel)))); // point the missile towards it's target
@@ -45,25 +49,23 @@ void missile::draw()
 void missile::update()
 {
 	auto hits = getCollisions();
-	if (hits.size() > 0 && //if we've detected a hit
-		!(hits[0]->getID() == shotFrom->getParent()->getID()) //and it isn't just our parent
-		)
+	if (hits.size() > 0)
 	{
 		int score_gained = 0;
 		for (auto hit : hits)
 		{
-			std::cout << "hit detected\n";
-			hit->setHealth(hit->getHealth() - DEFAULT_DAMAGE);//if we hit multiple objects, disperse the damage amongst all of them
-			if (hit->getHealth() <= 0) // if we killed it.
-			{
-				score_gained += hit->getPoints();
-				shotFrom->getParent()->setScore(hit->getPoints());
-				std::cout << "good hit, good kill (+" << hit->getPoints() << ")\n";
+			if (hit->getCollisionType() == COLLISION_TYPE_SOLID && hit->getTeam() != getTeam()) {
+				hit->setHealth(hit->getHealth() - dmg);//if we hit multiple objects, disperse the damage amongst all of them
+				if (hit->getHealth() <= 0) // if we killed it.
+				{
+					score_gained += hit->getPoints();
+					if (manager->getSprite(shotFrom) != nullptr)
+						manager->getSprite(shotFrom)->setScore(hit->getPoints());
+				}
+				dead = true; //we blew up
 			}
 		}
-		
-		dead = true; //we blew up
-		return; //terminate, don't waste any more time updating dead missiles
+		if (dead) return; //terminate, don't waste any more time updating dead missiles
 	}
 
 	float dT = ofGetLastFrameTime();
@@ -82,4 +84,12 @@ bool missile::isDead() const
 glm::vec2 missile::getVelocity() const
 {
 	return velocity * VEL_TIME_CONST;
+}
+
+int missile::getTeam() const {
+	return team;
+}
+void missile::setDamage(int amnt) { dmg = amnt; }
+int missile::getCollisionType() const {
+	return COLLISION_TYPE_HOLLOW;
 }

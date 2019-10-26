@@ -144,6 +144,9 @@
     <Filter Include="src\entity\entities">
       <UniqueIdentifier>{c43a1d7b-b760-4833-84ad-492c500d886a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entity\particles">
+      <UniqueIdentifier>{5be5496d-5516-450a-bdc8-6aefa8e0c342}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
