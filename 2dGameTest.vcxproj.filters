@@ -115,6 +115,9 @@
     <ClCompile Include="particleSystem.cpp">
       <Filter>src\entity\particles</Filter>
     </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>src\entity\particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -267,6 +270,9 @@
       <Filter>src\entity\particles</Filter>
     </ClInclude>
     <ClInclude Include="particleSystem.h">
+      <Filter>src\entity\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="particle.h">
       <Filter>src\entity\particles</Filter>
     </ClInclude>
   </ItemGroup>

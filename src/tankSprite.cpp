@@ -84,14 +84,13 @@ void tankSprite::update()
 	
 	float angToP;
 	if (p != nullptr)
-		angToP = -glm::degrees(glm::orientedAngle(glm::normalize(p->getPos()+glm::ballRand(accuracy) - getPos()), glm::vec2(0.0f, 1.0f)));
+		angToP = -glm::degrees(glm::orientedAngle(glm::normalize(p->getPos() - getPos()), glm::vec2(0.0f, 1.0f)));
 	else
 		angToP = 180.0f;
 	
 	float newAng = angToP - getRot();
-	float deltaA = glm::clamp(newAng - lastTurretRot, -0.1f, 0.1f);
 	lastTurretRot = turretRot;
-	turretRot += deltaA; // stuff and stuff here 
+	turretRot = newAng; // stuff and stuff here 
 
 	
 	gun->setDir(glm::rotate(glm::vec2(0.0f, 1.0f), glm::radians(turretRot+getRot())));
