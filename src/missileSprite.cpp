@@ -43,6 +43,7 @@ void missile::draw()
 	ofPushMatrix();
 	ofTranslate(getPos());
 	ofRotate(getRot());
+	ofSetColor(ofColor::white);
 	img.draw(-dim / 2);
 	ofPopMatrix();
 }

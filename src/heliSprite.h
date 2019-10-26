@@ -22,6 +22,9 @@
 
 class heliSprite : public solidEntity
 {
+	int lastH = 100;
+	bool shake = false;
+	float shakeStart = -1.0f;
 	int health = 100;
 	projectileEmitter* gun;
 	glm::vec2 vel;

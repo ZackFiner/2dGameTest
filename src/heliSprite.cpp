@@ -49,6 +49,15 @@ void heliSprite::draw()
 	ofPushMatrix();
 	ofTranslate(position);
 	ofRotate(rot);
+	if (getAge()-shakeStart < 0.35f)
+	{
+		ofSetColor(ofColor::red);
+		ofTranslate(glm::ballRand(10.0f));
+	}
+	else
+	{
+		ofSetColor(ofColor::white);
+	}
 	//draw
 	//ofDrawRectangle(-dim/2, dim.x,dim.y);
 	img.draw(-dim / 2);
@@ -63,6 +72,8 @@ bool heliSprite::isDead() const
 
 void heliSprite::update()
 {
+	
+	
 	rotor.update();
 	solidEntity::update();
 	float dT = ofGetLastFrameTime();
@@ -88,6 +99,8 @@ void heliSprite::update()
 	glm::vec2 newPos = glm::clamp(vel*dT*VEL_TIME_CONST + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
 	setPos(newPos);
 	setRot(theta);
+
+	if (lastH != health) { shake = true; shakeStart = this->getAge(); lastH = health; }
 }
 
 int heliSprite::getHealth() const { return health; }
