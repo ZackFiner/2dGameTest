@@ -109,6 +109,9 @@
     <ClCompile Include="src\tankSpawner.cpp">
       <Filter>src\entity\emitter</Filter>
     </ClCompile>
+    <ClCompile Include="particleEmitter.cpp">
+      <Filter>src\entity\particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="src\TankSprite.h">
       <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="particleEmitter.h">
+      <Filter>src\entity\particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
