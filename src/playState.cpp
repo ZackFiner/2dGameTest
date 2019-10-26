@@ -16,6 +16,7 @@ void playState::setup() {
 	ofSetBackgroundColor(ofColor::white);
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	helicopter->setUpdateCannonDir(true);
+	sceneGraph.setPlayer(helicopter->getID());
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
 	debugGui.setup();
 	debugGui.add(rpm.setup("gun RPM", 600, 60, 2000));//starts at a M2, max is a GAU-12
@@ -45,8 +46,16 @@ void playState::draw() {
 	ofPopMatrix();
 	debugGui.draw();
 	std::stringstream ss;
-	//ss << "Score: " << helicopter->getScore() << "\n";
-	//ss << "Health: " << helicopter->getHealth() << "\n";
+	if (sceneGraph.getSprite(sceneGraph.getPlayer()) != nullptr)
+	{
+		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
+		ss << "Score: " << p->getScore() << "\n";
+		ss << "Health: " << p->getHealth() << "\n";
+	}
+	else
+	{
+		ss << "YOU DIED\n";
+	}
 	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()-20));
 }
 

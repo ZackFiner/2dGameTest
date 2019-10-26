@@ -126,3 +126,8 @@ int entityManager::getCount()
 {
 	return contents.size();
 }
+
+void entityManager::setPlayer(EID p)
+{
+	playerEnt = p;
+}

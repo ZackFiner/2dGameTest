@@ -43,6 +43,7 @@ public:
 	entityManager();
 	void addSprite(entity*);
 	EID getPlayer() const;
+	void setPlayer(EID);
 	void deleteSprite(entity*);
 	void deleteSprite(EID);
 	void update();
