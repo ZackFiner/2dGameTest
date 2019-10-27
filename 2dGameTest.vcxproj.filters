@@ -118,6 +118,9 @@
     <ClCompile Include="src\particleSystem.cpp">
       <Filter>src\entity\particles</Filter>
     </ClCompile>
+    <ClCompile Include="src\player_hud.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -155,6 +158,9 @@
     </Filter>
     <Filter Include="src\entity\particles">
       <UniqueIdentifier>{5be5496d-5516-450a-bdc8-6aefa8e0c342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI">
+      <UniqueIdentifier>{17786da1-1010-4102-b45f-522cdf30c3a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="src\particleSystem.h">
       <Filter>src\entity\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player_hud.h">
+      <Filter>src\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

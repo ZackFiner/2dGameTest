@@ -19,9 +19,6 @@ void playState::setup() {
 	helicopter->setUpdateCannonDir(true);
 	sceneGraph.setPlayer(helicopter->getID());
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
-	debugGui.setup();
-	debugGui.add(rpm.setup("gun RPM", 600, 60, 2000));//starts at a M2, max is a GAU-12
-	debugGui.add(cannonDir.setup("gun Direction (in degrees)", 0, -180, 180));
 
 }
 
@@ -45,7 +42,6 @@ void playState::draw() {
 	sceneGraph.draw();
 
 	ofPopMatrix();
-	debugGui.draw();
 	std::stringstream ss;
 	if (sceneGraph.getSprite(sceneGraph.getPlayer()) != nullptr)
 	{

@@ -25,5 +25,6 @@ class tankSpawner : public emitter
 	collisionManager* hitManager;
 public:
 	tankSpawner(entityManager* em, collisionManager* cm);
+	void setSpawnRate(float);
 	void update();
 };

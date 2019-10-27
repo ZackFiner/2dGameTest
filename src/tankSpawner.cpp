@@ -42,3 +42,8 @@ void tankSpawner::update()
 	
 
 }
+
+void tankSpawner::setSpawnRate(float rate)
+{
+	spawnRate = rate;
+}

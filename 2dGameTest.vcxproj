@@ -199,6 +199,7 @@
     <ClCompile Include="src\particle.cpp" />
     <ClCompile Include="src\particleEmitter.cpp" />
     <ClCompile Include="src\particleSystem.cpp" />
+    <ClCompile Include="src\player_hud.cpp" />
     <ClCompile Include="src\playState.cpp" />
     <ClCompile Include="src\projectileEmitter.cpp" />
     <ClCompile Include="src\quadTree.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="src\particle.h" />
     <ClInclude Include="src\particleEmitter.h" />
     <ClInclude Include="src\particleSystem.h" />
+    <ClInclude Include="src\player_hud.h" />
     <ClInclude Include="src\playState.h" />
     <ClInclude Include="src\projectileEmitter.h" />
     <ClInclude Include="src\quadTree.h" />
