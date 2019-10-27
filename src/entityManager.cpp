@@ -14,6 +14,41 @@
  * This is the "sprite manager" class for this project.
  *
  ********************************************************************/
+void particleManager::addParticleSystem(particleSystem* newSystem)
+{
+	activeSystems.push_back(newSystem);
+}
+
+void particleManager::update()
+{
+	auto iter = activeSystems.begin();
+
+	while (iter != activeSystems.end())
+	{
+		if ((*iter)->getLifeTime() >= 0.0f && (*iter)->getAge() > (*iter)->getLifeTime())
+		{
+			delete (*iter);
+			iter = activeSystems.erase(iter);
+			continue;
+		}
+		iter++;
+	}
+	for (auto sys : activeSystems)
+		sys->update();
+}
+
+void particleManager::draw() const {
+	for (auto sys : activeSystems)
+		sys->draw();
+}
+
+
+particleManager::~particleManager() {
+	for (auto sys : activeSystems)
+	{
+		delete sys;
+	}
+}
 
 entityManager::entityManager()
 {}

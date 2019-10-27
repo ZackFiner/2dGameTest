@@ -24,6 +24,7 @@ public:
 	void addParticleSystem(particleSystem* sys);
 	void update();
 	void draw() const;
+	~particleManager();
 };
 
 class entity;

@@ -57,6 +57,7 @@ void particleSystem::update()
 	{
 		p->integrate();
 	}
+	age += ofGetLastFrameTime();
 }
 
 void particleSystem::addForce(particleForce* force)
