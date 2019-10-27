@@ -22,6 +22,7 @@ class particleManager
 	std::vector<particleSystem*> activeSystems;
 public:
 	void addParticleSystem(particleSystem* sys);
+	void removeParticleSystem(particleSystem* sys);
 	void update();
 	void draw() const;
 	~particleManager();

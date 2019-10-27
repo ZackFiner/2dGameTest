@@ -14,9 +14,23 @@
  * This is the "sprite manager" class for this project.
  *
  ********************************************************************/
-void particleManager::addParticleSystem(particleSystem* newSystem)
+void particleManager::addParticleSystem(particleSystem* sys)
 {
-	activeSystems.push_back(newSystem);
+	activeSystems.push_back(sys);
+}
+
+void particleManager::removeParticleSystem(particleSystem* sys)
+{
+	auto iter = activeSystems.begin();
+	while(iter!=activeSystems.end())
+	{
+		if ((*iter) == sys) //ptrs are equal
+		{
+			activeSystems.erase(iter);
+			return;
+		}
+		iter++;
+	}
 }
 
 void particleManager::update()
