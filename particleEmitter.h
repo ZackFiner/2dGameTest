@@ -15,19 +15,25 @@
  * of particles.
  *
  ***********************************************************/
-
+class particleSystem;
 class particleEmitter
 {
 private:
 	entity* parent = nullptr;
 	glm::vec2 pos;
 	float rot;
+	particleSystem* system;
 public:
-	virtual void update() = 0;
+	particleEmitter(particleSystem* _system);
+	virtual void update();
 	virtual void setPos(const glm::vec2&);
 	virtual glm::vec2 getPos() const;
 	virtual void setRot(float);
 	virtual float getRot() const;
 	virtual entity* getParent() const;
 	virtual void setParent(entity*);
+};
+class explosionEmitter : public particleEmitter
+{
+
 };

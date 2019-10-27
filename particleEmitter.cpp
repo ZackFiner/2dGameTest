@@ -16,6 +16,10 @@
  *
  ***********************************************************/
 
+particleEmitter::particleEmitter(particleSystem * _system) { system = _system; }
+
+void particleEmitter::update() {};
+
 void particleEmitter::setPos(const glm::vec2& pos)
 {
 	this->pos = pos;
