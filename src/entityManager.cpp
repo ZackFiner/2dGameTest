@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "entityManager.h"
-
+#include "particleSystem.h"
 /*H******************************************************************
  * FILENAME: entityManager.cpp
  * AUTHOR: Zackary Finer

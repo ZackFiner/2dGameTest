@@ -16,6 +16,15 @@
  *
  ********************************************************************/
 
+class particleSystem;
+class particleManager
+{
+	std::vector<particleSystem*> activeSystems;
+public:
+	void addParticleSystem(particleSystem* sys);
+	void update();
+	void draw() const;
+};
 
 class entity;
 class entityManager
@@ -40,7 +49,7 @@ private:
 	std::unordered_map<EID, entity*> contents;
 	EID playerEnt;
 public:
-	
+	particleManager particleSystems;
 	entityManager();
 	void addSprite(entity*);
 	EID getPlayer() const;
