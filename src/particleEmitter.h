@@ -1,6 +1,8 @@
 #pragma once
 #include "entity.h"
 #include "ofMain.h"
+#include "particleSystem.h"
+#include "particle.h"
 /*H*********************************************************
  * FILE: particleEmitter.h
  * AUTHOR: Zackary Finer
@@ -15,10 +17,9 @@
  * of particles.
  *
  ***********************************************************/
-class particleSystem;
 class particleEmitter
 {
-private:
+protected:
 	entity* parent = nullptr;
 	glm::vec2 pos;
 	float rot;
@@ -35,5 +36,11 @@ public:
 };
 class explosionEmitter : public particleEmitter
 {
-
+public:
+	explosionEmitter(particleSystem* _system, int particleCount, const glm::vec2& pos);
+};
+class sparkEmitter : public particleEmitter
+{
+public:
+	sparkEmitter(particleSystem* _system, int particleCount, const glm::vec2& pos);
 };

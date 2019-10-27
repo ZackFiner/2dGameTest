@@ -109,13 +109,13 @@
     <ClCompile Include="src\tankSpawner.cpp">
       <Filter>src\entity\emitter</Filter>
     </ClCompile>
-    <ClCompile Include="particleEmitter.cpp">
+    <ClCompile Include="src\particle.cpp">
       <Filter>src\entity\particles</Filter>
     </ClCompile>
-    <ClCompile Include="particleSystem.cpp">
+    <ClCompile Include="src\particleEmitter.cpp">
       <Filter>src\entity\particles</Filter>
     </ClCompile>
-    <ClCompile Include="particle.cpp">
+    <ClCompile Include="src\particleSystem.cpp">
       <Filter>src\entity\particles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -266,13 +266,13 @@
     <ClInclude Include="src\TankSprite.h">
       <Filter>src\entity\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="particleEmitter.h">
+    <ClInclude Include="src\particle.h">
       <Filter>src\entity\particles</Filter>
     </ClInclude>
-    <ClInclude Include="particleSystem.h">
+    <ClInclude Include="src\particleEmitter.h">
       <Filter>src\entity\particles</Filter>
     </ClInclude>
-    <ClInclude Include="particle.h">
+    <ClInclude Include="src\particleSystem.h">
       <Filter>src\entity\particles</Filter>
     </ClInclude>
   </ItemGroup>

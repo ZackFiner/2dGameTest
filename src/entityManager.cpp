@@ -88,6 +88,7 @@ void entityManager::deleteSprite(entity* target)
 
 void entityManager::draw()
 {
+	particleSystems.draw();
 	for (auto pair : contents) // for every id, sprite* in our table
 	{
 		pair.second->draw(); // draw the sprite (second value in the pair).
@@ -113,6 +114,7 @@ bool entityManager::containsSprite(entity* target)
 
 void entityManager::update()
 {
+	particleSystems.update();
 	for (auto pair : contents)
 	{
 		pair.second->update();

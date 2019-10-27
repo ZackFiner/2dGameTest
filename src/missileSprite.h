@@ -24,6 +24,7 @@
 class missile : public solidEntity
 {
 	bool dead = false;
+	bool hit = false;
 	glm::vec2 velocity;
 	glm::vec2 dim;
 	ofImage img;
@@ -42,4 +43,5 @@ public:
 	int getTeam() const;
 	int getCollisionType() const;
 	void setDamage(int);
+	~missile();
 };

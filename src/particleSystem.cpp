@@ -48,11 +48,10 @@ void particleSystem::update()
 		{
 			if (!f->applyOnce() || firstApp) {
 				f->updateParticle(p);
-				firstApp = false;
 			}
 		}
 	}
-
+	firstApp = false;
 	for (auto p : particles)
 	{
 		p->integrate();
@@ -96,7 +95,7 @@ impulseForce::impulseForce(float _strength)
 void impulseForce::updateParticle(particle* p) const
 {
 	glm::vec2 dir = glm::circularRand(1.0f);
-	p->force += dir * strength;
+	p->force += dir * (ofRandom(strength*0.2)+strength*0.8);
 }
 bool impulseForce::applyOnce() const { return true; }
 

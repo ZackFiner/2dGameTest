@@ -56,7 +56,8 @@ void particle::draw() const
 {
 	ofPushMatrix();
 		ofTranslate(pos-dim/2);
-		ofSetColor(col);
+		float alpha = (lifetime - age) / lifetime;
+		ofSetColor(col.r, col.g, col.b, alpha*255);
 		ofDrawRectangle(glm::vec2(), dim.x, dim.y);
 		ofSetColor(ofColor::white);
 	ofPopMatrix();

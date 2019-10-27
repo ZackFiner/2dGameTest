@@ -1,5 +1,6 @@
 #include "missileSprite.h"
 #include "entityManager.h"
+#include "particleEmitter.h"
 /*H******************************************************************
  * FILENAME: missileSprite.cpp
  * AUTHOR: Zackary Finer
@@ -65,6 +66,7 @@ void missile::update()
 						manager->getSprite(shotFrom)->setScore(hit->getPoints());
 				}
 				dead = true; //we blew up
+				this->hit = true;
 			}
 		}
 		if (dead) return; //terminate, don't waste any more time updating dead missiles
@@ -94,4 +96,13 @@ int missile::getTeam() const {
 void missile::setDamage(int amnt) { dmg = amnt; }
 int missile::getCollisionType() const {
 	return COLLISION_TYPE_HOLLOW;
+}
+missile::~missile()
+{
+	if (hit) {
+		particleSystem* explosionSys = new particleSystem();
+		auto e = sparkEmitter(explosionSys, 5, this->getPos());
+		explosionSys->setLifetime(2.0f);
+		manager->particleSystems.addParticleSystem(explosionSys);
+	}
 }

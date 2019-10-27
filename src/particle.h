@@ -19,10 +19,10 @@ protected:
 	glm::vec2 pos, vel, acc;
 	float mass;
 	ofColor col = ofColor::red;
-	glm::vec2 dim = glm::vec2(5.0f,5.0f);
 	float lifetime;
 	float age=0.0f;
 public:
+	glm::vec2 dim = glm::vec2(5.0f, 5.0f);
 	glm::vec2 force;
 	particle(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime);
 	particle(const glm::vec2& _pos, float _lifetime);

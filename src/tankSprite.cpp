@@ -1,6 +1,6 @@
 #include "TankSprite.h"
 #include "motionPath.h"
-
+#include "particleEmitter.h"
 /*H******************************************************************
  * FILENAME: tankSprite.cpp
  * AUTHOR: Zackary Finer
@@ -115,6 +115,12 @@ int tankSprite::getHealth() const { return hp; }
 int tankSprite::getPoints() const { return TANK_POINTS; }
 tankSprite::~tankSprite()
 {
+	if (getHealth() <= 0) {
+		particleSystem* explosionSys = new particleSystem();
+		auto e = explosionEmitter(explosionSys, 30, this->getPos());
+		explosionSys->setLifetime(6.0f);
+		manager->particleSystems.addParticleSystem(explosionSys);
+	}
 	delete pathManager;
 	manager->deleteSprite(gun->getID());
 }

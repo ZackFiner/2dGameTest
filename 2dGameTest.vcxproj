@@ -180,9 +180,6 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="particle.cpp" />
-    <ClCompile Include="particleEmitter.cpp" />
-    <ClCompile Include="particleSystem.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\motionPath.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -199,6 +196,9 @@
     <ClCompile Include="src\heliSprite.cpp" />
     <ClCompile Include="src\menuState.cpp" />
     <ClCompile Include="src\missileSprite.cpp" />
+    <ClCompile Include="src\particle.cpp" />
+    <ClCompile Include="src\particleEmitter.cpp" />
+    <ClCompile Include="src\particleSystem.cpp" />
     <ClCompile Include="src\playState.cpp" />
     <ClCompile Include="src\projectileEmitter.cpp" />
     <ClCompile Include="src\quadTree.cpp" />
@@ -219,9 +219,6 @@
     <ClCompile Include="src\tankSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="particle.h" />
-    <ClInclude Include="particleEmitter.h" />
-    <ClInclude Include="particleSystem.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\boxSprite.h" />
     <ClInclude Include="src\collisionHull.h" />
@@ -237,6 +234,9 @@
     <ClInclude Include="src\menuState.h" />
     <ClInclude Include="src\missileSprite.h" />
     <ClInclude Include="src\motionPath.h" />
+    <ClInclude Include="src\particle.h" />
+    <ClInclude Include="src\particleEmitter.h" />
+    <ClInclude Include="src\particleSystem.h" />
     <ClInclude Include="src\playState.h" />
     <ClInclude Include="src\projectileEmitter.h" />
     <ClInclude Include="src\quadTree.h" />
