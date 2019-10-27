@@ -29,6 +29,11 @@ void playState::update() {
 	background.update();
 	sceneGraph.update();
 	collisionEngine.update();
+	if (sceneGraph.getSprite(sceneGraph.getPlayer()) != nullptr)
+	{
+		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
+		spawner->setSpawnRate(glm::max(4.0f - (p->getScore() / 100.0f), 1.0f));
+	}
 }
 
 //--------------------------------------------------------------

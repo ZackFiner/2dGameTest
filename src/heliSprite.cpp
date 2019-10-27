@@ -62,6 +62,7 @@ void heliSprite::draw()
 	//ofDrawRectangle(-dim/2, dim.x,dim.y);
 	img.draw(-dim / 2);
 	rotor.draw(-rotor.getSize()/2 + glm::vec2(0.0f, 10.0f));
+	ofSetColor(ofColor::white);
 	ofPopMatrix();
 }
 
