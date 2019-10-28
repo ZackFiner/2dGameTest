@@ -55,7 +55,7 @@ explosionEmitter::explosionEmitter(particleSystem* _system, int particleCount, c
 		system->addParticle(p);
 	}
 	system->addForce((particleForce*)(new impulseForce(10000.0f)));
-	system->addForce((particleForce*)(new screenDragForce(20.0f)));
+	system->addForce((particleForce*)(new screenDragForce(200.0f)));
 	system->addForce((particleForce*)(new turbulanceForce(glm::vec2(-50.0f,-50.0f), glm::vec2(50.0f, 50.0f))));
 }
 sparkEmitter::sparkEmitter(particleSystem* _system, int particleCount, const glm::vec2& pos) :
