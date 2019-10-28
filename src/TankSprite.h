@@ -2,6 +2,7 @@
 #include "solidEntity.h"
 #include "motionPath.h"
 #include "projectileEmitter.h"
+#include "GameSettings.h"
 /*H******************************************************************
  * FILENAME: tankSprite.h
  * AUTHOR: Zackary Finer
@@ -16,10 +17,6 @@
  *
  ********************************************************************/
 
-#define TANK_DEFAULT_HP 100
-#define TANK_LIFETIME 10.0f
-#define TANK_POINTS 20
-#define DESPAWN_RADIUS 100
 class tankSprite : public solidEntity
 {
 	motionPath* pathManager;

@@ -25,7 +25,7 @@ scrollingBg::scrollingBg(const std::string& fpath, float spd) :
 
 void scrollingBg::update()
 {
-	pos += glm::vec2(0.0f,1.0f)*speed;
+	pos += glm::vec2(0.0f,1.0f)*speed*ofGetLastFrameTime();
 }
 
 void scrollingBg::draw() const

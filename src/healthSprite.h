@@ -1,5 +1,6 @@
 #pragma once
 #include "solidEntity.h"
+#include "GameSettings.h"
 /*H******************************************************************
  * FILENAME: healthSprite.h
  * AUTHOR: Zackary Finer
@@ -16,8 +17,12 @@
 
 class healthPack : public solidEntity
 {
+	ofImage img;
+	glm::vec2 dim;
+	bool dead = false;
 public:
 	healthPack(entityManager* em, collisionManager* cm, const glm::vec2& start);
 	void update();
 	void draw();
+	bool isDead() const;
 };

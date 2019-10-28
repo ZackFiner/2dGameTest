@@ -32,7 +32,7 @@ class playState : public gameState
 	drawnObject* dragTarget;
 	heliSprite* helicopter;
 	tankSpawner* spawner;
-	scrollingBg background = scrollingBg("background.png", 3.0f);
+	scrollingBg background = scrollingBg("background.png", 300.0f);
 	ofxFloatSlider rpm;
 	ofxFloatSlider cannonDir;
 	ofxPanel debugGui;

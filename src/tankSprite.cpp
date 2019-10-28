@@ -1,6 +1,7 @@
 #include "TankSprite.h"
 #include "motionPath.h"
 #include "particleEmitter.h"
+#include "healthSprite.h"
 /*H******************************************************************
  * FILENAME: tankSprite.cpp
  * AUTHOR: Zackary Finer
@@ -123,6 +124,12 @@ tankSprite::~tankSprite()
 	}
 	delete pathManager;
 	manager->deleteSprite(gun->getID());
+
+	if (ofRandom(100.0f) < HEALTH_PACK_SPAWN_CHANCE)
+	{
+		manager->addSprite(new healthPack(manager, hitManager, getPos()));
+	}
+
 }
 
 int tankSprite::getTeam() const { return TEAM_1; }
