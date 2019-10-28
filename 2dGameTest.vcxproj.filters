@@ -121,6 +121,9 @@
     <ClCompile Include="src\player_hud.cpp">
       <Filter>src\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="src\healthSprite.cpp">
+      <Filter>src\entity\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -283,6 +286,12 @@
     </ClInclude>
     <ClInclude Include="src\player_hud.h">
       <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\healthSprite.h">
+      <Filter>src\entity\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameSettings.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
