@@ -15,9 +15,21 @@
  *
  ********************************************************************/
 
+class StaticPackResources
+{
+public:
+	ofImage sprite;
+	StaticPackResources()
+	{
+		sprite = ofImage();
+		sprite.load("hp_box.png");
+		sprite.mirror(true, false);
+		sprite.resize(40, 40);
+	}
+};
+
 class healthPack : public solidEntity
 {
-	ofImage img;
 	glm::vec2 dim;
 	bool dead = false;
 public:

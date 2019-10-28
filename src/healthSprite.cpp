@@ -14,15 +14,18 @@
  *
  ********************************************************************/
 
+StaticPackResources& stuff()
+{
+	static StaticPackResources* deep_stuff = new StaticPackResources();
+	return *deep_stuff;
+}
+
 healthPack::healthPack(entityManager* em, collisionManager* cm, const glm::vec2& start) :
-	solidEntity(em, cm, collisionHull()),
-	img("hp_box.png")
+	solidEntity(em, cm, collisionHull())
 {
 	this->setPos(start);
 	dim = glm::vec2(40, 40);
 	hitBox.setBB(glm::vec2(10, 10), glm::vec2(-10, 10), glm::vec2(-10, -10), glm::vec2(10, -10));
-	img.mirror(true, false);
-	img.resize(dim.x, dim.y);
 }
 
 void healthPack::update() {
@@ -55,7 +58,7 @@ void healthPack::draw() {
 	ofRotate(getRot());
 	ofSetColor(ofColor::white);
 	
-	img.draw(glm::vec2(0,0));
+	stuff().sprite.draw(glm::vec2(0,0));
 	
 	ofPopMatrix();
 }

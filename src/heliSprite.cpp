@@ -101,7 +101,7 @@ void heliSprite::update()
 	setPos(newPos);
 	setRot(theta);
 
-	if (lastH != health) { shake = true; shakeStart = this->getAge(); lastH = health; }
+	if (lastH > health) { shake = true; shakeStart = this->getAge(); lastH = health; }
 }
 
 int heliSprite::getHealth() const { return health; }
