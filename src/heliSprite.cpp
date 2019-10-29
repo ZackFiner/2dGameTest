@@ -73,8 +73,6 @@ bool heliSprite::isDead() const
 
 void heliSprite::update()
 {
-	
-	
 	rotor.update();
 	solidEntity::update();
 	float dT = ofGetLastFrameTime();
@@ -101,7 +99,13 @@ void heliSprite::update()
 	setPos(newPos);
 	setRot(theta);
 
-	if (lastH > health) { shake = true; shakeStart = this->getAge(); lastH = health; }
+	if (lastH != health)
+	{
+		shake = true;
+		if (lastH > health)
+			shakeStart = this->getAge();
+		lastH = health;
+	}
 }
 
 int heliSprite::getHealth() const { return health; }
