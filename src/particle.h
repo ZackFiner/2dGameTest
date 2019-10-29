@@ -13,6 +13,18 @@
  *
  ***********************************************************/
 #define PARTICLE_DAMPENING 0.9f
+class imageSingleton
+{
+public:
+	ofImage smoke;
+	imageSingleton()
+	{
+		smoke.load("smoke.png");
+		smoke.resize(60, 60);
+		smoke.mirror(true, false);
+	}
+};
+
 class particle
 {
 protected:
@@ -35,4 +47,19 @@ public:
 	virtual void integrate();
 	virtual void draw() const;
 	virtual ~particle();
+};
+
+class smokeParticle : particle
+{
+protected:
+	glm::vec2 scale, dim;
+	float rot_dir;
+	float rot;
+	float min_size=1.0f, max_size=5.0f;
+public:
+	smokeParticle(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime);
+	smokeParticle(const glm::vec2& _pos, float _lifetime);
+	void setSizeGradient(float min, float max);
+	void draw() const;
+	void integrate();
 };
