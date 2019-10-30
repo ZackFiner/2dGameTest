@@ -33,7 +33,13 @@ void playState::update() {
 	{
 		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
 		playerScore = p->getScore();
+		hud.score = playerScore;
+		hud.health = p->getHealth();
 		spawner->setSpawnRate(glm::max(4.0f - (p->getScore() / 100.0f), 1.0f));
+	}
+	else
+	{
+		hud.health = 0;
 	}
 	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE)
 	{
@@ -77,6 +83,7 @@ void playState::draw() {
 		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
 		ofSetColor(ofColor::white);
 	}
+	hud.draw();
 }
 
 //--------------------------------------------------------------

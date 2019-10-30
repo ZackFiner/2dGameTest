@@ -11,6 +11,7 @@
 #include "scrollingBg.h"
 #include "tankSpawner.h"
 #include "GameSettings.h"
+#include "player_hud.h"
 
 /*H******************************************************************
  * FILENAME: gameState.h
@@ -38,6 +39,7 @@ class playState : public gameState
 	ofxFloatSlider cannonDir;
 	ofxPanel debugGui;
 	unsigned long startTick;
+	playerHud hud;
 public:
 	int playerScore;
 	void setup();
