@@ -118,6 +118,7 @@ tankSprite::~tankSprite()
 {
 	if (getHealth() <= 0) {
 		particleSystem* explosionSys = new particleSystem();
+		explosionSys->initSoundPlay(&(sysStatic().getRandomExplosion()));
 		auto e = explosionEmitter(explosionSys, 30, this->getPos());
 		explosionSys->setLifetime(6.0f);
 		manager->particleSystems.addParticleSystem(explosionSys);

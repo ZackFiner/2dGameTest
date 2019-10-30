@@ -19,7 +19,7 @@ void playState::setup() {
 	helicopter->setUpdateCannonDir(true);
 	sceneGraph.setPlayer(helicopter->getID());
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
-
+	startTick = ofGetSystemTimeMillis();
 }
 
 //--------------------------------------------------------------
@@ -32,12 +32,18 @@ void playState::update() {
 	if (sceneGraph.getSprite(sceneGraph.getPlayer()) != nullptr)
 	{
 		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
+		playerScore = p->getScore();
 		spawner->setSpawnRate(glm::max(4.0f - (p->getScore() / 100.0f), 1.0f));
+	}
+	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE)
+	{
+		spawner->start();
 	}
 }
 
 //--------------------------------------------------------------
 void playState::draw() {
+
 	background.draw();
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	ofPushMatrix();
@@ -59,6 +65,18 @@ void playState::draw() {
 		ss << "YOU DIED\n";
 	}
 	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()-20));
+
+	/*
+		Below is a little fade in effect.
+	*/
+	if (!spawner->getRunning()) //warm up phase basically
+	{
+		float ready = glm::min((float)(ofGetSystemTimeMillis() - startTick) / (GAME_START_PHASE*0.5f), 1.0f);
+		std::cout << ready << std::endl;
+		ofSetColor(0, 0, 0, (1.0f - ready) * 255);
+		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
+		ofSetColor(ofColor::white);
+	}
 }
 
 //--------------------------------------------------------------

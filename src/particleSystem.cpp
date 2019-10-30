@@ -15,6 +15,13 @@
  *
  ***********************************************************/
 
+particleSysStaticStuff& sysStatic()
+{
+	static particleSysStaticStuff* particle_static_resource = new particleSysStaticStuff();
+	return *particle_static_resource;
+}
+
+
 particleSystem::particleSystem() {}
 particleSystem::~particleSystem()
 {
@@ -86,6 +93,12 @@ int particleSystem::getCount() const { return particles.size(); }
 float particleSystem::getLifeTime() const { return lifeTime; }
 float particleSystem::getAge() const { return age; }
 particleForce* particleSystem::getForce(int index) const { return forces[index]; }
+
+void particleSystem::initSoundPlay(ofSoundPlayer* _initSound)
+{
+	initSound = _initSound;
+	initSound->play();
+}
 
 impulseForce::impulseForce(float _strength)
 {

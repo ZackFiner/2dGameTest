@@ -16,6 +16,36 @@
 
 class particle;
 
+class particleSysStaticStuff
+{
+public:
+	ofSoundPlayer explosion1;
+	ofSoundPlayer explosion2;
+	ofSoundPlayer explosion3;
+	particleSysStaticStuff() {
+		explosion1.load("Explosion01.wav");
+		explosion1.setVolume(0.2);
+		explosion2.load("Explosion02.wav");
+		explosion2.setVolume(0.2);
+		explosion3.load("Explosion03.wav");
+		explosion3.setVolume(0.2);
+	}
+	ofSoundPlayer& getRandomExplosion()
+	{
+		int selector = (int)(ofRandom(4));
+		switch (selector)
+		{
+			case 0:
+				return explosion1;
+			case 1:
+				return explosion2;
+			default:
+				return explosion3;
+		}
+
+	}
+};
+particleSysStaticStuff& sysStatic();
 class particleForce
 {
 	public:
@@ -31,8 +61,10 @@ private:
 	float lifeTime = -1.0f;
 	float age = 0;
 	bool firstApp = true;
+	ofSoundPlayer* initSound;
 public:
 	particleSystem();
+	void initSoundPlay(ofSoundPlayer* _initSound);
 	void update();
 	void addForce(particleForce*);
 	void addParticle(particle*);

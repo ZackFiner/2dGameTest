@@ -10,6 +10,7 @@
 #include "heliSprite.h"
 #include "scrollingBg.h"
 #include "tankSpawner.h"
+#include "GameSettings.h"
 
 /*H******************************************************************
  * FILENAME: gameState.h
@@ -36,7 +37,9 @@ class playState : public gameState
 	ofxFloatSlider rpm;
 	ofxFloatSlider cannonDir;
 	ofxPanel debugGui;
+	unsigned long startTick;
 public:
+	int playerScore;
 	void setup();
 	void update();
 	void draw();
