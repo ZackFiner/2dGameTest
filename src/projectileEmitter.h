@@ -29,14 +29,18 @@ class projectileEmitter : public emitter
 	ofSoundPlayer shootfx;
 	collisionManager* hitManager;
 	bool randomFire = false;
+	float burstLength = 0.0f;
+	float doubleBarrelDst = 0.0f;
 public:
 	projectileEmitter(entityManager*, collisionManager*);
 	void setDir(const glm::vec2&);
 	void toggleFire(bool);
+	void toggleFire();
 	void fireOne();
 	void update();
 	void setFireRate(float);
 	void setSpeed(float);
 	void setDamage(int);
 	void setRandomFire(bool);
+	void setDoubleBarrelDst(float amnt);
 };

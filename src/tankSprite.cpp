@@ -14,10 +14,16 @@
  * random intervals.
  *
  ********************************************************************/
+tankStaticData& getTankStaticData()
+{
+	static tankStaticData* tankSprite_staticData = new tankStaticData();
+	return *tankSprite_staticData;
+}
+
 
 tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* manager) :
-	solidEntity(em, cm, collisionHull()),
-	img("T90.png")
+	solidEntity(em, cm, collisionHull())//,
+	//img("T90.png")
 {
 	gun = new projectileEmitter(em, cm);
 	gun->setSpeed(5.0f);
@@ -35,8 +41,8 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	pathManager = manager;
 	update();
 	setPos(pathManager->getPos(getAge()));
-	img.resize(70, 70);
-	img.mirror(true, false);
+	//img.resize(70, 70);
+	//img.mirror(true, false);
 }
 
 void tankSprite::draw()
@@ -54,14 +60,14 @@ void tankSprite::draw()
 	//ofSetColor(ofColor::blueViolet);
 	//ofDrawRectangle(-dim / 2, dim.x, dim.y);
 	//ofScale(glm::vec3(70.0f/512.0f,70.0f/512.0f,1));
-	img.drawSubsection(-16, -30, 33, 49, 2, 8);
+	getTankStaticData().tank_sprite.drawSubsection(-16, -30, 33, 49, 2, 8);
 	
 	ofPushMatrix();
 		
 		ofTranslate(glm::vec2(0,-5));
 		ofRotate(this->turretRot);
 		ofTranslate(glm::vec2(0,7));
-		img.drawSubsection(-13, -29, 26, 58, 39, 0);
+		getTankStaticData().tank_sprite.drawSubsection(-13, -29, 26, 58, 39, 0);
 	
 		ofPopMatrix();
 	
@@ -134,3 +140,57 @@ tankSprite::~tankSprite()
 }
 
 int tankSprite::getTeam() const { return TEAM_1; }
+
+spaaSprite::spaaSprite(entityManager* manager, collisionManager* colMan, motionPath* path) :
+	tankSprite(manager, colMan, path)
+{
+	burst_freq = 1000.0f;
+	lst_burst = 0;
+	gun->setDoubleBarrelDst(20.0f);
+	gun->setFireRate(50.0f);
+	gun->setRandomFire(false);
+	gun->toggleFire(false);
+	
+}
+
+void spaaSprite::update() {
+	tankSprite::update();
+	if (ofGetSystemTimeMillis() - lst_burst > burst_freq)
+	{
+		gun->toggleFire();
+		lst_burst = ofGetSystemTimeMillis();
+	}
+}
+
+void spaaSprite::draw()
+{
+	glm::vec2 dim = glm::vec2(20, 50);
+	ofPushMatrix();
+	ofTranslate(this->getPos());
+	ofSetColor(ofColor::red);
+	ofDrawRectangle(glm::vec2(-25.0f, -50.0f), 50.0f, 4.0f);
+	ofSetColor(ofColor::green);
+	ofDrawRectangle(glm::vec2(-25.0f, -50.0f), 50.0f*((float)getHealth() / TANK_DEFAULT_HP), 4.0f);
+	ofSetColor(ofColor::white);
+	ofRotate(this->getRot());
+	//ofSetColor(ofColor::blueViolet);
+	//ofDrawRectangle(-dim / 2, dim.x, dim.y);
+	//ofScale(glm::vec3(70.0f/512.0f,70.0f/512.0f,1));
+	getTankStaticData().tank_sprite.drawSubsection(-16, -30, 33, 49, 2, 8);
+
+	ofPushMatrix();
+
+	ofTranslate(glm::vec2(0, -5));
+	ofRotate(this->turretRot);
+	ofTranslate(glm::vec2(0, 7));
+	getTankStaticData().tank_sprite.drawSubsection(-13, -29, 26, 58, 39, 0);
+
+	ofPopMatrix();
+
+	ofSetColor(ofColor::white);
+	ofPopMatrix();
+}
+
+int spaaSprite::getPoints() const {
+	return 50;
+}

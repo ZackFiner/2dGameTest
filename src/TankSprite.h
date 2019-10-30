@@ -17,15 +17,28 @@
  *
  ********************************************************************/
 
+class tankStaticData {
+public:
+	ofImage tank_sprite;
+	ofImage spaa_sprite;
+	tankStaticData()
+	{
+		tank_sprite.load("T90.png");
+		tank_sprite.resize(70, 70);
+		tank_sprite.mirror(true, false);
+	}
+};
+
 class tankSprite : public solidEntity
 {
+protected:
 	motionPath* pathManager;
 	int hp;
 	bool dead = false;
 	float accuracy = 20.0f;
 	glm::vec2 vel;
 	float turretRot;
-	ofImage img;
+	//ofImage img;
 	projectileEmitter* gun;
 	float lastTurretRot = turretRot;
 public:
@@ -39,4 +52,17 @@ public:
 	int getPoints() const;
 	~tankSprite();
 	int getTeam() const;
+};
+
+class spaaSprite : public tankSprite
+{
+protected:
+	float burst_freq;
+	unsigned long lst_burst;
+public:
+	spaaSprite(entityManager*, collisionManager*, motionPath*);
+	void update();
+	void draw();
+	int getPoints() const;
+	//~spaaSprite();
 };
