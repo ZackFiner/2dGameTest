@@ -78,8 +78,8 @@ smokeEmitter::smokeEmitter(particleSystem* _system, entity* _parent) :
 {
 	setParent(_parent);
 	//force = new trailForce(getParent()->getPos(), glm::vec2(0,-1), 20.0f, 5.0f,6.0f);
-	system->addForce(new screenDragForce(3000.0f));
 	system->addForce(new turbulanceForce(glm::vec2(-30.0f,-30.0f), glm::vec2(30.0f,30.0f)));
+	system->addForce(new screenDragForce(3000.0f));
 	freq = ofRandom(maxF - minF) + minF;
 }
 

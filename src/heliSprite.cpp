@@ -204,6 +204,7 @@ deadHeliSprite::deadHeliSprite(entityManager* em) :
 	smoke_sys = new particleSystem();
 	em->particleSystems.addParticleSystem(smoke_sys);
 	smoke = new smokeEmitter(smoke_sys, this);
+	//smoke_sys->forces.erase(smoke_sys->forces.begin() + 1);
 	smoke->smokeColor = ofColor(45, 45, 45);
 	smoke->setPos(glm::vec2(0.0f, 0.0f));
 	smoke->start();
@@ -224,6 +225,8 @@ void deadHeliSprite::update()
 {
 	entity::update();
 	smoke->update();
+	float spooldown = ((lifetime - age) / lifetime);
+	((screenDragForce*)(smoke_sys->forces[1]))->setSpeed((3000* spooldown));
 	rotor.update();
 	setPos(getPos() + glm::vec2(100.0f, -100.0f)*ofGetLastFrameTime());
 	setRot(getRot() + 720.0f*ofGetLastFrameTime());
@@ -254,6 +257,7 @@ deadHeliSprite::~deadHeliSprite()
 	particleSystem* explosionSys = new particleSystem();
 	explosionSys->initSoundPlay(&(sysStatic().getRandomExplosion()));
 	auto e = explosionEmitter(explosionSys, 30, this->getPos());
+	explosionSys->forces.erase(explosionSys->forces.begin() + 1);
 	explosionSys->setLifetime(6.0f);
 	manager->particleSystems.addParticleSystem(explosionSys);
 }

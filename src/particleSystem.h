@@ -57,12 +57,12 @@ class particleSystem
 {
 private:
 	std::vector<particle*> particles;
-	std::vector<particleForce*> forces;
 	float lifeTime = -1.0f;
 	float age = 0;
 	bool firstApp = true;
 	ofSoundPlayer* initSound;
 public:
+	std::vector<particleForce*> forces;
 	particleSystem();
 	void initSoundPlay(ofSoundPlayer* _initSound);
 	void update();
@@ -108,6 +108,7 @@ public:
 	screenDragForce(float);
 	void updateParticle(particle* particle) const;
 	bool applyOnce() const;
+	void setSpeed(float spd) { speed = spd; }
 };
 
 class trailForce : public particleForce
