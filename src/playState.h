@@ -39,6 +39,7 @@ class playState : public gameState
 	ofxFloatSlider cannonDir;
 	ofxPanel debugGui;
 	unsigned long startTick;
+	unsigned long deathTick=0;
 	playerHud hud;
 public:
 	int playerScore;

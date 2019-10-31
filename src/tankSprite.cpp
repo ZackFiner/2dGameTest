@@ -146,10 +146,11 @@ spaaSprite::spaaSprite(entityManager* manager, collisionManager* colMan, motionP
 {
 	burst_freq = 1000.0f;
 	lst_burst = 0;
-	gun->setDoubleBarrelDst(20.0f);
-	gun->setFireRate(50.0f);
+	gun->setDoubleBarrelDst(18.0f);
+	gun->setFireRate(200.0f);
 	gun->setRandomFire(false);
 	gun->toggleFire(false);
+	gun->setDamage(1);
 	
 }
 
@@ -176,14 +177,14 @@ void spaaSprite::draw()
 	//ofSetColor(ofColor::blueViolet);
 	//ofDrawRectangle(-dim / 2, dim.x, dim.y);
 	//ofScale(glm::vec3(70.0f/512.0f,70.0f/512.0f,1));
-	getTankStaticData().tank_sprite.drawSubsection(-16, -30, 33, 49, 2, 8);
+	getTankStaticData().spaa_sprite.drawSubsection(-10, -25, 21, 50, 7, 9);
 
 	ofPushMatrix();
 
-	ofTranslate(glm::vec2(0, -5));
+	ofTranslate(glm::vec2(0, 0));
 	ofRotate(this->turretRot);
-	ofTranslate(glm::vec2(0, 7));
-	getTankStaticData().tank_sprite.drawSubsection(-13, -29, 26, 58, 39, 0);
+	ofTranslate(glm::vec2(0, -2));
+	getTankStaticData().spaa_sprite.drawSubsection(-10, -14, 21, 28, 40, 18);
 
 	ofPopMatrix();
 

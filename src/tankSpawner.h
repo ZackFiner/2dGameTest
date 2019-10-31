@@ -21,10 +21,16 @@
 class tankSpawner : public emitter
 {
 	float spawnRate = DEFAULT_SPAWN_RATE;
+	int batch_size = 1;
 	unsigned long last_spawn;
 	collisionManager* hitManager;
 	bool spawn = false;
+	int dif = 0;
+	void spawnTank();
+	void spawnSpaa();
+	void spawnBatch();
 public:
+	void setDifficulty(int dif);
 	tankSpawner(entityManager* em, collisionManager* cm);
 	void setSpawnRate(float);
 	void update();

@@ -26,6 +26,9 @@ public:
 		tank_sprite.load("T90.png");
 		tank_sprite.resize(70, 70);
 		tank_sprite.mirror(true, false);
+		spaa_sprite.load("9k22.png");
+		spaa_sprite.resize(70, 70);
+		spaa_sprite.mirror(true, false);
 	}
 };
 

@@ -19,31 +19,73 @@ tankSpawner::tankSpawner(entityManager* em, collisionManager* cm) :
 	hitManager = cm;
 }
 
+void tankSpawner::spawnTank()
+{
+	glm::vec2 border = glm::vec2(ofGetWidth(), ofGetHeight());
+	int spawnWidth = border.x / 2 + DESPAWN_RADIUS / 2;
+	int medianSpawnHeight = border.y / 4;
+
+	bool on_left_side = ofRandomuf() > 0.5f;
+	bool linear = ofRandomuf() > 0.5f;
+	if (linear)
+		new tankSprite(manager, hitManager,
+			new linearPath(
+				glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight),
+				glm::normalize(glm::vec2(spawnWidth * (on_left_side ? -1 : 1), ofRandom(-50.0f, 50.0f))),
+				ofRandom(medianSpawnHeight, medianSpawnHeight*1.5))
+		);
+	else
+		new tankSprite(manager, hitManager,
+			new sinPath(ofRandom(5.0f, 50.0f), 100.0f, ofRandom(medianSpawnHeight*0.25, medianSpawnHeight*0.75), ofRandom(medianSpawnHeight*0.75, medianSpawnHeight*1.25), glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight), on_left_side));
+
+}
+void tankSpawner::spawnSpaa()
+{
+	glm::vec2 border = glm::vec2(ofGetWidth(), ofGetHeight());
+	int spawnWidth = border.x / 2 + DESPAWN_RADIUS / 2;
+	int medianSpawnHeight = border.y / 4;
+
+	bool on_left_side = ofRandomuf() > 0.5f;
+	bool linear = ofRandomuf() > 0.5f;
+	if (linear)
+		new spaaSprite(manager, hitManager,
+			new linearPath(
+				glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight),
+				glm::normalize(glm::vec2(spawnWidth * (on_left_side ? -1 : 1), ofRandom(-50.0f, 50.0f))),
+				ofRandom(medianSpawnHeight, medianSpawnHeight*1.5))
+		);
+	else
+		new spaaSprite(manager, hitManager,
+			new sinPath(ofRandom(5.0f, 50.0f), 100.0f, ofRandom(medianSpawnHeight*0.25, medianSpawnHeight*0.75), ofRandom(medianSpawnHeight*0.75, medianSpawnHeight*1.25), glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight), on_left_side));
+
+}
+
+void tankSpawner::spawnBatch()
+{
+	//i found that  when they spawn it batches, the game becomes really difficult really fast
+	int amnt = (int)glm::clamp(ofRandom(glm::clamp(dif - 1, 1, 3)) , 1.0f, 3.0f);
+	for (int i = 0; i < amnt; i++)
+	{
+		if (ofRandom(100.0f) < SPAA_SPAWN_CHANCE && dif > 3)
+		{
+			spawnSpaa();
+		}
+		else
+		{
+			spawnTank();
+		}
+	}
+}
+
 void tankSpawner::update()
 {
 	if (spawn)
 	{
-		glm::vec2 border = glm::vec2(ofGetWidth(), ofGetHeight());
 		unsigned long cur = ofGetCurrentTime().getAsMilliseconds();
 		if (cur - last_spawn > (spawnRate*1000.0f))
 		{
-			int spawnWidth = border.x / 2 + DESPAWN_RADIUS / 2;
-			int medianSpawnHeight = border.y / 4;
-
-			bool on_left_side = ofRandomuf() > 0.5f;
-			bool linear = ofRandomuf() > 0.5f;
-			if (linear)
-				new tankSprite(manager, hitManager,
-					new linearPath(
-						glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight),
-						glm::normalize(glm::vec2(spawnWidth * (on_left_side ? -1 : 1), ofRandom(-50.0f, 50.0f))),
-						ofRandom(medianSpawnHeight, medianSpawnHeight*1.5))
-				);
-			else
-				new tankSprite(manager, hitManager,
-					new sinPath(ofRandom(5.0f, 50.0f), 100.0f, ofRandom(medianSpawnHeight*0.25, medianSpawnHeight*0.75), ofRandom(medianSpawnHeight*0.75, medianSpawnHeight*1.25), glm::vec2(-spawnWidth * (on_left_side ? -1 : 1), medianSpawnHeight), on_left_side));
-
-
+			/*Spawn a batch depending the difficulty*/
+			spawnBatch();
 			last_spawn = cur;
 		}
 	}
@@ -66,4 +108,10 @@ void tankSpawner::stop()
 bool tankSpawner::getRunning() const
 {
 	return spawn;
+}
+
+void tankSpawner::setDifficulty(int dif)
+{
+	this->dif = dif;
+	spawnRate = glm::max(3.0f - (float)dif * 0.05f, 0.5f);
 }

@@ -35,13 +35,22 @@ void playState::update() {
 		playerScore = p->getScore();
 		hud.score = playerScore;
 		hud.health = p->getHealth();
-		spawner->setSpawnRate(glm::max(4.0f - (p->getScore() / 100.0f), 1.0f));
+		spawner->setDifficulty(playerScore / 100);
 	}
 	else
 	{
-		hud.health = 0;
+		
+		if (deathTick == 0) // if we just died
+		{
+			deathTick = ofGetSystemTimeMillis();//set the death tick
+			spawner->stop();
+			hud.health = 0;
+		}
+		float t = (float)(ofGetSystemTimeMillis() - deathTick)/(GAME_END_PHASE*0.5f);
+		background.setSpeed(300.0f*glm::max(1 - t, 0.0f));
+
 	}
-	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE)
+	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE && deathTick==0)
 	{
 		spawner->start();
 	}
