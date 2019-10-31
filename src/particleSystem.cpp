@@ -129,3 +129,20 @@ void screenDragForce::updateParticle(particle* p) const {
 	p->force += glm::vec2(0, -speed);
 }
 bool screenDragForce::applyOnce() const { return false; }
+
+trailForce::trailForce(const glm::vec2& o, const glm::vec2& d, float r, float magm, float magM)
+{
+	mag_max = magM;
+	mag_min = magm;
+	origin = o;
+	dir = d;
+	radius = r;
+
+}
+
+void trailForce::updateParticle(particle* particle) const {
+	glm::vec2 p_dir = glm::rotate(dir, glm::radians(ofRandomf()*radius));
+	float mag = ofRandom(mag_max - mag_min) + mag_min;
+	particle->force += p_dir * mag;
+}
+bool trailForce::applyOnce() const { return false; }

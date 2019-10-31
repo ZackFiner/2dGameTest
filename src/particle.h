@@ -52,11 +52,12 @@ public:
 class smokeParticle : particle
 {
 protected:
-	glm::vec2 scale, dim;
+	glm::vec2 scale;
 	float rot_dir;
 	float rot;
 	float min_size=1.0f, max_size=5.0f;
 public:
+	ofColor colOverride = ofColor::white;
 	smokeParticle(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime);
 	smokeParticle(const glm::vec2& _pos, float _lifetime);
 	void setSizeGradient(float min, float max);

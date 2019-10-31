@@ -1,5 +1,6 @@
 #include "heliSprite.h"
-
+#include "particleEmitter.h"
+#include "GameSettings.h"
 /*H******************************************************************
  * FILENAME: heliSprite.cpp
  * AUTHOR: Zackary Finer
@@ -24,6 +25,12 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	img("ah64.png"),
 	rotor("rotor_sheet.png", 50.0f, glm::vec2(106.0f,106.0f), glm::vec2(364,364), 4)
 {
+	smoke_sys = new particleSystem();
+	em->particleSystems.addParticleSystem(smoke_sys);
+	smoke = new smokeEmitter(smoke_sys, (entity*)this);
+	smoke->smokeColor = ofColor(45,45,45);
+	smoke->setPos(glm::vec2(0.0f,0.0f));
+	
 	gun = new projectileEmitter(em, cm);
 	gun->setSpeed(20.0f);
 	gun->setParent((entity*)this);
@@ -32,16 +39,16 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	dim = glm::vec2(150.0f, 150.0f);
 	img.resize(dim.x, dim.y);
 	img.mirror(true, false);
-	/*
+	
 	main.load("rotor_loop.wav");
 	main.setVolume(0.2f);
 	main.setLoop(true);
 	main.play();
-	whine.load("whine_loop.wav");
+	whine.load("rotor_loop.wav");
 	whine.setVolume(0.2f);
 	whine.setLoop(true);
 	whine.play();
-	*/
+	
 }
 
 void heliSprite::draw()
@@ -73,6 +80,11 @@ bool heliSprite::isDead() const
 
 void heliSprite::update()
 {
+	if (getHealth() < 50)
+		smoke->start();
+	else
+		smoke->stop();
+	smoke->update();
 	rotor.update();
 	solidEntity::update();
 	float dT = ofGetLastFrameTime();
@@ -175,6 +187,73 @@ heliSprite::~heliSprite()
 {
 	/*WARNING: If you are having issues with things not getting iterated through, look here*/
 	/*It may be possible for the cannon to get deleted in the while loop and */
-	std::cout << "destructor called" << std::endl;
 	manager->deleteSprite(gun->getID());
+	smoke_sys->setLifetime(6.0f);
+	delete smoke;
+
+	auto corpse = new deadHeliSprite(manager);
+	corpse->setPos(getPos());
+	corpse->setRot(getRot());
+}
+
+deadHeliSprite::deadHeliSprite(entityManager* em) :
+	entity(em),
+	img("ah64.png"),
+	rotor("rotor_sheet.png", 50.0f, glm::vec2(106.0f, 106.0f), glm::vec2(364, 364), 4)
+{
+	smoke_sys = new particleSystem();
+	em->particleSystems.addParticleSystem(smoke_sys);
+	smoke = new smokeEmitter(smoke_sys, this);
+	smoke->smokeColor = ofColor(45, 45, 45);
+	smoke->setPos(glm::vec2(0.0f, 0.0f));
+	smoke->start();
+
+	dim = glm::vec2(150.0f, 150.0f);
+	img.resize(dim.x, dim.y);
+	img.mirror(true, false);
+
+	main.load("rotor_loop.wav");
+	main.setVolume(0.2f);
+	main.setLoop(true);
+	main.play();
+
+	lifetime = GAME_END_PHASE / 2000;
+}
+
+void deadHeliSprite::update()
+{
+	entity::update();
+	smoke->update();
+	rotor.update();
+	setPos(getPos() + glm::vec2(100.0f, -100.0f)*ofGetLastFrameTime());
+	setRot(getRot() + 720.0f*ofGetLastFrameTime());
+}
+
+bool deadHeliSprite::isDead() const { return false;/*More like "un-dead" heli*/ }
+
+void deadHeliSprite::draw()
+{
+	ofPushMatrix();
+	ofTranslate(position);
+	ofRotate(rot);
+	ofSetColor(ofColor::white);
+
+	//draw
+	//ofDrawRectangle(-dim/2, dim.x,dim.y);
+	img.draw(-dim / 2);
+	rotor.draw(-rotor.getSize() / 2 + glm::vec2(0.0f, 10.0f));
+	ofSetColor(ofColor::white);
+	ofPopMatrix();
+}
+
+deadHeliSprite::~deadHeliSprite()
+{
+	smoke_sys->setLifetime(6.0f);
+	delete smoke;
+
+	particleSystem* explosionSys = new particleSystem();
+	explosionSys->initSoundPlay(&(sysStatic().getRandomExplosion()));
+	auto e = explosionEmitter(explosionSys, 30, this->getPos());
+	explosionSys->setLifetime(6.0f);
+	manager->particleSystems.addParticleSystem(explosionSys);
 }

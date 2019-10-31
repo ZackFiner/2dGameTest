@@ -36,7 +36,7 @@ void particleEmitter::setRot(float rot)
 float particleEmitter::getRot() const
 {
 	if (getParent() != nullptr)
-		return rot + this->getRot();
+		return rot + getParent()->getRot();
 	return rot;
 }
 entity* particleEmitter::getParent() const {
@@ -71,4 +71,32 @@ sparkEmitter::sparkEmitter(particleSystem* _system, int particleCount, const glm
 	system->addForce((particleForce*)(new impulseForce(10000.0f)));
 	system->addForce((particleForce*)(new screenDragForce(20.0f)));
 	system->addForce((particleForce*)(new turbulanceForce(glm::vec2(-50.0f, -50.0f), glm::vec2(50.0f, 50.0f))));
+}
+
+smokeEmitter::smokeEmitter(particleSystem* _system, entity* _parent) :
+	particleEmitter(_system)
+{
+	setParent(_parent);
+	//force = new trailForce(getParent()->getPos(), glm::vec2(0,-1), 20.0f, 5.0f,6.0f);
+	system->addForce(new screenDragForce(3000.0f));
+	system->addForce(new turbulanceForce(glm::vec2(-30.0f,-30.0f), glm::vec2(30.0f,30.0f)));
+	freq = ofRandom(maxF - minF) + minF;
+}
+
+void smokeEmitter::start() { started = true; }
+void smokeEmitter::stop() { started = false; }
+
+void smokeEmitter::update()
+{
+	if (ofGetSystemTimeMillis() - lastEmit > freq*1000.0f && started)
+	{
+		smokeParticle* smoke_p = new smokeParticle(getPos(), 1.0f);
+		smoke_p->setSizeGradient(0.3f, 5.0f);
+		smoke_p->colOverride = smokeColor;
+		system->addParticle((particle*)smoke_p);
+		
+		freq = ofRandom(maxF - minF) + minF;
+		
+		lastEmit = ofGetSystemTimeMillis();
+	}
 }

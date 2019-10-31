@@ -80,7 +80,7 @@ public:
 
 };
 
-class impulseForce : particleForce
+class impulseForce : public particleForce
 {
 private:
 	float strength;
@@ -90,7 +90,7 @@ public:
 	bool applyOnce() const;
 };
 
-class turbulanceForce : particleForce
+class turbulanceForce : public particleForce
 {
 private:
 	glm::vec2 min, max;
@@ -100,12 +100,24 @@ public:
 	bool applyOnce() const;
 };
 
-class screenDragForce : particleForce
+class screenDragForce : public particleForce
 {
 private:
 	float speed;
 public:
 	screenDragForce(float);
+	void updateParticle(particle* particle) const;
+	bool applyOnce() const;
+};
+
+class trailForce : public particleForce
+{
+public:
+	float mag_max, mag_min;
+	float radius;
+	glm::vec2 origin;
+	glm::vec2 dir;
+	trailForce(const glm::vec2& o, const glm::vec2& d, float r, float magm, float magM);
 	void updateParticle(particle* particle) const;
 	bool applyOnce() const;
 };

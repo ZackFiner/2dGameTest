@@ -44,3 +44,19 @@ class sparkEmitter : public particleEmitter
 public:
 	sparkEmitter(particleSystem* _system, int particleCount, const glm::vec2& pos);
 };
+
+class smokeEmitter : public particleEmitter
+{
+	trailForce* force;
+	bool started = false;
+	float minF = 0.05f;
+	float maxF = 0.1f;
+	float freq;
+	unsigned long lastEmit=0;
+public:
+	ofColor smokeColor = ofColor::white;
+	smokeEmitter(particleSystem* _system, entity* _parent);
+	void start();
+	void update();
+	void stop();
+};

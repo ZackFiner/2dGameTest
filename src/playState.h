@@ -41,6 +41,7 @@ class playState : public gameState
 	unsigned long startTick;
 	unsigned long deathTick=0;
 	playerHud hud;
+	float spooldown = -1.0f;
 public:
 	int playerScore;
 	void setup();

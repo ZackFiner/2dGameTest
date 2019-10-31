@@ -76,15 +76,16 @@ particle::~particle() {}
 smokeParticle::smokeParticle(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime) :
 	particle(_pos,_vel,_acc,_mass,_lifetime)
 {
-	rot = glm::radians(ofRandom(360.0f));
-	rot_dir = glm::radians(ofRandomf()*ofRandom(60.0f));
-	dim = glm::vec2(60, 60);
+	rot = ofRandom(360.0f);
+	rot_dir = ofRandomf()*60.0f;
+	this->dim = glm::vec2(60, 60);
 }
 smokeParticle::smokeParticle(const glm::vec2& _pos, float _lifetime) :
 	particle(_pos, _lifetime)
 {
 	rot = ofRandom(360.0f);
-	rot_dir = ofRandomf()*ofRandom(60.0f);
+	rot_dir = ofRandomf()*60.0f;
+	this->dim = glm::vec2(60, 60);
 }
 void smokeParticle::setSizeGradient(float min, float max)
 {
@@ -94,13 +95,16 @@ void smokeParticle::setSizeGradient(float min, float max)
 void smokeParticle::draw() const
 {
 	ofPushMatrix();
+	
 	float normal_l = age / lifetime;
-	ofSetColor(255,255,255,(1-normal_l)*255);
+	ofSetColor(colOverride.r, colOverride.g, colOverride.b,(1-normal_l)*255);
+	
 	float size = (max_size - min_size)*normal_l;
 	ofTranslate(pos);
 	ofScale(glm::vec3(min_size + size));
-	ofRotate(glm::radians(rot));
-	getImageLib().smoke.draw(-dim / 2);
+	ofRotate(rot);
+	getImageLib().smoke.draw(dim*-0.5f);
+	
 	ofPopMatrix();
 
 }

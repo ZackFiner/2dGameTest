@@ -19,7 +19,8 @@
  * when hit by enemy projectiles.
  *
  ********************************************************************/
-
+class smokeEmitter;
+class particleSystem;
 class heliSprite : public solidEntity
 {
 	int lastH = 100;
@@ -35,7 +36,8 @@ class heliSprite : public solidEntity
 	ofSoundPlayer main, whine;
 	glm::vec2 dim;
 	bool updateCannon = true;
-
+	particleSystem* smoke_sys;
+	smokeEmitter* smoke;
 	int score = 0;
 public:
 	heliSprite(entityManager*, collisionManager*);
@@ -53,4 +55,24 @@ public:
 	~heliSprite();
 	void setScore(int);
 	int getScore() const;
+};
+
+/*
+ * The dead heli sprite is what replaces the helicopter when it dies.
+ * It spins out of control and explodes.
+ */
+class deadHeliSprite :public entity
+{
+	ofImage img;
+	spriteSheet rotor;
+	ofSoundPlayer main;
+	particleSystem* smoke_sys;
+	smokeEmitter* smoke;
+	glm::vec2 dim;
+public:
+	deadHeliSprite(entityManager*);
+	void draw();
+	bool isDead() const;
+	void update();
+	~deadHeliSprite();
 };

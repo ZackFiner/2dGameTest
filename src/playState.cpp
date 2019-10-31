@@ -46,8 +46,8 @@ void playState::update() {
 			spawner->stop();
 			hud.health = 0;
 		}
-		float t = (float)(ofGetSystemTimeMillis() - deathTick)/(GAME_END_PHASE*0.5f);
-		background.setSpeed(300.0f*glm::max(1 - t, 0.0f));
+		spooldown = (float)(ofGetSystemTimeMillis() - deathTick)/(GAME_END_PHASE*0.5f);
+		background.setSpeed(300.0f*glm::max(1 - spooldown, 0.0f));
 
 	}
 	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE && deathTick==0)
@@ -64,6 +64,8 @@ void playState::draw() {
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
 	ofRotateDeg(180.0f);
+	if (spooldown != -1.0f)
+		ofTranslate(glm::vec2(0, 300 * spooldown));
 	//collisionEngine.drawDebug();
 	sceneGraph.draw();
 
@@ -87,7 +89,6 @@ void playState::draw() {
 	if (!spawner->getRunning()) //warm up phase basically
 	{
 		float ready = glm::min((float)(ofGetSystemTimeMillis() - startTick) / (GAME_START_PHASE*0.5f), 1.0f);
-		std::cout << ready << std::endl;
 		ofSetColor(0, 0, 0, (1.0f - ready) * 255);
 		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
 		ofSetColor(ofColor::white);
