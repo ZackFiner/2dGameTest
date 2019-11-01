@@ -261,3 +261,92 @@ deadHeliSprite::~deadHeliSprite()
 	explosionSys->setLifetime(6.0f);
 	manager->particleSystems.addParticleSystem(explosionSys);
 }
+
+
+
+introHeliSprite::introHeliSprite(entityManager* em) :
+	entity(em),
+	img("ah64.png"),
+	rotor("rotor_sheet.png", 50.0f, glm::vec2(106.0f, 106.0f), glm::vec2(364, 364), 4),
+	rotor1_img("ah64_blade.png")
+{
+	wash_sys = new particleSystem();
+	em->particleSystems.addParticleSystem(wash_sys);
+	rotor_wash = new washEmitter(wash_sys, this);
+	//smoke_sys->forces.erase(smoke_sys->forces.begin() + 1);
+	rotor_wash->smokeColor = ofColor(232, 220, 125);
+	rotor_wash->setPos(glm::vec2(0.0f, 0.0f));
+	//rotor_wash->start();
+
+	dim = glm::vec2(150.0f, 150.0f);
+	img.resize(dim.x, dim.y);
+	img.mirror(true, false);
+
+	rotordim = glm::vec2(106.0f, 106.0f);
+	rotor1_img.resize(rotordim.x, rotordim.y);
+	rotor1_img.mirror(true, false);
+
+	main.load("rotor_loop.wav");
+	main.setVolume(0.2f);
+	main.setLoop(true);
+	//main.play();
+}
+
+void introHeliSprite::update()
+{
+	if (start)
+	{
+		spool += ofGetLastFrameTime() * 0.33;
+		spool = glm::clamp(spool, 0.0f, 1.0f);
+		main.setSpeed(spool);
+		rotorSpin += spool * 3600.0f * ofGetLastFrameTime();
+	}
+	
+	entity::update();
+	rotor_wash->maxF = (0.1f + (1 - (spool - ((scale-0.5f) * 2.0f))));
+	rotor_wash->minF = (0.05f + (1 - (spool - ((scale - 0.5f) * 2.0f))));
+	if (scale > 0.7f)
+		rotor_wash->stop();
+	rotor_wash->update();
+
+	rotor.update();
+}
+
+bool introHeliSprite::isDead() const { return false;/*More like "un-dead" heli*/ }
+
+void introHeliSprite::draw()
+{
+	ofPushMatrix();
+	ofTranslate(position);
+	ofRotate(rot);
+	ofScale(glm::vec3(scale));
+	ofSetColor(ofColor::white);
+
+	//draw
+	//ofDrawRectangle(-dim/2, dim.x,dim.y);
+	img.draw(-dim / 2);
+
+	ofPushMatrix();
+		ofSetColor(255, 255, 255, 255 * (1 - spool));
+		ofTranslate(glm::vec2(0.0f, 10.0f));
+		ofRotate(rotorSpin);
+		rotor1_img.draw(-rotordim * 0.5f);
+	ofPopMatrix();
+
+	if (spool > 0.5f)
+	{
+		ofSetColor(255, 255, 255, 255 * (spool-0.5f)*2);
+		rotor.draw(-rotor.getSize() *0.5f + glm::vec2(0.0f, 10.0f));
+	}
+	ofSetColor(ofColor::white);
+	ofPopMatrix();
+}
+
+void introHeliSprite::startUp() { start = true; rotor_wash->start(); main.play(); }
+
+introHeliSprite::~introHeliSprite()
+{
+	wash_sys->setLifetime(6.0f);
+	delete rotor_wash;
+
+}

@@ -34,6 +34,9 @@ protected:
 	float lifetime;
 	float age=0.0f;
 public:
+	glm::vec2 getPos() const { return pos; }
+	glm::vec2 getVel() const { return vel; }
+	glm::vec2 getAcc() const { return acc; }
 	glm::vec2 dim = glm::vec2(5.0f, 5.0f);
 	glm::vec2 force;
 	particle(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime);
@@ -49,7 +52,7 @@ public:
 	virtual ~particle();
 };
 
-class smokeParticle : particle
+class smokeParticle : public particle
 {
 protected:
 	glm::vec2 scale;

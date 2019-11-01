@@ -20,6 +20,7 @@
  *
  ********************************************************************/
 class smokeEmitter;
+class washEmitter;
 class particleSystem;
 class heliSprite : public solidEntity
 {
@@ -75,4 +76,28 @@ public:
 	bool isDead() const;
 	void update();
 	~deadHeliSprite();
+};
+
+class introHeliSprite :public entity
+{
+	ofImage img;
+	ofImage rotor1_img;
+	spriteSheet rotor;
+	ofSoundPlayer main;
+	particleSystem* wash_sys;
+	washEmitter * rotor_wash;
+	glm::vec2 dim, rotordim;
+	float spool = 0.0f;
+	float rotorSpin = 0.0f;
+	bool start = false;
+public:
+
+	float scale = 0.5f;
+	introHeliSprite(entityManager*);
+	void draw();
+	bool isDead() const;
+	void startUp();
+	void update();
+	float getSpool() { return spool; }
+	~introHeliSprite();
 };

@@ -100,3 +100,33 @@ void smokeEmitter::update()
 		lastEmit = ofGetSystemTimeMillis();
 	}
 }
+
+washEmitter::washEmitter(particleSystem* _system, entity* _parent) :
+	particleEmitter(_system)
+{
+	setParent(_parent);
+	//force = new trailForce(getParent()->getPos(), glm::vec2(0,-1), 20.0f, 5.0f,6.0f);
+	system->addForce(new turbulanceForce(glm::vec2(-30.0f, -30.0f), glm::vec2(30.0f, 30.0f)));
+	force = new washForce(getPos(), 200.0f, 600.0f);
+	system->addForce(force);
+	freq = ofRandom(maxF - minF) + minF;
+}
+
+void washEmitter::start() { started = true; }
+void washEmitter::stop() { started = false; }
+
+void washEmitter::update()
+{
+	force->origin = getPos();
+	if (ofGetSystemTimeMillis() - lastEmit > freq*1000.0f && started)
+	{
+		smokeParticle* smoke_p = new smokeParticle(getPos()+glm::circularRand(1.0f), 1.0f);
+		smoke_p->setSizeGradient(0.3f, 5.0f);
+		smoke_p->colOverride = smokeColor;
+		system->addParticle((particle*)smoke_p);
+
+		freq = ofRandom(maxF - minF) + minF;
+
+		lastEmit = ofGetSystemTimeMillis();
+	}
+}

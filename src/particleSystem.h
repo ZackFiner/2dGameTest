@@ -122,3 +122,13 @@ public:
 	void updateParticle(particle* particle) const;
 	bool applyOnce() const;
 };
+
+class washForce : public particleForce
+{
+public:
+	glm::vec2 origin;
+	float mag_max, mag_min;
+	washForce(const glm::vec2& o, float magm, float magM);
+	void updateParticle(particle* particle) const;
+	bool applyOnce() const;
+};

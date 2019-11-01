@@ -60,3 +60,19 @@ public:
 	void update();
 	void stop();
 };
+
+class washEmitter : public particleEmitter
+{
+	washForce* force;
+	bool started = false;
+	float freq;
+	unsigned long lastEmit = 0;
+public:
+	float minF = 0.05f;
+	float maxF = 0.1f;
+	ofColor smokeColor = ofColor::white;
+	washEmitter(particleSystem* _system, entity* _parent);
+	void start();
+	void update();
+	void stop();
+};

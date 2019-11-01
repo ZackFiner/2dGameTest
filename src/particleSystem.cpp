@@ -146,3 +146,19 @@ void trailForce::updateParticle(particle* particle) const {
 	particle->force += p_dir * mag;
 }
 bool trailForce::applyOnce() const { return false; }
+
+
+washForce::washForce(const glm::vec2& o, float magm, float magM)
+{
+	mag_max = magM;
+	mag_min = magm;
+	origin = o;
+
+}
+
+void washForce::updateParticle(particle* particle) const {
+	glm::vec2 dir = glm::normalize(particle->getPos() - origin);
+	float mag = ofRandom(mag_max - mag_min) + mag_min;
+	particle->force += dir * mag;
+}
+bool washForce::applyOnce() const { return false; }

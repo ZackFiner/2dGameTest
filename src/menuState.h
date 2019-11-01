@@ -1,5 +1,8 @@
 #pragma once
 #include "gameState.h"
+#include "particleEmitter.h"
+#include "heliSprite.h"
+#include "scrollingBg.h"
 
 /*H******************************************************************
  * FILENAME: gameState.h
@@ -16,6 +19,12 @@
 class menuState : public gameState
 {
 	gameState* nextState = nullptr;
+	entityManager em;
+	introHeliSprite* prop;
+	ofImage background = ofImage("background_m.png");
+	float liftoff = 0.0f;
+	float flyoff = 0.0f;
+	float m_fadeout = 0.0f;
 public:
 	void setup();
 	void update();
