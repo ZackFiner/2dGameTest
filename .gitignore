@@ -25,3 +25,4 @@ icon.rc
 2dGameTest.vcxproj.filters
 bin/2dGameTest_debug.ilk
 icon.rc
+bin/game.zip

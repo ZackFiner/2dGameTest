@@ -79,19 +79,6 @@ void playState::draw() {
 	sceneGraph.draw();
 
 	ofPopMatrix();
-	std::stringstream ss;
-	if (sceneGraph.getSprite(sceneGraph.getPlayer()) != nullptr)
-	{
-		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
-		ss << "Score: " << p->getScore() << "\n";
-		ss << "Health: " << p->getHealth() << "\n";
-	}
-	else
-	{
-		ss << "YOU DIED\n";
-	}
-	ofDrawBitmapString(ss.str(), glm::vec2(0,ofGetHeight()-20));
-
 	/*
 		Below is a little fade in effect.
 	*/
