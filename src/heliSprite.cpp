@@ -154,6 +154,10 @@ void heliSprite::onKeyPress(int key)
 
 void heliSprite::onKeyRelease(int key)
 {
+	/*
+	There is an issue here: if the player holds control while they release the movement
+	keys, it does not register the key was released.
+	*/
 	switch (key)
 	{
 	case 'w':
