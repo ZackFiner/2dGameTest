@@ -42,6 +42,9 @@ class playState : public gameState
 	unsigned long deathTick=0;
 	playerHud hud;
 	float spooldown = -1.0f;
+	float m_fadeout = 0.0f;
+
+	gameState* nextState = nullptr;
 public:
 	int playerScore;
 	void setup();

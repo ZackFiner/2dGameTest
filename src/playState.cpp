@@ -1,5 +1,5 @@
 #include "playState.h"
-
+#include "deadState.h"
 /*H******************************************************************
  * FILENAME: gameState.h
  * AUTHOR: Zackary Finer
@@ -48,11 +48,20 @@ void playState::update() {
 		}
 		spooldown = (float)(ofGetSystemTimeMillis() - deathTick)/(GAME_END_PHASE*0.5f);
 		background.setSpeed(300.0f*glm::max(1 - spooldown, 0.0f));
-
+		if (spooldown > 1.0f)
+		{
+			m_fadeout += ofGetLastFrameTime()*0.3f;
+			m_fadeout = glm::clamp(m_fadeout, 0.0f, 1.1f);
+		}
 	}
 	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE && deathTick==0)
 	{
 		spawner->start();
+	}
+
+	if (m_fadeout > 1.0f && nextState == nullptr)
+	{
+		nextState = (gameState*) new deadState(playerScore);
 	}
 }
 
@@ -86,14 +95,22 @@ void playState::draw() {
 	/*
 		Below is a little fade in effect.
 	*/
+	hud.draw();
 	if (!spawner->getRunning()) //warm up phase basically
 	{
-		float ready = glm::min((float)(ofGetSystemTimeMillis() - startTick) / (GAME_START_PHASE*0.5f), 1.0f);
-		ofSetColor(0, 0, 0, (1.0f - ready) * 255);
+		float ready;
+
+		if (m_fadeout > 0.0f)
+			ready = 1.0f - m_fadeout;
+		else
+			ready = glm::min((float)(ofGetSystemTimeMillis() - startTick) / (GAME_START_PHASE*0.5f), 1.0f);
+
+		ofSetColor(0, 0, 0, (1.0f - ready*1.1f) * 255);
+
 		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
-		ofSetColor(ofColor::white);
 	}
-	hud.draw();
+	ofSetColor(ofColor::white);
+	
 }
 
 //--------------------------------------------------------------
@@ -151,7 +168,7 @@ void playState::dragEvent(ofDragInfo dragInfo) {
 
 gameState* playState::transitionState()
 {
-	return nullptr;
+	return nextState;
 }
 
 playState::~playState()

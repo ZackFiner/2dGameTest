@@ -124,6 +124,9 @@
     <ClCompile Include="src\healthSprite.cpp">
       <Filter>src\entity\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="src\deadState.cpp">
+      <Filter>src\state</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="src\GameSettings.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\deadState.h">
+      <Filter>src\state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

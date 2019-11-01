@@ -1,0 +1,39 @@
+#pragma once
+#include "gameState.h"
+/*H**********************************************************
+ *
+ * FILENAME: deadState.h
+ * AUTHOR: Zackary Finer
+ * DATE: 10/31/2019
+ *
+ * DESCRIPTION:
+ * Dead state is a relatively simple game state: it displays
+ * the score from the last played game, and prompts the user
+ * to restart.
+ *
+ ************************************************************/
+
+class deadState : gameState
+{
+	gameState* nextState = nullptr;
+	int score;
+public:
+	deadState(int _score) { score = _score; }
+	virtual void setup();
+	virtual void update();
+	virtual void draw();
+
+	virtual void keyPressed(int key);
+	virtual void keyReleased(int key);
+	virtual void mouseMoved(int x, int y);
+	virtual void mouseDragged(int x, int y, int button);
+	virtual void mousePressed(int x, int y, int button);
+	virtual void mouseReleased(int x, int y, int button);
+	virtual void mouseEntered(int x, int y);
+	virtual void mouseExited(int x, int y);
+	virtual void windowResized(int w, int h);
+	virtual void dragEvent(ofDragInfo dragInfo);
+	virtual void gotMessage(ofMessage msg);
+	virtual gameState* transitionState();
+	virtual ~deadState();
+};
