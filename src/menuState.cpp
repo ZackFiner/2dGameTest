@@ -53,13 +53,14 @@ void menuState::draw()
 {
 
 	glm::vec2 dim = glm::vec2(ofGetWidth(), ofGetHeight());
-	ofPushMatrix();
-	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
-	ofSetColor(ofColor::white);
-	background.draw(glm::vec2(background.getWidth(), background.getHeight())*-0.5f);
 	
-	ofRotateDeg(180.0f);
-	em.draw();
+	ofPushMatrix();
+		ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
+		ofSetColor(ofColor::white);
+		background.draw(glm::vec2(background.getWidth(), background.getHeight())*-0.5f);
+	
+		ofRotateDeg(180.0f);
+		em.draw();
 	ofPopMatrix();
 
 	if (prop->getSpool() == 0.0f)
@@ -69,6 +70,14 @@ void menuState::draw()
 	{
 		ofSetColor(0, 0, 0, (m_fadeout) * 255);
 		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
+	}
+	if (prop->getSpool() == 0.0f) {
+		ofPushMatrix();
+			ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
+			ofScale(glm::vec3(dim.x / logo.getWidth()));
+			logo.draw(glm::vec2(logo.getWidth(), logo.getHeight())*-0.5f + glm::vec2(0, -ofGetHeight()*0.3f));
+			ofSetColor(ofColor::white);
+		ofPopMatrix();
 	}
 }
 void menuState::keyPressed(int key)

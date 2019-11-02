@@ -22,6 +22,7 @@ class menuState : public gameState
 	entityManager em;
 	introHeliSprite* prop;
 	ofImage background = ofImage("background_m.png");
+	ofImage logo = ofImage("logo.png");
 	float liftoff = 0.0f;
 	float flyoff = 0.0f;
 	float m_fadeout = 0.0f;
