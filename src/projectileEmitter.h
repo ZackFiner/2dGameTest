@@ -24,6 +24,7 @@ class projectileEmitter : public emitter
 	float speed = 5.0f;
 	int projectileDamage = 25;
 	unsigned long lstF = 0;
+	float spread = 0.0f;
 	bool fire = false;
 	glm::vec2 dir;
 	ofSoundPlayer shootfx;
@@ -43,4 +44,5 @@ public:
 	void setDamage(int);
 	void setRandomFire(bool);
 	void setDoubleBarrelDst(float amnt);
+	void setSpread(float _amnt);
 };

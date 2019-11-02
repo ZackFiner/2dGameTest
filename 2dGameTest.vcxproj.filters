@@ -127,6 +127,9 @@
     <ClCompile Include="src\deadState.cpp">
       <Filter>src\state</Filter>
     </ClCompile>
+    <ClCompile Include="src\missileEmitter.cpp">
+      <Filter>src\entity\emitter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="src\deadState.h">
       <Filter>src\state</Filter>
+    </ClInclude>
+    <ClInclude Include="src\missileEmitter.h">
+      <Filter>src\entity\emitter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

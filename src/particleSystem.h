@@ -132,3 +132,29 @@ public:
 	void updateParticle(particle* particle) const;
 	bool applyOnce() const;
 };
+
+class projectileForce : public particleForce
+{
+public:
+	glm::vec2 dir;
+	float spd;
+	projectileForce(const glm::vec2& _dir, float _spd);
+	void updateParticle(particle* particle) const;
+	bool applyOnce() const;
+};
+
+class dragForce : public particleForce
+{
+public:
+	void updateParticle(particle* particle) const;
+	bool applyOnce() const;
+};
+
+class spreadForce : public particleForce
+{
+public:
+	float amnt;
+	spreadForce(float _amnt);
+	void updateParticle(particle* particle) const;
+	bool applyOnce() const;
+};

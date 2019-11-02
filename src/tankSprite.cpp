@@ -26,7 +26,7 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	//img("T90.png")
 {
 	gun = new projectileEmitter(em, cm);
-	gun->setSpeed(5.0f);
+	gun->setSpeed(750.0f);
 	gun->setParent((entity*)this);
 	gun->setDir(glm::vec2(0.0f,1.0f));
 	gun->setPos(glm::vec2(0.0f, 7.0f));
@@ -34,6 +34,7 @@ tankSprite::tankSprite(entityManager* em, collisionManager* cm, motionPath* mana
 	gun->setDamage(5);
 	gun->setRandomFire(true);
 	gun->toggleFire(true);
+	gun->setSpread(10.0f);
 	turretRot = 0.0f;
 
 	hp = TANK_DEFAULT_HP;
@@ -79,6 +80,7 @@ void tankSprite::update()
 
 	solidEntity::update();
 	dead = hp <= 0;
+	
 	vel = pathManager->getPos(getAge() + ofGetLastFrameTime()) - pathManager->getPos(getAge());
 	setPos(getPos()+vel);
 
@@ -150,7 +152,8 @@ spaaSprite::spaaSprite(entityManager* manager, collisionManager* colMan, motionP
 	gun->setFireRate(200.0f);
 	gun->setRandomFire(false);
 	gun->toggleFire(false);
-	gun->setDamage(1);
+	gun->setDamage(5);
+	gun->setSpread(5.0f);
 	
 }
 

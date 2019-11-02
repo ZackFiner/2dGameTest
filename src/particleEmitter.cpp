@@ -51,7 +51,7 @@ explosionEmitter::explosionEmitter(particleSystem* _system, int particleCount, c
 {
 	for (int i = 0; i < particleCount; i++)
 	{
-		smokeParticle* p = new smokeParticle(pos, glm::vec2(), glm::vec2(), 1.0f, ofRandom(1.8)+0.2);
+		smokeParticle* p = new smokeParticle(pos+glm::diskRand(10.0f), glm::vec2(), glm::vec2(), 1.0f, ofRandom(1.8)+0.2);
 		system->addParticle((particle*)p);
 	}
 	system->addForce((particleForce*)(new impulseForce(10000.0f)));

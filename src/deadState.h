@@ -17,8 +17,9 @@ class deadState : gameState
 {
 	gameState* nextState = nullptr;
 	int score;
+	int level;
 public:
-	deadState(int _score) { score = _score; }
+	deadState(int _score, int _level) { score = _score; level = _level; }
 	virtual void setup();
 	virtual void update();
 	virtual void draw();

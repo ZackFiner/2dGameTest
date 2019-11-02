@@ -11,11 +11,18 @@ void playerHud::draw() const {
 	ss << "HP " << health << "%";
 	
 	ofPushMatrix();
-	ofScale(glm::vec3(2.0f));
+	
+	ofScale(glm::vec3(1.0f));
 	ofDrawBitmapString(ss.str(), glm::vec2(20.0f));
+	
 	ss.str(std::string());
 	ss << "Score " << score << " pts";
 	ofDrawBitmapString(ss.str(), glm::vec2(100.0f, 20.0f));
+
+	ss.str(std::string());
+	ss << "Level  " << level;
+	ofDrawBitmapString(ss.str(), glm::vec2(250.0f, 20.0f));
+
 	ofPopMatrix();
 	ofSetColor(ofColor::white);
 }

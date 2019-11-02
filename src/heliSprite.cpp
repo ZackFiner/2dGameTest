@@ -17,7 +17,7 @@
  *
  ********************************************************************/
 
-#define ACCEL_RATE 0.1f
+#define ACCEL_RATE 15.0f
 #define DECEL_RATE 0.05f
 
 heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
@@ -32,7 +32,7 @@ heliSprite::heliSprite(entityManager* em, collisionManager* cm) :
 	smoke->setPos(glm::vec2(0.0f,0.0f));
 	
 	gun = new projectileEmitter(em, cm);
-	gun->setSpeed(20.0f);
+	gun->setSpeed(3000.0f);
 	gun->setParent((entity*)this);
 	gun->setDir(glm::vec2(0.0f, 1.0f));
 	gun->setPos(glm::vec2(0.0f, 50.0f));
@@ -89,15 +89,16 @@ void heliSprite::update()
 	solidEntity::update();
 	float dT = ofGetLastFrameTime();
 	if (abs(f) > 0.0f || abs(b) > 0.0f)
-		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE*dT*VEL_TIME_CONST, -5.0f, 5.0f);
+		vel.y = glm::clamp(vel.y + (f - b)*ACCEL_RATE*dT, -5.0f, 5.0f);
 	else
 		vel.y -= vel.y*DECEL_RATE;
 
 	if (abs(l) > 0.0f || abs(r) > 0.0f)
-		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE*dT*VEL_TIME_CONST, -5.0f, 5.0f);
+		vel.x = glm::clamp(vel.x + (l - r)*ACCEL_RATE*dT, -5.0f, 5.0f);
 	else
 		vel.x -= vel.x*DECEL_RATE;
 
+	//vel *= 150.0f;
 	whine.setSpeed(1+(glm::fastLength(vel)/5.0f)*0.2f);
 	glm::vec2 front = glm::normalize(vel + glm::vec2(0, 15.0f));
 	float theta = glm::degrees(glm::orientedAngle(glm::vec2(0.0f, 1.0f),front));
@@ -107,7 +108,7 @@ void heliSprite::update()
 	//std::cout << cont << std::endl;
 	//std::cout << getPos() << std::endl;
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
-	glm::vec2 newPos = glm::clamp(vel*dT*VEL_TIME_CONST + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
+	glm::vec2 newPos = glm::clamp(vel*150.0f*dT + position, -scrnDim / 2, glm::vec2(scrnDim.x/2, 0.0f));
 	setPos(newPos);
 	setRot(theta);
 
@@ -124,7 +125,7 @@ int heliSprite::getHealth() const { return health; }
 void heliSprite::setHealth(int _health) { health = _health; }
 glm::vec2 heliSprite::getVelocity() const
 {
-	return vel * VEL_TIME_CONST;
+	return vel;
 }
 void heliSprite::onKeyPress(int key)
 {

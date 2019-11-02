@@ -25,8 +25,9 @@ void deadState::update() {
 void deadState::draw() {
 	glm::vec2 dim = glm::vec2(ofGetWidth(), ofGetHeight());
 	std::stringstream ss;
-	ss << "YOU SCORED: " << score << std::endl;
-	ofDrawBitmapString(ss.str() , dim / 2 - glm::vec2(12.5 * 8, 12));
+	ss << "SCORE: " << score << "\n";
+	ss << "LEVEL REACHED: " << level << "\n";
+	ofDrawBitmapString(ss.str() , dim / 2 - glm::vec2(12.5 * 8, 18));
 	ofDrawBitmapString("PRESS SPACE TO REPLAY GAME", dim / 2 - glm::vec2(12.5 * 8, -8));
 }
 

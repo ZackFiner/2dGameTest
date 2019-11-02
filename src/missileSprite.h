@@ -20,17 +20,21 @@
 
 #define MISSILE_LIFETIME 5.0f
 #define DEFAULT_DAMAGE 25.0f
-
+class particleForce;
 class missile : public solidEntity
 {
+	std::vector<particleForce*> forces;
+	bool first_apply = true;
 	bool dead = false;
 	bool hit = false;
+	glm::vec2 acc;
 	glm::vec2 velocity;
 	glm::vec2 dim;
 	ofImage img;
 	EID shotFrom;
 	int team;
 	int dmg = DEFAULT_DAMAGE;
+	void applyParticleForces();
 public:
 	/*
 	manager, origin, velocity
@@ -44,4 +48,5 @@ public:
 	int getCollisionType() const;
 	void setDamage(int);
 	~missile();
+	void addForce(particleForce* force) { forces.push_back(force); }
 };

@@ -1,5 +1,4 @@
 #include "scrollingBg.h"
-
 /*H******************************************************************
  * FILENAME: scrollingBg.cpp
  * AUTHOR: Zackary Finer
@@ -30,8 +29,12 @@ void scrollingBg::update()
 
 void scrollingBg::draw() const
 {
+	ofPushMatrix();
+	ofTranslate(glm::vec2(ofGetWidth()*0.5f, ofGetHeight()*0.5f));
+	ofTranslate(-glm::vec2(tile1.getWidth()*0.5f, tile1.getHeight()*0.5f));
 	tile1.draw(pos.x, (float)((int)(pos.y) % ((int)tile1.getHeight()*2)) - tile1.getHeight());
 	tile2.draw(pos.x, (float)((int)(pos.y + tile2.getHeight()) % ((int)tile2.getHeight()*2))-tile2.getHeight());
+	ofPopMatrix();
 }
 
 void scrollingBg::setSpeed(float spd)

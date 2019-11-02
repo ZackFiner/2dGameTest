@@ -183,6 +183,7 @@
     <ClCompile Include="src\deadState.cpp" />
     <ClCompile Include="src\healthSprite.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\missileEmitter.cpp" />
     <ClCompile Include="src\motionPath.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\boxSprite.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="src\deadState.h" />
     <ClInclude Include="src\GameSettings.h" />
     <ClInclude Include="src\healthSprite.h" />
+    <ClInclude Include="src\missileEmitter.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\boxSprite.h" />
     <ClInclude Include="src\collisionHull.h" />

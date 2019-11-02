@@ -1,6 +1,6 @@
 #include "particleSystem.h"
 #include "particle.h"
-
+#include "GameSettings.h"
 /*H*********************************************************
  * FILE: particleSystem.cpp
  * AUTHOR: Zackary Finer
@@ -119,7 +119,7 @@ turbulanceForce::turbulanceForce(const glm::vec2& _min, const glm::vec2& _max)
 }
 void turbulanceForce::updateParticle(particle* p) const
 {
-	glm::vec2 dir = glm::linearRand(min, max);
+	glm::vec2 dir = glm::vec2(ofRandom(max.x-min.x)+min.x, ofRandom(max.y-min.y)+min.y);
 	p->force += dir;
 }
 bool turbulanceForce::applyOnce() const { return false; }
@@ -162,3 +162,42 @@ void washForce::updateParticle(particle* particle) const {
 	particle->force += dir * mag;
 }
 bool washForce::applyOnce() const { return false; }
+
+projectileForce::projectileForce(const glm::vec2& _dir, float _spd)
+{
+	dir = _dir;
+	spd = _spd;
+}
+
+void projectileForce::updateParticle(particle* particle) const
+{
+	particle->force += dir * spd;
+}
+
+bool projectileForce::applyOnce() const
+{
+	return true;
+}
+
+void dragForce::updateParticle(particle* particle) const
+{
+	particle->force += particle->getAcc()*-PARTICLE_DRAG;
+}
+bool dragForce::applyOnce() const
+{
+	return false;
+
+}
+
+spreadForce::spreadForce(float _amnt)
+{
+	amnt = _amnt;
+}
+void spreadForce::updateParticle(particle* particle) const
+{
+	particle->force += glm::vec2(glm::ballRand(amnt));
+}
+bool spreadForce::applyOnce() const
+{
+	return true;
+}

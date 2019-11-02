@@ -34,8 +34,9 @@ void playState::update() {
 		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
 		playerScore = p->getScore();
 		hud.score = playerScore;
+		hud.level = playerScore * 0.01 + 1;
 		hud.health = p->getHealth();
-		spawner->setDifficulty(playerScore / 100);
+		spawner->setDifficulty(playerScore *0.01);
 	}
 	else
 	{
@@ -61,7 +62,7 @@ void playState::update() {
 
 	if (m_fadeout > 1.0f && nextState == nullptr)
 	{
-		nextState = (gameState*) new deadState(playerScore);
+		nextState = (gameState*) new deadState(playerScore, playerScore*0.01 + 1);
 	}
 }
 

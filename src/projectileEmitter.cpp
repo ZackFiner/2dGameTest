@@ -1,6 +1,6 @@
 #include "projectileEmitter.h"
 #include "missileSprite.h"
-
+#include "particleSystem.h"
 /*H******************************************************************
  * FILENAME: projectileEmitter.cpp
  * AUTHOR: Zackary Finer
@@ -40,6 +40,11 @@ void projectileEmitter::toggleFire()
 	fire = !fire;
 }
 
+void projectileEmitter::setSpread(float _amnt)
+{
+	spread = _amnt;
+}
+
 void projectileEmitter::fireOne()
 {
 	missile* msl;
@@ -60,6 +65,10 @@ void projectileEmitter::fireOne()
 		msl = new missile(manager, hitManager, spawn_pos, this->dir*speed, this->getParent()->getID());
 	else
 		msl = new missile(manager, hitManager, spawn_pos, this->dir*speed, EID::nilID());
+	msl->addForce(new projectileForce(dir, speed*30.0f));
+	msl->addForce(new spreadForce(speed*spread));
+	//msl->addForce(new dragForce());
+	//msl->addForce(new turbulanceForce(glm::vec2(-1000.0f), glm::vec2(1000.0f)));
 	msl->setDamage(projectileDamage);
 	shootfx.play();
 }

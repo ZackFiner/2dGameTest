@@ -1,6 +1,8 @@
 #include "missileSprite.h"
 #include "entityManager.h"
 #include "particleEmitter.h"
+#include "particleSystem.h"
+#include "particle.h"
 /*H******************************************************************
  * FILENAME: missileSprite.cpp
  * AUTHOR: Zackary Finer
@@ -49,6 +51,19 @@ void missile::draw()
 	ofPopMatrix();
 }
 
+void missile::applyParticleForces()
+{
+	particle simulator(getPos(), velocity, acc, 2.0f, -1.0f);
+
+	for (auto force : forces)
+	{
+		if (first_apply || !force->applyOnce())
+			force->updateParticle(&simulator);
+	}
+	acc += simulator.force / 2.0f; // we apply the force here.
+	first_apply = false;
+}
+
 void missile::update()
 {
 	auto hits = getCollisions();
@@ -77,7 +92,13 @@ void missile::update()
 	auto pos = getPos();
 	dead = glm::abs(pos.x) > dim.x / 2 || glm::abs(pos.y) > dim.y / 2; // delete if we're out of screen range
 	entity::update();
-	setPos(getPos() + velocity*dT*VEL_TIME_CONST);
+	applyParticleForces();
+
+	velocity += acc * dT;
+	velocity *= PARTICLE_DAMPENING;
+	setRot(glm::degrees(glm::orientedAngle(glm::vec2(0.0, 1.0f), glm::normalize(velocity))));
+
+	setPos(getPos() + velocity*dT);
 }
 
 bool missile::isDead() const
@@ -87,7 +108,7 @@ bool missile::isDead() const
 
 glm::vec2 missile::getVelocity() const
 {
-	return velocity * VEL_TIME_CONST;
+	return velocity;
 }
 
 int missile::getTeam() const {
@@ -105,4 +126,5 @@ missile::~missile()
 		explosionSys->setLifetime(2.0f);
 		manager->particleSystems.addParticleSystem(explosionSys);
 	}
+	for (auto force : forces) { delete force; }
 }
