@@ -74,7 +74,7 @@ void menuState::draw()
 	if (prop->getSpool() == 0.0f) {
 		ofPushMatrix();
 			ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
-			ofScale(glm::vec3(dim.x / logo.getWidth()));
+			ofScale(glm::vec3(dim.x*0.8f / logo.getWidth()));
 			logo.draw(glm::vec2(logo.getWidth(), logo.getHeight())*-0.5f + glm::vec2(0, -ofGetHeight()*0.3f));
 			ofSetColor(ofColor::white);
 		ofPopMatrix();
