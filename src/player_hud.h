@@ -60,8 +60,10 @@ public:
 
 class popupNotification : public onScreenNotification
 {
+protected:
+	float speed;
 public:
-	popupNotification(const std::string& _text, float _lifetime, const glm::vec2& _pos, float _scale);
+	popupNotification(const std::string& _text, float _lifetime, const glm::vec2& _pos, float _speed);
 	void update();
 	void draw() const;
 };

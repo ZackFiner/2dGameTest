@@ -77,6 +77,11 @@ void missile::update()
 				if (hit->getHealth() <= 0) // if we killed it.
 				{
 					score_gained += hit->getPoints();
+					if (!(hit->getID() == manager->getPlayer())) {
+						std::stringstream ss;
+						ss << "+" << hit->getPoints() << " pts";
+						manager->display->addNotification((onScreenNotification*)new popupNotification(ss.str(), 1.0f, position, 20.0f));
+					}
 					if (manager->getSprite(shotFrom) != nullptr)
 						manager->getSprite(shotFrom)->setScore(hit->getPoints());
 				}

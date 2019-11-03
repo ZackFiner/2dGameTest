@@ -37,4 +37,5 @@ public:
 	void update();
 	void draw();
 	bool isDead() const;
+	int getHealth() const;
 };

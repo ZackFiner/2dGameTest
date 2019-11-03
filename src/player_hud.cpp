@@ -106,11 +106,25 @@ void onScreenNotification::setRot(float _r) { rot = _r; }
 void onScreenNotification::setColor(const ofColor& _col) { col = _col; }
 
 
-popupNotification::popupNotification(const std::string& _text, float _lifetime, const glm::vec2& _pos, float _scale)
+popupNotification::popupNotification(const std::string& _text, float _lifetime, const glm::vec2& _pos, float _speed) 
 {
-	//TODO:implement me
+	text = _text;
+	lifetime = _lifetime;
+	pos = _pos;
+	speed = _speed;
 }
 
-void popupNotification::update() {}
+void popupNotification::update() 
+{
+	onScreenNotification::update();
+	pos += glm::vec2(0, speed * ofGetLastFrameTime());
+}
 
-void popupNotification::draw() const {}
+void popupNotification::draw() const {
+	ofPushMatrix();
+	ofSetColor(col.r, col.g, col.b, (1 - (age / lifetime)) * 255);
+	ofTranslate(glm::vec2(ofGetWidth(), ofGetHeight())*0.5f);
+	ofDrawBitmapString(text, glm::rotate(pos, glm::radians(180.0f)));
+	ofSetColor(ofColor::white);
+	ofPopMatrix();
+}

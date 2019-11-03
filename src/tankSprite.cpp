@@ -77,7 +77,6 @@ void tankSprite::draw()
 }
 void tankSprite::update()
 {
-
 	solidEntity::update();
 	dead = hp <= 0;
 	
@@ -196,5 +195,6 @@ void spaaSprite::draw()
 }
 
 int spaaSprite::getPoints() const {
+
 	return 50;
 }

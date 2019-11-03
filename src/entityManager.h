@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "EID.h"
-
+#include "player_hud.h"
 /*H******************************************************************
  * FILENAME: entityManager.h
  * AUTHOR: Zackary Finer
@@ -51,6 +51,7 @@ private:
 	std::unordered_map<EID, entity*> contents;
 	EID playerEnt;
 public:
+	playerHud* display;
 	particleManager particleSystems;
 	entityManager();
 	void addSprite(entity*);

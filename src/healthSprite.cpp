@@ -40,6 +40,11 @@ void healthPack::update() {
 			heliSprite* player = (heliSprite*)hitEnt;
 			player->setHealth(glm::min(100, player->getHealth() + HEALTH_PACK_AMNT));
 			dead = true;
+			std::stringstream ss;
+			ss << "+" << HEALTH_PACK_AMNT << " HP";
+			auto notif = new popupNotification(ss.str(), 1.0f, position, 30.0f);
+			notif->setColor(ofColor::green);
+			manager->display->addNotification((onScreenNotification*)notif);
 			break;
 		}
 	}
@@ -62,3 +67,5 @@ void healthPack::draw() {
 	
 	ofPopMatrix();
 }
+
+int healthPack::getHealth() const { return 1; }

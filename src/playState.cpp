@@ -18,6 +18,7 @@ void playState::setup() {
 	helicopter = new heliSprite(&sceneGraph, &collisionEngine);
 	helicopter->setUpdateCannonDir(true);
 	sceneGraph.setPlayer(helicopter->getID());
+	sceneGraph.display = &hud;
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
 	startTick = ofGetSystemTimeMillis();
 }
@@ -70,6 +71,7 @@ void playState::update() {
 void playState::draw() {
 
 	background.draw();
+	hud.update();
 	glm::vec2 scrnDim = glm::vec2(ofGetWidth(), ofGetHeight());
 	ofPushMatrix();
 	ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
