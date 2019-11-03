@@ -1,4 +1,5 @@
 #include "particle.h"
+#include "particleSystem.h"
 /*H*********************************************************
  * FILE: particle.cpp
  * AUTHOR: Zackary Finer
@@ -42,7 +43,10 @@ ofColor particle::getColor() const
 {
 	return col;
 }
-
+float particle::getMass()
+{
+	return mass;
+}
 void particle::integrate()
 {
 	// a = F/m
@@ -112,4 +116,50 @@ void smokeParticle::integrate()
 {
 	rot += rot_dir * ofGetLastFrameTime();
 	particle::integrate();
+}
+
+smokeStreamer::smokeStreamer(const glm::vec2& _pos, 
+	const glm::vec2& _vel,
+	const glm::vec2& _acc,
+	float _mass,
+	float _lifetime,
+	float trail_length,
+	float trail_density,
+	particleSystem* sys)
+	:
+	smokeParticle(_pos, _vel, _acc, _mass, _lifetime)
+{
+	this->trail_length = trail_length;
+	this->trail_density = trail_density;
+	this->sys = sys;
+}
+
+smokeStreamer::smokeStreamer(const glm::vec2& _pos,
+	float _lifetime,
+	float trail_length,
+	float trail_density,
+	particleSystem* sys)
+	:
+	smokeParticle(_pos, _lifetime)
+{
+	this->trail_length = trail_length;
+	this->trail_density = trail_density;
+	this->sys = sys;
+}
+
+void smokeStreamer::integrate()
+{
+	smokeParticle::integrate();
+	unsigned long cT = ofGetSystemTimeMillis();
+	if (trail_density > 0)
+	{
+		if (cT - lastSpawn > (1000.0f / trail_density))
+		{
+			smokeParticle* p = new smokeParticle(pos, glm::vec2(), glm::vec2(), mass, trail_length);
+			p->colOverride = colOverride;
+			p->setSizeGradient(0.3f, 1.0f);
+			sys->spawnParticle((particle*)p);
+			lastSpawn = cT;
+		}
+	}
 }

@@ -57,6 +57,7 @@ class particleSystem
 {
 private:
 	std::vector<particle*> particles;
+	std::vector<particle*> spawnedParts;
 	float lifeTime = -1.0f;
 	float age = 0;
 	bool firstApp = true;
@@ -68,6 +69,7 @@ public:
 	void update();
 	void addForce(particleForce*);
 	void addParticle(particle*);
+	void spawnParticle(particle* p) { spawnedParts.push_back(p); }
 	void clear();
 	void setLifetime(float);
 

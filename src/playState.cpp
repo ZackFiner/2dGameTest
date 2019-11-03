@@ -25,6 +25,7 @@ void playState::setup() {
 	music.setVolume(0.3f);
 	music.setLoop(true);
 	music.play();
+	hud.level = 1;
 }
 
 //--------------------------------------------------------------
@@ -39,7 +40,16 @@ void playState::update() {
 		heliSprite* p = (heliSprite*)sceneGraph.getSprite(sceneGraph.getPlayer());
 		playerScore = p->getScore();
 		hud.score = playerScore;
-		hud.level = playerScore * 0.01 + 1;
+		int new_lvl = playerScore * 0.01 + 1;
+		if (hud.level != new_lvl)
+		{
+			stringstream ss;
+			ss << "LEVEL " << new_lvl << std::endl;
+			auto notif = new popupNotification(ss.str(), 2.0f, p->getPos(), 40.0f);
+			notif->setColor(ofColor::blue);
+			hud.addNotification((onScreenNotification*)notif);
+		}
+		hud.level = new_lvl;
 		hud.health = p->getHealth();
 		spawner->setDifficulty(playerScore *0.01);
 	}
@@ -105,6 +115,9 @@ void playState::draw() {
 		ofDrawRectangle(glm::vec2(0, 0), ofGetWidth(), ofGetHeight());
 	}
 	ofSetColor(ofColor::white);
+	/*stringstream ss;
+	ss << "FPS: " << ofGetFrameRate() << std::endl;
+	ofDrawBitmapString(ss.str(), glm::vec2(300, 300));*/
 	
 }
 

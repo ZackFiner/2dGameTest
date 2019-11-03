@@ -88,6 +88,9 @@ void menuState::draw()
 }
 void menuState::keyPressed(int key)
 {
+	if (prop->getSpool() != 0.0f)
+		return;
+
 	switch (key)
 	{
 	case ' ':
@@ -95,8 +98,7 @@ void menuState::keyPressed(int key)
 		break;
 	case 'c':
 	case 'C':
-		if (prop->getSpool()==0.0f)
-			nextState = (playState*)new creditsState();
+		nextState = (playState*)new creditsState();
 		break;
 	}
 }

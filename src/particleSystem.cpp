@@ -63,6 +63,12 @@ void particleSystem::update()
 	{
 		p->integrate();
 	}
+
+	for (auto new_part : spawnedParts)
+	{
+		particles.push_back(new_part);
+	}
+	spawnedParts.clear();
 	age += ofGetLastFrameTime();
 }
 

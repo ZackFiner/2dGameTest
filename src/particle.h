@@ -13,6 +13,7 @@
  *
  ***********************************************************/
 #define PARTICLE_DAMPENING 0.9f
+class particleSystem;
 class imageSingleton
 {
 public:
@@ -46,7 +47,7 @@ public:
 	ofColor getColor() const;
 	float getAge() const;
 	float getLifetime() const;
-
+	float getMass();
 	virtual void integrate();
 	virtual void draw() const;
 	virtual ~particle();
@@ -65,5 +66,17 @@ public:
 	smokeParticle(const glm::vec2& _pos, float _lifetime);
 	void setSizeGradient(float min, float max);
 	void draw() const;
+	void integrate();
+};
+
+class smokeStreamer : public smokeParticle
+{
+	unsigned long lastSpawn=0;
+	float trail_density;
+	float trail_length;
+	particleSystem* sys;
+public:
+	smokeStreamer(const glm::vec2& _pos, const glm::vec2& _vel, const glm::vec2& _acc, float _mass, float _lifetime, float trail_length, float trail_density, particleSystem* sys);
+	smokeStreamer(const glm::vec2& _pos, float _lifetime, float trail_length, float trail_density, particleSystem* sys);
 	void integrate();
 };
