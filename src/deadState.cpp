@@ -1,5 +1,6 @@
 #include "deadState.h"
 #include "playState.h"
+#include "menuState.h"
 /*H**********************************************************
  *
  * FILENAME: deadState.h
@@ -29,6 +30,8 @@ void deadState::draw() {
 	ss << "LEVEL REACHED: " << level << "\n";
 	ofDrawBitmapString(ss.str() , dim / 2 - glm::vec2(12.5 * 8, 18));
 	ofDrawBitmapString("PRESS SPACE TO REPLAY GAME", dim / 2 - glm::vec2(12.5 * 8, -8));
+
+	ofDrawBitmapString("PRESS M TO RETURN TO MENU", dim / 2 - glm::vec2(12.5 * 8, -32));
 }
 
 //--------------------------------------------------------------
@@ -37,6 +40,11 @@ void deadState::keyPressed(int key) {
 	{
 	case ' ':
 		nextState = (gameState*) new playState();
+		break;
+	case 'm':
+	case 'M':
+		nextState = (gameState*) new menuState();
+		break;
 	}
 }
 

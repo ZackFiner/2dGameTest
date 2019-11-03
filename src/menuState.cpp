@@ -1,6 +1,7 @@
 #include "menuState.h"
 #include "ofMain.h"
 #include "playState.h"
+#include "creditsState.h"
 
 /*H******************************************************************
  * FILENAME: gameState.cpp
@@ -17,6 +18,7 @@
 void menuState::setup()
 {
 	background.resize(1024,1024);
+	background2.resize(1024, 1024);
 	prop = new introHeliSprite(&em);
 	prop->setPos(glm::vec2(5.0f, 10.0f));
 }
@@ -58,13 +60,17 @@ void menuState::draw()
 		ofTranslate(glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0));
 		ofSetColor(ofColor::white);
 		background.draw(glm::vec2(background.getWidth(), background.getHeight())*-0.5f);
-	
+		background2.draw(glm::vec2(background2.getWidth() + background.getWidth()*1.99, background2.getHeight())*-0.5f);
+		background2.draw(glm::vec2(background2.getWidth() - background.getWidth()*1.99, background2.getHeight())*-0.5f);
 		ofRotateDeg(180.0f);
 		em.draw();
 	ofPopMatrix();
 
 	if (prop->getSpool() == 0.0f)
-		ofDrawBitmapString("PRESS SPACE TO START GAME", dim / 2-glm::vec2(12.5*8,4));
+	{
+		ofDrawBitmapString("PRESS SPACE TO START GAME", dim / 2 - glm::vec2(12.5 * 8, 4));
+		ofDrawBitmapString(" PRESS C TO VIEW CREDITS ", dim / 2 - glm::vec2(12.5 * 8, -8));
+	}
 	
 	if (m_fadeout > 0.0f)
 	{
@@ -86,6 +92,12 @@ void menuState::keyPressed(int key)
 	{
 	case ' ':
 		prop->startUp();
+		break;
+	case 'c':
+	case 'C':
+		if (prop->getSpool()==0.0f)
+			nextState = (playState*)new creditsState();
+		break;
 	}
 }
 void menuState::keyReleased(int key)

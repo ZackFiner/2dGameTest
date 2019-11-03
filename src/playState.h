@@ -43,6 +43,7 @@ class playState : public gameState
 	playerHud hud;
 	float spooldown = -1.0f;
 	float m_fadeout = 0.0f;
+	ofSoundPlayer music;
 
 	gameState* nextState = nullptr;
 public:

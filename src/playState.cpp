@@ -21,6 +21,10 @@ void playState::setup() {
 	sceneGraph.display = &hud;
 	spawner = new tankSpawner(&sceneGraph, &collisionEngine);
 	startTick = ofGetSystemTimeMillis();
+	music.load("Sunrise_Over_Los_Angeles.mp3");
+	music.setVolume(0.3f);
+	music.setLoop(true);
+	music.play();
 }
 
 //--------------------------------------------------------------
@@ -54,6 +58,7 @@ void playState::update() {
 		{
 			m_fadeout += ofGetLastFrameTime()*0.3f;
 			m_fadeout = glm::clamp(m_fadeout, 0.0f, 1.1f);
+			music.setVolume(0.3f - (m_fadeout*0.3f));
 		}
 	}
 	if (!spawner->getRunning() && ofGetSystemTimeMillis() - startTick > GAME_START_PHASE && deathTick==0)
